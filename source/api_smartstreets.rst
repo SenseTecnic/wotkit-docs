@@ -1,0 +1,15 @@
+.. _api_smartstreets:
+
+.. index::
+	single: SmartStreets
+
+.. _api-smartstreets-label:
+
+Smart Streets Authentication
+============================	
+
+The WoTKit API for Smart Streets supports basic authentication using user name and password, WoTKit keys, as well as a developer key.  Note that Smart Streets does not support OAuth2.
+
+Authenticating using Smart Streets Developer Keys
+-------------------------------------------------
+More on this to come
