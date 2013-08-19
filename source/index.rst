@@ -6,7 +6,9 @@
 Welcome to the WoTKit
 ====================
 
-The WoTKit is a web-centric toolkit for managing *things* in the Internet of Things.  WoT manages sensors and actuators including the collection, aggregation. storage, processing and visualization of sensor data.
+The WoTKit is a web-centric toolkit that helps organizations manage sensors and actuators to coolect, aggregate, store and process sensor data and react to changes in the physical and virtual world.
+
+To get started quickly, see the :ref:`quickstart` guide.  For more information see:
 
     * :ref:`user-documentation`
     * :ref:`api-documentation`
@@ -15,12 +17,17 @@ The WoTKit is a web-centric toolkit for managing *things* in the Internet of Thi
 
     This documentation is work in progress.  Please send questions and feedback to info@sensetecnic.com.
 
+Quick Start
+===========
+
+.. toctree::
+
+   quickstart
+
 .. _user-documentation:
 
 User Documentation
 ==================
-
-Contents:
 
 .. toctree::
    :numbered:
@@ -37,8 +44,6 @@ Contents:
 
 API Documentation
 =================
-
-Contents:
 
 .. toctree::
    :numbered:
