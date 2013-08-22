@@ -44,7 +44,81 @@ The Widget will appear on your :wotkit:`dashboard <dashboards>`.  Feel free to m
 Adding your own Sensor
 ======================
 
-todo
+To add your own sensors to the WoTkit, you will first use the UI to create a sensor, create a key to generate credentials
+for your sensor script to send data using the WoTKit API, then run your script to send data to the WoTKit.
+
+    1. Create a sensor by clicking on the Sensors tab in the navigation bar to take you to the :wotkit:`Sensor Search <sensors>` page.
+    Click on the *New Sensor* button in the top right.
+    
+    2. Fill in the new sensor form.  Lets call it 'Test Sensor' with the name 'test-sensor'.  Click on the map to set a
+    location for your sensor.
+    
+    3. Once you've filled in the form, you can view the :wotkit:`monitor page <sensors/test-sensor/monitor>` for that sensor.
+    
+At this point you've created a resource on the wotkit for your sensor.  Now it is time to create a key to use in your
+sensor scripts to send data to the WoTKit using the API. 
+
+    1. Create an API key by clicking on the Keys button in the navigation bar to take you to the 
+    :wotkit:`Keys <keys>` page.
+    
+    2. Click on the *New Key* button in the top right.
+    
+    3. Fill in the new key form.  Lets call the key a 'Test Key' since we'll only use it for our test sensors.
+    
+Now that we've created a sensor resource and a key, lets write a script to send data to our sensor.  Lets start with
+something simple like sending a random value to the sensor using Python.
+
+Here's the code:
+
+.. code-block:: python
+
+    import random
+    import time
+    import datetime
+    import urllib
+    import urllib2
+    import base64
+    
+    KEY_ID = YOUR_KEY_ID
+    KEY_PASS = YOUR_KEY_PASS
+    
+    if __name__ == '__main__':
+    
+        random.seed(time.time())
+        
+        # encode our key id and password
+        base64string = base64.encodestring('%s:%s' % (KEY_ID, KEY_PASS))[:-1]
+    
+        # the URL for our sensor
+        url = 'http://wotkit.sensetecnic.com/api/sensors/test-sensor/data'
+    
+        while 1:
+    
+            # get value from the sensor, in this case we'll just generate a random number
+            value = random.randint(0,100)
+            
+            datafields = [('value','%d' % value)]
+            
+            params = urllib.urlencode(datafields)
+    
+            headers = {
+                'User-Agent': 'httplib',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': "Basic %s" % base64string
+            }
+        
+            req = urllib2.Request(url,params,headers)
+            try:
+                result = urllib2.urlopen(req)
+            
+            except urllib2.URLError, e:
+                print "error", e
+                
+            
+            print 'random value sent: %d' % (value)
+            
+            time.sleep(2.0)
+
 
 Where to go from here
 =====================
