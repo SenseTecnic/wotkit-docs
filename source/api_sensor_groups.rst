@@ -1,0 +1,214 @@
+.. _api_sensor_groups:
+
+Sensor Groups
+=============
+Sensor Groups are used to logically organize related sensors.
+A Sensors can be a member of many groups.
+
+Currently, all Sensor Groups have **public** visibility, but **only** the **owner** (creator) can add/remove sensors from the group.
+
+Sensor Groups can be manipulated using a REST API in the following section
+
+.. _api_sensor_group_format:
+
+Sensor Group Format
+-------------------
+All request body and response bodies use JSON. The following fields are present:
+
+
+.. list-table::
+  :widths: 5, 5, 5, 30
+  :header-rows: 1
+
+  * - Field Name
+    - Type
+    - Required
+    - Notes
+  * - **id**
+    - Integer
+    - true
+    - The id contains a unique number which is used to identify the group
+  * - **name**
+    - String[4,50]
+    - true
+    - The name is a system-unique string identifier for the group. Names must be lowercase containing alphanumeric, underscores or hyphens ``[a-z0-9_-]``. The first character **must** be an alphabetic character
+  * - **longName**
+    - String[,255]
+    - optional
+    - A readable name used for visual interfaces.
+  * - **owner**
+    - String[4,50]
+    - true
+    - The name of the group's owner. This field is set by the system and cannot be modified.
+  * - **description**
+    - String[,255]
+    - optional
+    - A simple description of the group
+  * - **imageUrl**
+    - String[,255]
+    - optional
+    - A string url to an image which can be used to represent this group
+  * - **sensors**
+    - Array[Sensor]
+    - optional
+    - Contains a JSON list of sensors. This field is only useful for viewing sensors. To append/remove sensors from Sensor Groups, refer to :ref:`api_sensor_groups_add_sensor`.
+
+An example of a Sensor Group JSON would be follows::
+
+  {
+    id: 49,
+    name: "water-sensor",
+    longName: "A water sensor",
+    owner: "robertl",
+    description: "This is a short description",
+    imageUrl: "http://someurl.com/water-sensor.jpg"
+    sensors: []
+  }
+
+List Groups
+-----------
+Provides a list of groups on the system as an array using the JSON format specified in :ref:`api_sensor_group_format`
+
+.. list-table::
+  :widths: 10, 80
+
+  * - **URL**
+    - :wotkit-api:`groups/`
+  * - **Method**
+    - GET
+  * - **Returns**
+    - OK 200, along with list
+
+.. admonition:: example
+
+  .. parsed-literal::
+    curl --user {id}:{password} --request GET ':wotkit-api:`groups`'
+
+
+Viewing a Single Sensor Group
+-----------------------------
+Similar to listing a group, but retrieving only a single sensor. Replace ``{group-name}``
+with ``group.id`` or ``group.name``. The API accepts both formats
+
+.. list-table::
+  :widths: 10, 80
+
+  * - **URL**
+    - :wotkit-api:`groups/{group-name}`
+  * - **Method**
+    - GET
+  * - **Returns**
+    - OK 200
+
+.. admonition:: example
+
+  .. parsed-literal::
+    curl --user {id}:{password} --request GET ':wotkit-api:`groups`'
+
+Creating a Sensor Group
+-----------------------
+To create a sensor group, append the Sensor Group contents following :ref:`api_sensor_group_format`.
+
+On creation, the **id** and **owner** fields are **ignored** because they are system generated.
+
+.. list-table::
+  :widths: 10, 80
+
+  * - **URL**
+    - :wotkit-api:`groups`
+  * - **Method**
+    - POST
+  * - **Returns**
+    - If a sensor with the same name exists, ERROR 409. Otherwise, OK 204.
+
+
+Modifying Sensor Group Fields
+-----------------------------
+Modifying is similar to creation, the content is placed in the response body
+
+Again, the **id** and **owner** fields in the JSON object are **ignored** if they are modified. The Sensor Group is specified by substituting ``{group-name}`` in the URL with either ``group.id`` or ``group.name``. The API accepts both formats.
+
+.. list-table::
+  :widths: 10, 80
+
+  * - **URL**
+    - :wotkit-api:`groups/{group-name}`
+  * - **Method**
+    - PUT
+  * - **Returns**
+    - If user has no permissions to edit group, returns UNAUTHORIZED 401, otherwise OK 204
+
+
+Deleting a Sensor Group
+-----------------------
+Deleting a Sensor Group is fairly trivial, assuming you are the owner of the group.
+A request body is unnecessary.
+
+.. list-table::
+  :widths: 10, 80
+
+  * - **URL**
+    - :wotkit-api:`groups/{group-name}`
+  * - **Method**
+    - DELETE
+  * - **Returns**
+    - If user has no permissions to edit group, returns UNAUTHORIZED 401, otherwise OK 204
+
+.. _api_sensor_groups_add_sensor:
+
+Adding a Sensor to Sensor Group
+-------------------------------
+This is done by invoking the URL by replacing the specified parameters where
+``{group-name}`` can be ``group.id`` or ``group.name``. ``{sensor-id}`` should
+be ``sensor.id``.
+
+
+.. list-table::
+  :widths: 10, 80
+
+  * - **URL**
+    - :wotkit-api:`groups/{group-name}/sensors/{sensor-id}`
+  * - **Method**
+    - POST
+
+The response will contain one of the following response codes.
+
+.. list-table::
+  :widths: 10, 50
+  :header-rows: 1
+
+  * - Return Code
+    - Description
+  * - OK 204
+    - No Content is given.
+  * - 400
+    - Sensor is already a member of sensor group
+  * - 401
+    - User is unauthorized to edit group.
+
+Removing a Sensor from Sensor Group
+-----------------------------------
+
+The format is the same as :ref:`api_sensor_groups_add_sensor` except replacing ``method`` with ``DELETE``
+
+.. list-table::
+  :widths: 10, 80
+
+  * - **URL**
+    - :wotkit-api:`groups/{group-name}/sensors/{sensor-id}`
+  * - **Method**
+    - DELETE
+
+The response will contain one of the following codes.
+
+.. list-table::
+  :widths: 10, 50
+  :header-rows: 1
+
+  * - Return Code
+    - Description
+  * - OK 204
+    - No Content is given. If a sensor does not exist in a group, this is also returned.
+  * - 401
+    - User is unauthorized to edit group
+

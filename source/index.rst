@@ -60,6 +60,7 @@ API Documentation
    api_tags
    api_users
    api_orgs
+   api_sensor_groups
    api_news
    api_stats
    api_smartstreets
