@@ -3,7 +3,11 @@
 Overview
 ==========
 
-The WoTKit lets you quickly publish and find interesting data streams; from environmental sensors, GPS and on board data collection from vehicles, real time data feeds from mobile applications, building sensors, and internet-sourced content.  With the WoTKit you can easily add visualizations for display on a WoTKit dashboard and create applications using the WoTKit API.  This section will get you started with the WoTKit.  Once you are familiar with the WoTKit portal you can then add your own sensor to the system for use by the :ref:`WoTKit API <api-documentation>`.
+The WoTKit lets you quickly publish and find interesting data streams; from environmental sensors, GPS and on board
+data collection from vehicles, real time data feeds from mobile applications, building sensors, and internet-sourced
+content.  With the WoTKit you can easily add visualizations for display on a WoTKit dashboard and create applications
+using the WoTKit API.  This section will get you started with the WoTKit.  Once you are familiar with the WoTKit UI
+you can then add your own sensor to the system for use by the :ref:`WoTKit API <api-documentation>`.
 
 Finding Sensors
 ===============
@@ -37,9 +41,11 @@ Now that we're logged in, lets create a widget that displays sensor data on a da
 
     4. Lets go with the *Line Graph* in the pop up.  Click on the *Create this Widget* button to create a widget.
 
-The widget will appear in the :wotkit:`widget list <widgets>`.  To add it to your default dashboard, click on the *Add to Dashboard* button beside the widget.
+The widget will appear in the :wotkit:`widget list <widgets>`.  To add it to your default dashboard, click on
+the *Add to Dashboard* button beside the widget.
 
-The Widget will appear on your :wotkit:`dashboard <dashboards>`.  Feel free to move and resize the widget where you like.
+The Widget will appear on your :wotkit:`dashboard <dashboards>`.  Feel free to move and resize the
+widget where you like.
 
 Adding your own Sensor
 ======================
@@ -129,9 +135,8 @@ with line charts and graphs.
 Where to go from here
 =====================
 
-Next you may want to add a visualization to a WoTKit dashboard.  Consult the user documentation sections on 
-widgets and dashboards for more information.
+Consult the :ref:`user-documentation`user documentation for more information on using the WoTKit portal.
 
 To create your own WoTKit applications, register sensors dynamically and take advantage of the WoTKit platform with your
-own applications, consult the API documentation.
+own applications, consult the :ref:`WoTKit API documentation <api-documentation>`.
 
