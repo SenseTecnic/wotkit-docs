@@ -6,8 +6,9 @@ Overview
 The WoTKit lets you quickly publish and find interesting data streams; from environmental sensors, GPS and on board
 data collection from vehicles, real time data feeds from mobile applications, building sensors, and internet-sourced
 content.  With the WoTKit you can easily add visualizations for display on a WoTKit dashboard and create applications
-using the WoTKit API.  This section will get you started with the WoTKit.  Once you are familiar with the WoTKit UI
-you can then add your own sensor to the system for use by the :ref:`WoTKit API <api-documentation>`.
+using the WoTKit API.
+
+This quick start tutorial will get you started with the WoTKit.
 
 Finding Sensors
 ===============
@@ -53,19 +54,16 @@ Adding your own Sensor
 To add your own sensors to the WoTkit, you will first use the UI to create a sensor, create a key to generate credentials
 for your sensor script to send data using the WoTKit API, then run your script to send data to the WoTKit.
 
-    1. Create a sensor by clicking on the Sensors tab in the navigation bar to take you to the :wotkit:`Sensor Search <sensors>` page.
-    Click on the *New Sensor* button in the top right.
+    1. Create a sensor by clicking on the Sensors tab in the navigation bar to take you to the :wotkit:`Sensor Search <sensors>` page.  Click on the *New Sensor* button in the top right.
     
-    2. Fill in the new sensor form.  Lets call it 'Test Sensor' with the name 'test-sensor'.  Click on the map to set a
-    location for your sensor.
+    2. Fill in the new sensor form.  Lets call it 'Test Sensor' with the name 'test-sensor'.  Click on the map to set a location for your sensor.
     
     3. Once you've filled in the form, you can view the :wotkit:`monitor page <sensors/test-sensor/monitor>` for that sensor.
     
 At this point you've created a resource on the wotkit for your sensor.  Now it is time to create a key to use in your
 sensor scripts to send data to the WoTKit using the API. 
 
-    1. Create an API key by clicking on the Keys button in the navigation bar to take you to the 
-    :wotkit:`Keys <keys>` page.
+    1. Create an API key by clicking on the Keys button in the navigation bar to take you to the :wotkit:`Keys <keys>` page.
     
     2. Click on the *New Key* button in the top right.
     
@@ -128,8 +126,7 @@ Here's the code:
 Be sure to paste your generated key id and password into the variables above and make sure the sensor name is the one
 you chose for your sensor in the URL (we suggested 'test-sensor').
 
-Now if all goes well, the script will send a random value to the wotkit every 2 seconds.  View the :wotkit:`monitor page <sensors/test-sensor/monitor>`
-to see the new data added to the data table below in near real time.  Click on the 'Visualizations and Widgets' tab to visualize the data
+Now if all goes well, the script will send a random value to the wotkit every 2 seconds.  View the :wotkit:`monitor page <sensors/test-sensor/monitor>` to see the new data added to the data table below in near real time.  Click on the 'Visualizations and Widgets' tab to visualize the data
 with line charts and graphs.
 
 Where to go from here
@@ -137,6 +134,5 @@ Where to go from here
 
 Consult the :ref:`user-documentation` for more information on using the WoTKit portal.
 
-To create your own WoTKit applications, register sensors dynamically and take advantage of the WoTKit platform with your
-own applications, consult the :ref:`WoTKit API documentation <api-documentation>`.
+To create your own WoTKit applications, register sensors dynamically and take advantage of the WoTKit platform with your own applications, consult the :ref:`WoTKit API documentation <api-documentation>`.
 
