@@ -3,10 +3,10 @@
 Overview
 ==========
 
-The WoTKit lets you quickly publish and find interesting data streams; from environmental sensors, GPS and on board
-data collection from vehicles, real time data feeds from mobile applications, building sensors, and internet-sourced
-content.  With the WoTKit you can easily add visualizations for display on a WoTKit dashboard and create applications
-using the WoTKit API.
+The WoTKit lets you quickly publish, find and use interesting data streams in quick visualizations and your own applications;
+from environmental sensors, GPS and on board data collection from vehicles, real time data feeds from mobile applications,
+building sensors, and internet-sourced content.  With the WoTKit you can easily add visualizations for display on a WoTKit
+dashboard and create applications using the WoTKit API.
 
 This quick start tutorial will get you started with the WoTKit.
 
