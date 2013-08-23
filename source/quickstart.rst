@@ -79,8 +79,8 @@ Here's the code:
     import urllib2
     import base64
     
-    KEY_ID = YOUR_KEY_ID
-    KEY_PASS = YOUR_KEY_PASS
+    KEY_ID = 'PASTE_YOUR_KEY_ID_HERE'
+    KEY_PASS = 'PASTE_YOUR_KEY_PASSWORD_HERE'
     
     if __name__ == '__main__':
     
@@ -119,8 +119,19 @@ Here's the code:
             
             time.sleep(2.0)
 
+Be sure to paste your generated key id and password into the variables above and make sure the sensor name is the one
+you chose for your sensor in the URL (we suggested 'test-sensor').
+
+Now if all goes well, the script will send a random value to the wotkit every 2 seconds.  View the :wotkit:`monitor page <sensors/test-sensor/monitor>`
+to see the new data added to the data table below in near real time.  Click on the 'Visualizations and Widgets' tab to visualize the data
+with line charts and graphs.
 
 Where to go from here
 =====================
 
-todo
+Next you may want to add a visualization to a WoTKit dashboard.  Consult the user documentation sections on 
+widgets and dashboards for more information.
+
+To create your own WoTKit applications, register sensors dynamically and take advantage of the WoTKit platform with your
+own applications, consult the API documentation.
+
