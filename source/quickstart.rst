@@ -135,7 +135,7 @@ with line charts and graphs.
 Where to go from here
 =====================
 
-Consult the :ref:`user-documentation`user documentation for more information on using the WoTKit portal.
+Consult the :ref:`user-documentation` for more information on using the WoTKit portal.
 
 To create your own WoTKit applications, register sensors dynamically and take advantage of the WoTKit platform with your
 own applications, consult the :ref:`WoTKit API documentation <api-documentation>`.
