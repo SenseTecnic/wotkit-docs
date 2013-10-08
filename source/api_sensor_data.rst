@@ -9,41 +9,38 @@ In the WoTKit, *sensor data* consists of a timestamp followed by one or more nam
 reserved fields supported by the WoTKit:
 
 .. list-table::
-	:widths: 15, 50
-	:header-rows: 1
-	
-	* - Name
-	  - Value Description
-	* - timestamp
-	  - the time that the sensor data was collected.  This is a long integer representing the number of milliseconds from Jan 1, 1970 UTC.  
-		Optional; if not supplied, a server-supplied timestamp will be used.
-	* - sensor_id
-	  - the globally unique sensor id that produced the data.
-	* - sensor_name
-	  - the globally unique sensor name, in the form ``{username}.{sensorname}``
-	* - lat
-	  - the current latitude location of the sensor in degrees (number).  Needed for map visualizations.
-	* - lng
-	  - the current longitude location of the sensor in degrees (number).  Needed for map visualizations.
-	* - value
-	  - the primary value of the sensor data collected (number).  Needed for most visualizations.
-	* - message
-	  - a text message, for example a twitter message (text).  Needed for text/newsfeed visualizations.
+  :widths: 15, 50
+  :header-rows: 1
 
-|
+  * - Name
+    - Value Description
+  * - timestamp
+    - the time that the sensor data was collected.  This is a long integer representing the number of milliseconds from Jan 1, 1970 UTC. Optional; if not supplied, a server-supplied timestamp will be used.
+  * - sensor_id
+    - the globally unique sensor id that produced the data.
+  * - sensor_name
+    - the globally unique sensor name, in the form ``{username}.{sensorname}``
+  * - lat
+    - the current latitude location of the sensor in degrees (number).  Needed for map visualizations.
+  * - lng
+    - the current longitude location of the sensor in degrees (number).  Needed for map visualizations.
+  * - value
+    - the primary value of the sensor data collected (number).  Needed for most visualizations.
+  * - message
+    - a text message, for example a twitter message (text).  Needed for text/newsfeed visualizations.
 
 In addition to these reserved fields, additional fields can be added by updating the *sensor fields* in the WoTKit UI
 or :ref:`sensor_fields` in the API.
 
-.. note:: \* Python's ``time.time()`` function generates the system time in *seconds*, not milliseconds.  
-	
-	To convert this to an integer in milliseconds use ``int(time.time()*1000)``. 
-	Using Java: ``System.currentTime()``.
+.. note:: \* Python's ``time.time()`` function generates the system time in *seconds*, not milliseconds.
 
-.. _send-data-label:	
+  To convert this to an integer in milliseconds use ``int(time.time()*1000)``.
+  Using Java: ``System.currentTime()``.
+
+.. _send-data-label:
 
 .. index:: Sensor Data Creation
-	
+
 Sending New Data
 -----------------
 
@@ -56,34 +53,34 @@ will be processed in real time.
 To send new data:
 
 .. list-table::
-	:widths: 10, 50
+  :widths: 10, 50
 
-	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}/data`
-	* - **Privacy**
-	  - Private
-	* - **Format**
-	  - not applicable
-	* - **Method**
-	  - POST
-	* - **Returns**
-	  - HTTP status code; No Response 201 (Created) if successful
+  * - **URL**
+    - :wotkit-api:`sensors/{sensorname}/data`
+  * - **Privacy**
+    - Private
+  * - **Format**
+    - not applicable
+  * - **Method**
+    - POST
+  * - **Returns**
+    - HTTP status code; No Response 201 (Created) if successful
 
 |
 
 .. admonition:: example
 
-	.. parsed-literal::
+  .. parsed-literal::
 
-		curl --user {id}:{password} --request POST 
-		-d value=5 -d lng=6 -d lat=7 ':wotkit-api:`sensors/test-sensor/data`'
+    curl --user {id}:{password} --request POST
+    -d value=5 -d lng=6 -d lat=7 ':wotkit-api:`sensors/test-sensor/data`'
 
 |
-	
-.. _send-bulk-data-label:	
+
+.. _send-bulk-data-label:
 
 .. index:: Bulk Sensor Data
-	pair: Sensor Data Creation; Bulk Sensor Data
+  pair: Sensor Data Creation; Bulk Sensor Data
 
 Sending Bulk Data
 ------------------
@@ -98,122 +95,122 @@ Note that data PUT into the WoTKit will not be processed in real time, since it 
 To update data:
 
 .. list-table::
-	:widths: 10, 50
+  :widths: 10, 50
 
-	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}/data`
-	* - **Privacy**
-	  - Private
-	* - **Format**
-	  - JSON
-	* - **Method**
-	  - PUT
-	* - **Returns**
-	  - HTTP status code; No Response 204 if successful
-	  
+  * - **URL**
+    - :wotkit-api:`sensors/{sensorname}/data`
+  * - **Privacy**
+    - Private
+  * - **Format**
+    - JSON
+  * - **Method**
+    - PUT
+  * - **Returns**
+    - HTTP status code; No Response 204 if successful
+
 |
 
 Example of valid data:
- 
+
 .. code-block:: python
 
-	[{"timestamp":"2012-12-12T03:34:28.626Z","value":67.0,"lng":-123.1404,"lat":49.20532},
-	{"timestamp":"2012-12-12T03:34:28.665Z","value":63.0,"lng":-123.14054,"lat":49.20554},
-	{"timestamp":"2012-12-12T03:34:31.621Z","value":52.0,"lng":-123.14063,"lat":49.20559},
-	{"timestamp":"2012-12-12T03:34:35.121Z","value":68.0,"lng":-123.14057,"lat":49.20716},
-	{"timestamp":"2012-12-12T03:34:38.625Z","value":51.0,"lng":-123.14049,"lat":49.20757},
-	{"timestamp":"2012-12-12T03:34:42.126Z","value":55.0,"lng":-123.14044,"lat":49.20854},
-	{"timestamp":"2012-12-12T03:34:45.621Z","value":56.0,"lng":-123.14215,"lat":49.20855},
-	{"timestamp":"2012-12-12T03:34:49.122Z","value":55.0,"lng":-123.14727,"lat":49.20862},
-	{"timestamp":"2012-12-12T03:34:52.619Z","value":59.0,"lng":-123.14765,"lat":49.20868}]
+  [{"timestamp":"2012-12-12T03:34:28.626Z","value":67.0,"lng":-123.1404,"lat":49.20532},
+  {"timestamp":"2012-12-12T03:34:28.665Z","value":63.0,"lng":-123.14054,"lat":49.20554},
+  {"timestamp":"2012-12-12T03:34:31.621Z","value":52.0,"lng":-123.14063,"lat":49.20559},
+  {"timestamp":"2012-12-12T03:34:35.121Z","value":68.0,"lng":-123.14057,"lat":49.20716},
+  {"timestamp":"2012-12-12T03:34:38.625Z","value":51.0,"lng":-123.14049,"lat":49.20757},
+  {"timestamp":"2012-12-12T03:34:42.126Z","value":55.0,"lng":-123.14044,"lat":49.20854},
+  {"timestamp":"2012-12-12T03:34:45.621Z","value":56.0,"lng":-123.14215,"lat":49.20855},
+  {"timestamp":"2012-12-12T03:34:49.122Z","value":55.0,"lng":-123.14727,"lat":49.20862},
+  {"timestamp":"2012-12-12T03:34:52.619Z","value":59.0,"lng":-123.14765,"lat":49.20868}]
 
 |
 
 .. admonition:: example
 
-	.. parsed-literal::
+  .. parsed-literal::
 
-		curl --user {id}:{password} --request PUT --data-binary @data.txt 
-		':wotkit-api:`sensors/test-sensor/data`'
+    curl --user {id}:{password} --request PUT --data-binary @data.txt
+    ':wotkit-api:`sensors/test-sensor/data`'
 
 where *data.txt* contains JSON data similar to the above JSON array.
 
-.. _delete-data-label:	
+.. _delete-data-label:
 
 .. index:: Sensor Data Deletion
 
 Deleting Data
 --------------
 
-Currently you can only delete data by timestamp, where timestamp is in numeric or ISO form. 
+Currently you can only delete data by timestamp, where timestamp is in numeric or ISO form.
 Note that if more than one sensor data point has the same timestamp, they all will be deleted.
 
 To delete data:
 
 .. list-table::
-	:widths: 10, 50
+  :widths: 10, 50
 
-	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}/data/{timestamp}`
-	* - **Privacy**
-	  - Private
-	* - **Format**
-	  - not applicable
-	* - **Method**
-	  - DELETE
-	* - **Returns**
-	  - HTTP status code; No Response 204 if successful
-	  
+  * - **URL**
+    - :wotkit-api:`sensors/{sensorname}/data/{timestamp}`
+  * - **Privacy**
+    - Private
+  * - **Format**
+    - not applicable
+  * - **Method**
+    - DELETE
+  * - **Returns**
+    - HTTP status code; No Response 204 if successful
+
 |
 
 
-.. _raw-data-label:	
+.. _raw-data-label:
 
 .. index:: Raw Sensor Data, Sensor Data Retrieval
-	seealso: Sensor Data Retrieval; Formatted Sensor Data
+  seealso: Sensor Data Retrieval; Formatted Sensor Data
 
 Raw Data Retrieval
 ----------------------
 To retrieve raw data use the following:
 
 .. list-table::
-	:widths: 10, 50
+  :widths: 10, 50
 
-	* - **URL**
-	  - :wotkit-api:`sensors/{sensor-name}/data?{query-params}`
-	* - **Privacy**
-	  - Public or Private
-	* - **Format**
-	  - json
-	* - **Method**
-	  - GET
-	* - **Returns**
-	  - On success, OK 200 with a list of timestamped data records.
+  * - **URL**
+    - :wotkit-api:`sensors/{sensor-name}/data?{query-params}`
+  * - **Privacy**
+    - Public or Private
+  * - **Format**
+    - json
+  * - **Method**
+    - GET
+  * - **Returns**
+    - On success, OK 200 with a list of timestamped data records.
 
 |
 
 The query parameters supported are the following:
 
 .. list-table::
-	:widths: 15, 50
-	:header-rows: 1
+  :widths: 15, 50
+  :header-rows: 1
 
-	* - Name
-	  - Value Description
-	* - start
-	  - the absolute start time of the range of data selected in milliseconds. (Defaults to current time.) May only be used in combination with another parameter.
-	* - end
-	  - the absolute end time of the range of data in milliseconds
-	* - after
-	  - the relative time after the start time, e.g. after=300000 would be 5 minutes after the start time (Start time MUST also be provided.)
-	* - afterE
-	  - the number of elements after the start element or time. (Start time MUST also be provided.)
-	* - before
-	  - the relative time before the start time.  E.g. data from the last hour would be before=3600000 (If not provided, start time default to current time.)
-	* - beforeE
-	  - the number of elements before the start time.  E.g. to get the last 1000, use beforeE=1000 (If not provided, start time default to current time.)
-	* - reverse
-	  - **true**: order the data from newest to oldest; **false** (default):order from oldest to newest
+  * - Name
+    - Value Description
+  * - start
+    - the absolute start time of the range of data selected in milliseconds. (Defaults to current time.) May only be used in combination with another parameter.
+  * - end
+    - the absolute end time of the range of data in milliseconds
+  * - after
+    - the relative time after the start time, e.g. after=300000 would be 5 minutes after the start time (Start time MUST also be provided.)
+  * - afterE
+    - the number of elements after the start element or time. (Start time MUST also be provided.)
+  * - before
+    - the relative time before the start time.  E.g. data from the last hour would be before=3600000 (If not provided, start time default to current time.)
+  * - beforeE
+    - the number of elements before the start time.  E.g. to get the last 1000, use beforeE=1000 (If not provided, start time default to current time.)
+  * - reverse
+    - **true**: order the data from newest to oldest; **false** (default):order from oldest to newest
 
 |
 
@@ -222,8 +219,8 @@ The query parameters supported are the following:
 
 .. _formatted-data-label:
 
-.. index:: Formatted Sensor Data	
-	seealso: Formatted Sensor Data; Sensor Data Retrieval
+.. index:: Formatted Sensor Data
+  seealso: Formatted Sensor Data; Sensor Data Retrieval
 
 Formatted Data Retrieval
 ---------------------------
@@ -232,34 +229,34 @@ To retrieve data in a format suitable for Google Visualizations, we support an a
 called the *dataTable*.
 
 .. list-table::
-	:widths: 10, 50
+  :widths: 10, 50
 
-	* - **URL**
-	  - :wotkit-api:`sensors/{sensor-name}/dataTable?{query-params}`
-	* - **Privacy**
-	  - Public or Private
-	* - **Format**
-	  - json
-	* - **Method**
-	  - GET
-	* - **Returns**
-	  - On success, OK 200 with a list of timestamped data records.
-	  
+  * - **URL**
+    - :wotkit-api:`sensors/{sensor-name}/dataTable?{query-params}`
+  * - **Privacy**
+    - Public or Private
+  * - **Format**
+    - json
+  * - **Method**
+    - GET
+  * - **Returns**
+    - On success, OK 200 with a list of timestamped data records.
+
 |
 
 In addition to the above query parameters, the following parameters are also supported:
 
 .. list-table::
-	:widths: 5, 50
-	:header-rows: 1
-	
-	* -
-	  -
-	* - tqx
-	  - A set of colon-delimited key/value pairs for standard parameters, `defined here <http://code.google.com/apis/visualization/documentation/dev/implementing_data_source.html>`_.
-	* - tq
-	  - A SQL clause to select and process data fields to return, `explained here <http://code.google.com/apis/visualization/documentation/querylanguage.html>`_.
-	
+  :widths: 5, 50
+  :header-rows: 1
+
+  * -
+    -
+  * - tqx
+    - A set of colon-delimited key/value pairs for standard parameters, `defined here <http://code.google.com/apis/visualization/documentation/dev/implementing_data_source.html>`_.
+  * - tq
+    - A SQL clause to select and process data fields to return, `explained here <http://code.google.com/apis/visualization/documentation/querylanguage.html>`_.
+
 |
 
 .. note:: When using tq sql queries, they must be url encoded. When using tqx name/value pairs, the reqId parameter is necessary.
@@ -267,67 +264,127 @@ In addition to the above query parameters, the following parameters are also sup
 |
 
 For instance, the following would take the "test-sensor", select all data where value was greater than 20, and display
-the output as an html table. 
+the output as an html table.
 
 .. admonition:: example
 
-	.. parsed-literal::
-	
-		curl --user {id}:{password} :wotkit-api:`sensors/test-sensor/
-		dataTable?tq=select%20*%20where%20value%3E20&reqId=1&out=html`
+  .. parsed-literal::
+
+    curl --user {id}:{password} :wotkit-api:`sensors/test-sensor/
+    dataTable?tq=select%20*%20where%20value%3E20&reqId=1&out=html`
 
 |
-	
-.. _aggregated-data-label:	
 
-.. index:: Aggregated Sensor Data	
-	seealso: Aggregated Sensor Data; Sensor Data	
+.. _aggregated-data-label:
+
+.. index:: Aggregated Sensor Data
+  seealso: Aggregated Sensor Data; Sensor Data
 
 Aggregated Data Retrieval
 --------------------------
 Aggregated data retrieval allows one to receive data from multiple sensors, queried using the same parameters as when
-searching for sensors or sensor data.
-The following parameters may be added to the ``/data`` url:
+searching for sensors or sensor data. The query must be specified using one of the following 5 patterns.
 
+**Pattern 1 - With Start/End**
+
+.. list-table::
+  :widths: 10, 50
+
+  * - start
+    - The most recent starting time of the query. This value is optional and defaults to the current time.
+  * - end
+    - A timestamp *before* the start time.
+  * - limit
+    - Specifies the limit to return. This value is optional, with a default value of ``1000``.
+  * - offset
+    - Specifies the offset to return. This value is optional, with a default value of ``0``.
+
+**Pattern 2 - With Start/After**
+
+.. list-table::
+  :widths: 15, 50
+
+  * - start
+    - A starting timestamp.
+  * - after
+    - A **relative** timestamp *after* `start`.
+  * - limit
+    - Specifies the limit to return. This value is optional, with a default value of ``1000``
+  * - offset
+    - Specifies the offset to return. This value is optional, with a default value of ``0``
+
+
+**Pattern 3 - With Start/Before**
+
+.. list-table::
+  :widths: 15, 50
+
+  * - start
+    - A starting timestamp.
+  * - before
+    - A **relative** timestamp *before* `start`.
+  * - limit
+    - Specifies the limit to return. This value is optional, with a default value of ``1000``
+  * - offset
+    - Specifies the offset to return. This value is optional, with a default value of ``0``
+
+
+**Pattern 4 - With Start/BeforeE**
+
+.. list-table::
+  :widths: 15, 50
+
+  * - start
+    - A starting timestamp.
+  * - beforeE
+    - The number of elements to return before ``start``
+  * - offset
+    - Specifies the offset to return. This value is optional, with a default value of ``0``
+
+
+**Pattern 5 - With Start/AfterE**
+
+.. list-table::
+  :widths: 15, 50
+
+  * - start
+    - A starting timestamp.
+  * - afterE
+    - The number of elements to return after ``start``
+  * - offset
+    - Specifies the offset to return. This value is optional, with a default value of ``0``
+
+The following parameters may be added to any of the above patterns:
 * scope
 * tags
 * :strikethrough:`private` (deprecated, use visibility instead)
 * visibility
 * text
 * active
-
-* start
-* end
-* after
-* afterE
-* before
-* beforeE
-
 * orderBy
-	* **sensor**: which groups data by sensor_id 
-	* **time** (default): which orders data by timestamp, regardless of the sensor it comes from.
+* **sensor**: which groups data by sensor_id
+* **time** (default): which orders data by timestamp, regardless of the sensor it comes from.
 
 To receive data from more that one sensor, use the following:
 
 .. list-table::
-	:widths: 10, 50
+  :widths: 10, 50
 
-	* - **URL**
-	  - :wotkit-api:`data?{query-param}={query-value}&{param}={value}...`
-	* - **Privacy**
-	  - Public or Private
-	* - **Format**
-	  - json
-	* - **Method**
-	  - GET
-	* - **Returns**
-	  - On success, OK 200 with a list of timestamped data records.
-	  
-|
+  * - **URL**
+    - :wotkit-api:`data?{query-param}={query-value}&{param}={value}...`
+  * - **Privacy**
+    - Public or Private
+  * - **Format**
+    - json
+  * - **Method**
+    - GET
+  * - **Returns**
+    - On success, OK 200 with a list of timestamped data records.
+
 
 .. admonition:: example
 
-	.. parsed-literal::
+  .. parsed-literal::
 
-		curl --user {id}:{password} 
-		":wotkit-api:`data?subscribed=all&beforeE=20&orderBy=sensor`"
+    curl --user {id}:{password}
+    ":wotkit-api:`data?subscribed=all&beforeE=20&orderBy=sensor`"
