@@ -195,16 +195,17 @@ To retrieve raw data use the following:
 The data returned will look something like the following:
 
 .. code-block:: python
-    [{"id":43485114,"timestamp":"2013-10-09T23:37:45.055Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":58.0,"lng":-123.2223,"lat":49.24024},
-    {"id":43485118,"timestamp":"2013-10-09T23:37:48.560Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":60.0,"lng":-123.22432,"lat":49.24073},
-    {"id":43485121,"timestamp":"2013-10-09T23:37:52.056Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":69.0,"lng":-123.22651,"lat":49.24143},
-    {"id":43485124,"timestamp":"2013-10-09T23:37:55.555Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":67.0,"lng":-123.22798,"lat":49.24202},
-    {"id":43485128,"timestamp":"2013-10-09T23:37:59.055Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":61.0,"lng":-123.2292,"lat":49.24256},
-    {"id":43485131,"timestamp":"2013-10-09T23:38:02.555Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":55.0,"lng":-123.23022,"lat":49.2431},
-    {"id":43485139,"timestamp":"2013-10-09T23:38:06.055Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":69.0,"lng":-123.23496,"lat":49.24577},
-    {"id":43485143,"timestamp":"2013-10-09T23:38:09.556Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":69.0,"lng":-123.23718,"lat":49.24682},
-    {"id":43485147,"timestamp":"2013-10-09T23:38:13.056Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":51.0,"lng":-123.23851,"lat":49.24752},
-    {"id":43485150,"timestamp":"2013-10-09T23:38:16.556Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":63.0,"lng":-123.24513,"lat":49.25118}]
+
+	[{"id":43485114,"timestamp":"2013-10-09T23:37:45.055Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":58.0,"lng":-123.2223,"lat":49.24024},
+	{"id":43485118,"timestamp":"2013-10-09T23:37:48.560Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":60.0,"lng":-123.22432,"lat":49.24073},
+	{"id":43485121,"timestamp":"2013-10-09T23:37:52.056Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":69.0,"lng":-123.22651,"lat":49.24143},
+	{"id":43485124,"timestamp":"2013-10-09T23:37:55.555Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":67.0,"lng":-123.22798,"lat":49.24202},
+	{"id":43485128,"timestamp":"2013-10-09T23:37:59.055Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":61.0,"lng":-123.2292,"lat":49.24256},
+	{"id":43485131,"timestamp":"2013-10-09T23:38:02.555Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":55.0,"lng":-123.23022,"lat":49.2431},
+	{"id":43485139,"timestamp":"2013-10-09T23:38:06.055Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":69.0,"lng":-123.23496,"lat":49.24577},
+	{"id":43485143,"timestamp":"2013-10-09T23:38:09.556Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":69.0,"lng":-123.23718,"lat":49.24682},
+	{"id":43485147,"timestamp":"2013-10-09T23:38:13.056Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":51.0,"lng":-123.23851,"lat":49.24752},
+	{"id":43485150,"timestamp":"2013-10-09T23:38:16.556Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":63.0,"lng":-123.24513,"lat":49.25118}]
 
 |
 
