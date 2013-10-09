@@ -194,7 +194,7 @@ To retrieve raw data use the following:
 
 The data returned will look something like the following:
 
-.. code-block:: json
+.. code-block:: python
     [{"id":43485114,"timestamp":"2013-10-09T23:37:45.055Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":58.0,"lng":-123.2223,"lat":49.24024},
     {"id":43485118,"timestamp":"2013-10-09T23:37:48.560Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":60.0,"lng":-123.22432,"lat":49.24073},
     {"id":43485121,"timestamp":"2013-10-09T23:37:52.056Z","sensor_id":1,"sensor_name":"sensetecnic.mule1","value":69.0,"lng":-123.22651,"lat":49.24143},
