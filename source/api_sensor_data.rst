@@ -228,8 +228,7 @@ The query parameters supported are the following:
 	* - after
 	  - specifies a relative time after the start time, e.g. after=300000 would be 5 minutes after the start time. A start time (start) MUST also be specified since there will be no data after the current time.
 	* - afterE
-	  - specifies the number of elements after the start element or time. The start time (start) or start item (startE)
-	  MUST also be provided.)
+	  - specifies the number of elements after the start element or time. The start time (start) or start item (startE) MUST also be provided.)
 	* - before
 	  - specifies a relative time before the start time.  E.g. data from the last hour would be before=3600000. (If not provided, start time defaults to current time.)
 	* - beforeE
