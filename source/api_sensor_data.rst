@@ -15,8 +15,7 @@ reserved fields supported by the WoTKit:
 	* - Name
 	  - Value Description
 	* - timestamp
-	  - the time that the sensor data was collected.  This is a long integer representing the number of milliseconds from Jan 1, 1970 UTC.  
-		Optional; if not supplied, a server-supplied timestamp will be used.
+	  - the time that the sensor data was collected.  This is a long integer representing the number of milliseconds from Jan 1, 1970 UTC.  Optional; if not supplied, a server-supplied timestamp will be used.
 	* - sensor_id
 	  - the globally unique sensor id that produced the data.
 	* - sensor_name
@@ -220,19 +219,19 @@ The query parameters supported are the following:
 	* - Name
 	  - Value Description
 	* - start
-	  - Specifies the absolute start time of a range of data selected in milliseconds.  When start is not specified, it is set to the current time.  It may only be used in combination with another range parameter: end, after, afterE, before, and beforeE.
+	  - the absolute start time of a range of data selected in milliseconds.  When start is not specified, it is set to the current time.  It may only be used in combination with another range parameter: end, after, afterE, before, and beforeE.
 	* - startE
-	  - Specifies the id of the specific data item to start with.  This is needed to disambiguate data items in a sensor stream with the same timestamp.  This parameter may only be used with beforeE and afterE currently.
+	  - the id of the specific data item to start with.  This is needed to disambiguate data items in a sensor stream with the same timestamp.  This parameter may only be used with beforeE and afterE currently.
 	* - end
-	  - Specifies the absolute end time in milliseconds of a range of data after a specified start time.  The end parameter MUST be greater than the start time (start).
+	  - the absolute end time in milliseconds of a range of data after a specified start time.  The end parameter MUST be greater than the start time (start).
 	* - after
-	  - Specifies a relative time after the start time, e.g. after=300000 would be 5 minutes after the start time. A start time (start) MUST also be specified since there will be no data after the current time.
+	  - a relative time after the start time, e.g. after=300000 would be 5 minutes after the start time. A start time (start) MUST also be specified since there will be no data after the current time.
 	* - afterE
-	  - Specifies the number of elements after the start element or time. The start time (start) or start item (startE) MUST also be provided.)
+	  - the number of elements after the start element or time. The start time (start) or start item (startE) MUST also be provided.)
 	* - before
-	  - Specifies a relative time before the start time.  E.g. data from the last hour would be before=3600000. (If not provided, start time defaults to current time.)
+	  - a relative time before the start time.  E.g. data from the last hour would be before=3600000. (If not provided, start time defaults to current time.)
 	* - beforeE
-	  - Specifies number of data items before the start time.  E.g. to get the last 1000 items, use beforeE=1000 (If not provided, start time defaults to current time.)
+	  - number of data items before the start time.  E.g. to get the last 1000 items, use beforeE=1000 (If not provided, start time defaults to current time.)
 	* - reverse
 	  - **true**: order the data from newest to oldest; **false** (default):order from oldest to newest
 
