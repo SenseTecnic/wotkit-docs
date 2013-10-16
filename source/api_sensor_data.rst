@@ -192,6 +192,8 @@ To retrieve raw data use the following:
 
 |
 
+Where the data {query-params} are defined below.
+
 The data returned will look something like the following:
 
 .. code-block:: python
@@ -218,19 +220,26 @@ The query parameters supported are the following:
 	* - Name
 	  - Value Description
 	* - start
-	  - the absolute start time of the range of data selected in milliseconds. (Defaults to current time.) May only be used in combination with another parameter.
+	  - specifies the absolute start time of a range of data selected in milliseconds.  When start is not specified, it is
+	  set to the current time.  It may only be used in combination with another range parameter: end, after, afterE, before, and beforeE.
 	* - startE
-	  - the id of the specific data item to start with.  This is needed to disambiguate items with the same timestamp.  This parameter may only be used with beforeE and afterE currently.
+	  - specifies the id of the specific data item to start with.  This is needed to disambiguate data items in a sensor stream
+	  with the same timestamp.  This parameter may only be used with beforeE and afterE currently.
 	* - end
-	  - the absolute end time of the range of data in milliseconds
+	  - Specify the absolute end time in milliseconds of a range of data after a specified start time.  The 
+	  end parameter MUST be greater than the start time (start).
 	* - after
-	  - the relative time after the start time, e.g. after=300000 would be 5 minutes after the start time (Start time MUST also be provided.)
+	  - specifies a relative time after the start time, e.g. after=300000 would be 5 minutes after the start time
+	  A start time (start) MUST also be specified since there will be no data after the current time.
 	* - afterE
-	  - the number of elements after the start element or time. (Start time MUST also be provided.)
+	  - specifies the number of elements after the start element or time. The start time (start) or start item (startE)
+	  MUST also be provided.)
 	* - before
-	  - the relative time before the start time.  E.g. data from the last hour would be before=3600000 (If not provided, start time default to current time.)
+	  - specifies a relative time before the start time.  E.g. data from the last hour would be before=3600000.
+	  (If not provided, start time defaults to current time.)
 	* - beforeE
-	  - the number of elements before the start time.  E.g. to get the last 1000, use beforeE=1000 (If not provided, start time default to current time.)
+	  - specifies number of data items before the start time.  E.g. to get the last 1000 items,
+	  use beforeE=1000 (If not provided, start time defaults to current time.)
 	* - reverse
 	  - **true**: order the data from newest to oldest; **false** (default):order from oldest to newest
 
