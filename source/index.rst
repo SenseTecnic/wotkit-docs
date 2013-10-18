@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to the Smartstreets Documentation
+Welcome to the Smartstreets Hub WoTKit Documentation
 ===========================
 
 The WoTKit is a web-centric toolkit that helps organizations manage sensors and actuators to collect, aggregate, store and process sensor data and react to changes in the physical and virtual world.
