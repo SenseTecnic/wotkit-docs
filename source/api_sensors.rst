@@ -131,81 +131,62 @@ Output:
 .. code-block:: python
 
 	[
-	  {
-		"tags":["data","vancouver","canada"],
-			"latitude":0.0,
-			"longitude":0.0,
-			"longName":"api-data-test-1",
-			"lastUpdate":"2013-01-26T01:55:36.514Z",
-			"name":"api-data-test-1",
-			"fields":	
-				[{"required":true, "longName":"latitude", 
-				  "lastUpdate":"2013-01-26T01:55:36.514Z", 
-				  "name":"lat", "value":39.0, "type":"NUMBER","index":0},
-				{"required":true,"longName":"longitude",
-				 "lastUpdate":"2013-01-26T01:55:36.514Z",
-				 "name":"lng","value":85.0,"type":"NUMBER","index":1},
-				{"required":true,"longName":"Data",
-				 "lastUpdate":"2013-01-26T01:55:36.514Z
-				 "name":"value","value":20.0,"type":"NUMBER","index":2},
-				{"required":false,"longName":"Message",
-				 "lastUpdate":"2013-01-26T01:55:36.514Z",
-				 "name":"message","value":"test message to be active 164",
-				 "type":"STRING","index":3}],
-		"id":69,
-		"visibility":"PUBLIC",
-		"owner":"roseyr",
-		"description":"api-data-test-1"
-	  },
-		
-	  {
-		"tags":["data","canada","edmonton"],
-		"latitude":0.0,
-		"longitude":0.0,
-		"longName":"api-data-test-2",
-		"lastUpdate":"2013-01-26T01:55:42.400Z",
-		"name":"api-data-test-2",
-		"fields":	
-			[{"required":true,"longName":"latitude",
-			  "lastUpdate":"2013-01-26T01:55:37.537Z", 
-			  "name":"lat","value":65.0,"type":"NUMBER","index":0},
-			{"required":true,"longName":"longitude",
-			 "lastUpdate":"2013-01-26T01:55:37.537Z",
-			 "name":"lng","value":74.0,"type":"NUMBER","index":1},
-			{"required":true,"longName":"Data",
-			 "lastUpdate":"2013-01-26T01:55:37.537Z",
-			 "name":"value","value":82.0,"type":"NUMBER","index":2},	
-			{"required":false,"longName":"Message",
-			 "lastUpdate":"2013-01-26T01:55:37.537Z",
-			 "name":"message","value":"test message to be active 110",
-			 "type":"STRING","index":3}],
-		"id":70,
-		"visibility":"PUBLIC",
-		"owner":"roseyr",
-		"description":"api-data-test-1"
-	  },
-		
-	  {
-		"tags":["data","canada","winnipeg"],
-		"latitude":0.0,
-		"longitude":0.0,
-		"longName":"api-data-test-3",
-		"lastUpdate":"2013-01-26T01:55:34.488Z",
-		"name":"api-data-test-3",
-		"fields":
-			[{"required":true,"longName":"latitude","name":"lat","value":0.0,
-			  "type":"NUMBER","index":0},	
-			{"required":true,"longName":"longitude","name":"lng","value":0.0,
-			 "type":"NUMBER","index":1},	
-			{"required":true,"longName":"Data","name":"value","value":0.0,
-			 "type":"NUMBER","index":2},	
-			{"required":false,"longName":"Message","name":"message",
-			 "type":"STRING","index":3}],
-		"id":71,
-		"visibility":"PUBLIC",
-		"owner":"roseyr",
-		"description":"api-data-test-3"
-	  }
+	    {
+	        "id": 40,
+	        "name": "api-data-test-1",
+	        "longName": "api-data-test-1",
+	        "description": "api-data-test-1 description",
+	        "tags": ["canada","data","vancouver"],
+	        "subscriberNames": ["mike"],
+	        "visibility": "PUBLIC",
+	        "created": "2013-06-27T00:00:00.000Z",
+	        "latitude": 48.86471476180277,
+	        "longitude": -122.958984375,
+	        "thingType": "SENSOR",
+	        "lastUpdate": "2013-06-27T00:00:00.000Z",
+	        "fields": [
+	            {"name": "lat", "longName": "latitude",
+	                "type": "NUMBER","required": false,
+	                "value": 0,"index": 0},
+	            {"name": "lng","longName": "longitude",
+	                "type": "NUMBER","required": false,
+	                "value": 0, "index": 1},
+	            {"name": "value","longName": "Data",
+	                "type": "NUMBER","required": true,
+	                "value": 0,"index": 2},
+	            {"name": "message","longName": "Message",
+	                "type": "STRING","required": false, "index": 3},
+	            {"name": "new-field","longName": "",
+	                "type": "STRING","units": "","required": false,"index": 4}],
+	        "owner": "mike"
+	    },
+	    {
+	        "id": 41,
+	        "name": "api-data-test-2",
+	        "longName": "api-data-test-2",
+	        "description": "api-data-test-2 description",
+	        "tags": ["canada","data","edmonton"],
+	        "subscriberNames": [ "mike"],
+	        "visibility": "PUBLIC",
+	        "created": "2013-06-27T00:00:00.000Z",
+	        "latitude": 53.225768435790194,
+	        "longitude": -113.818359375,
+	        "thingType": "SENSOR",
+	        "lastUpdate": "2013-06-27T00:00:00.000Z",
+	        "fields": [
+	            {"name": "lat","longName": "latitude",
+	                "type": "NUMBER","required": false,
+	                "value": 0,"index": 0},
+	            {"name": "lng","longName": "longitude",
+	                "type": "NUMBER","required": false,
+	                "value": 0,"index": 1},
+	            {"name": "value","longName": "Data",
+	                "type": "NUMBER","required": true,
+	                "value": 0,"index": 2},
+	            {"name": "message","longName": "Message",
+	                "type": "STRING","required": false,"index": 3}],
+	        "owner": "mike"
+	    }
 	]
 
 .. _view-sensor-label:
