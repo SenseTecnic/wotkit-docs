@@ -34,7 +34,7 @@ Create a Widget
 
 Now that we're logged in, lets create a widget that displays sensor data on a dashboard using a line chart. 
 
-    1. First, choose a sensor that you would like to visualize using the :wotkit:`sensor seaarch <sensors>` page.
+    1. First, choose a sensor that you would like to visualize using the :wotkit:`sensor search <sensors>` page.
 
     2. Type in 'light' in the search area.  Click on the sensor called 'Light Sensor' published by Sense Tecnic.
 
