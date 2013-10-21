@@ -4,13 +4,12 @@
    contain the root `toctree` directive.
 
 Welcome to the Smartstreets Hub WoTKit Documentation
-===========================
+====================================================
 
-The WoTKit is a web-centric toolkit that helps organizations manage sensors and actuators to collect, aggregate, store and process sensor data and react to changes in the physical and virtual world.
+The SmartStreets Hub aggregates data related to traffic and highway maintenance, and provides application developers access to the data through a set of open APIs. The hub is built upon the Web of Things Toolkit (WoTKit), which is a web-centric toolkit that helps organizations manage sensors and actuators to collect, aggregate, store and process sensor data and react to changes in the physical and virtual world.
 
 To get started quickly, see the :ref:`Quick Start <quickstart>` guide.  For more information see:
 
-    * :ref:`user-documentation`
     * :ref:`api-documentation`
 
 .. note::
@@ -24,21 +23,6 @@ Quick Start
 
    quickstart
 
-.. _user-documentation:
-
-User Documentation
-==================
-
-.. toctree::
-   :numbered:
-   :maxdepth: 4
-
-   user_overview
-   user_user_info   
-   user_sensors
-   user_dashboards
-   user_clients
-   user_processor
 
 .. _api-documentation:
 
