@@ -22,13 +22,16 @@ A sensor has the following attributes:
 		| Note that the global name is ``{username}.{sensorname}``.  
 		| When logged in as a the owner, you can refer to the sensor using only ``{sensorname}``. 
 		| To access a public sensor created by another user, you can refer to it by its numeric id or the global name, ``{username}.{sensorname}``.
-
+	* - thingType
+	  - the entity type, this is set to "SENSOR" on sensor creation 
 	* - description **
 	  - a description of the sensor for text searches.
 	* - longName **
 	  - longer display name of the sensor.
 	* - :strikethrough:`url`
 	  - deprecated
+	* - imageUrl
+	  - the url of the sensor image 
 	* - latitude
 	  - the latitude location of the sensor in degrees.
 		This is a static location used for locating sensors on a map and for location-based queries.
@@ -40,19 +43,26 @@ A sensor has the following attributes:
 	* - lastUpdate
 	  - last update time in milliseconds.
 		This is the last time sensor data was recorded, or an actuator script polled for control messages.
+	* - created
+	  - the sensor creation datetime
 	* - visibility
 	  - | **PUBLIC**: The sensor is publicly visible
 	    | **ORGANIZATION**: The sensor is visible to everyone in the same organization as the sensor
 	    | **PRIVATE**: The sensor is only visible to the owner. In any case posting *data* to the sensor is restricted to the sensor's owner.
 	* - owner
-	  - the owner of the sensor
+	  - the user id of the sensor owner
+	* - organization
+	  - the organization name that a sensor belongs to
 	* - fields
 	  - the expected data fields, their type (number or string), units and if available, last update time and value.
 	* - tags
 	  - the list of tags for the sensor
+	* - subscriberNames
+	  - the list of users that have subscribed to the sensor
 	* - data
 	  - sensor data (not shown yet)
-
+	* - metadata
+	  - the list of sensor metadata keys and values (keys in each sensor must be unique)
 ** Required when creating a new sensor.
 
 |
@@ -199,7 +209,7 @@ To view a single sensor, query the sensor by sensor name or id as follows:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}`
+	  - :wotkit-api:`sensors/{sensorname or sensor id}`
 	* - **Privacy**
 	  - Public or Private
 	* - **Format**
@@ -261,7 +271,7 @@ To register a sensor, you POST a sensor resource to the url ``/sensors``.
 * The "name", "longName", and "description" fields are required when creating a sensor.
 * The "latitude" and "longitude" fields are optional and will default to 0 if not provided. 
 * The "visibility" field is optional and will default to "PUBLIC" if not provided.
-* The "tags", "fields" and "organization" information are optional.
+* The "tags", "fields", "metadata", "imageUrl" and "organization" information are optional.
 * If "visibility" is set to ORGANIZATION, a valid "organization" must be supplied.
 * The sensor name must be at least 4 characters long, contain only lowercase letters, numbers, dashes and underscores, and can start with a lowercase letter or an underscore only.
 
@@ -311,7 +321,7 @@ register a sensor resource.
 	pair: Sensor Registration; Multiple Sensor Registration
 	
 Creating/Registering multiple Sensors
---------------------------------------
+-------------------------------------
 To register multiple sensors, you PUT a list of sensor resources to the url ``/sensors``.
 
 * The sensor resources is a JSON list of objects as described in Creating/Registering a Sensor.
@@ -341,7 +351,7 @@ Updating a sensor is the same as registering a new sensor other than PUT is used
 
 Note that all top level fields supplied will be updated.
 
-* You may update any fields except "id", "name" and "owner".
+* You may update any fields except "id", "name", "created" and "owner".
 * Only fields that are present in the JSON object will be updated.
 * If "visibility" is set to ORGANIZATION, a valid "organization" must be supplied.
 * If "tags" list or "fields" list are included, they will replace the existing lists.
@@ -403,7 +413,7 @@ To delete a sensor owned by the current user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}`
+	  - :wotkit-api:`sensors/{sensor name or sensor id}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
