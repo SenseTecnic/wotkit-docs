@@ -22,9 +22,9 @@ A list of matching tags. The query parameters are as follows:
 	* - Name
 	  - Value Description
 	* - scope
-	  - | **all**-all tags used by sensors that the current user has access to; 
-		| **subscribed**-tags for sensors the user has subscribed to; 
-		| **contributed**-tags for sensors the user has contributed to the system.
+	  - | **all**: all tags used by sensors that the current user has access to
+	    | **subscribed**: tags for sensors the user has subscribed to
+	    | **contributed**: tags for sensors the user has contributed to the system.
 	* - :strikethrough:`private` 
 	  - :strikethrough:`true - private sensors only; false - public only`
 		(Deprecated, use visibility instead)
@@ -68,7 +68,7 @@ To query for tags, add query parameters after the sensors URL as follows:
 	.. parsed-literal::
 	
 		curl --user {id}:{password} 
-		":wotkit-api:`sensors/tags?text=bicycles`"
+		":wotkit-api:`tags?text=vancouver`"
 
 
 Output:
@@ -76,19 +76,26 @@ Output:
 .. code-block:: python
 
 	[
-		{
-			'name': 'bicycle',
-			'count': 3,
-			'lastUsed': 1370887340845
-		},{
-			'name': 'bike',
-			'count': 3,
-			'lastUsed': 1350687440754
-		},{
-			'name': 'montreal',
-			'count': 1,
-			'lastUsed': 1365857340341
-		}
+	    {
+	        "name": "bc",
+	        "count": 138,
+	        "lastUsed": "2013-08-15T18:43:13.797Z"
+	    },
+	    {
+	        "name": "air quality",
+	        "count": 136,
+	        "lastUsed": "2013-08-15T18:43:13.797Z"
+	    },
+	    {
+	        "name": "vancouver",
+	        "count": 2,
+	        "lastUsed": "2013-07-23T21:50:18.357Z"
+	    },
+	    {
+	        "name": "weather",
+	        "count": 1,
+	        "lastUsed": "2013-07-23T21:50:18.357Z"
+	    }
 	]
 
 The *lastUsed* field represents the creation date of the newest sensor that uses this tag.
