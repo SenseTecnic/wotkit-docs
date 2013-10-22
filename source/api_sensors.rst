@@ -41,7 +41,7 @@ A sensor has the following attributes:
 		This is a static location used for locating sensors on a map and for location-based queries.
 		(Dynamic location (e.g. for mobile sensors) is in the *lat* and *lng* fields of sensor data.)
 	* - lastUpdate
-	  - last update time in milliseconds.
+	  - last update time in ISO8601 UTC format. 
 		This is the last time sensor data was recorded, or an actuator script polled for control messages.
 	* - created
 	  - the sensor creation datetime
