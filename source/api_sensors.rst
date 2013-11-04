@@ -124,7 +124,7 @@ To query for sensors, add query parameters after the sensors URL as follows:
 	.. parsed-literal::
 
 		curl --user {id}:{password} 
-		":wotkit-api:`sensors/sensetecnic.mule1?tags=canada`"
+		":wotkit-api:`sensors?tags=canada`"
 
 Output:
 

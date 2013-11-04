@@ -20,7 +20,7 @@ these applications to allow them to access a user's sensors on their behalf.
 
 .. only:: smartstreets
 
-	Smart Streets also includes support for authentication using the Smart Streets developer key.
+	Note that in Smart Streets, OAuth2 authorization is not supported. Instead, authentication using the Smart Streets developer key is included.
 	See :ref:`api-smartstreets-label` for more information.
 
 .. note::
