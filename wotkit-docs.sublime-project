@@ -1,0 +1,27 @@
+{
+	"folders":
+	[
+		{
+			"folder_exclude_patterns":
+			[
+				"target"
+			],
+			"follow_symlinks": true,
+			"path": "."
+		}
+	],
+
+	"settings": {
+		"rulers": [80]
+	},
+
+	"build_systems":
+	[
+		{
+			"name": "Sphinx",
+			"cmd": ["sphinx-build", "-b", "html", "source", "target"],
+			"working_dir": "$project_path",
+			"path": "/usr/local/bin"
+		}
+	]
+}

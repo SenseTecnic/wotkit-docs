@@ -34,7 +34,7 @@ User Documentation
    :maxdepth: 4
 
    user_overview
-   user_user_info   
+   user_user_info
    user_sensors
    user_dashboards
    user_clients
@@ -56,6 +56,7 @@ API Documentation
    api_sensor_sub
    api_sensor_fields
    api_sensor_data
+   api_sensor_data_query
    api_actuators
    api_tags
    api_users
