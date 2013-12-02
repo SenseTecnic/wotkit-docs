@@ -56,6 +56,7 @@ API Documentation
    api_sensor_sub
    api_sensor_fields
    api_sensor_data
+   api_sensor_data_v2
    api_sensor_data_query
    api_actuators
    api_tags
