@@ -6,8 +6,8 @@
 Querying Sensor Data
 ====================
 
-WoTKit provides flexibility in how you want to query your data. In the following
-section, we will walk through the different ways of building a query to get
+WoTKit provides flexibility in how you want to query your data.  In the following
+section, we walk through the different ways of building a query to get
 sensor data out of wotkit. The queries are constructed using query parameters
 which you append to a URL endpoint.
 
