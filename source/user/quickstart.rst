@@ -1,7 +1,7 @@
 .. _quickstart:
 
 Overview
-==========
+========
 
 The WoTKit lets you quickly publish, find and use interesting data streams in quick visualizations and your own applications;
 from environmental sensors, GPS and on board data collection from vehicles, real time data feeds from mobile applications,
@@ -18,7 +18,7 @@ The WoTKit hosts many interesting sensor streams.  Some sensors on the system re
 To find interesting public sensors, you need not create an account.  Simply hit the :wotkit:`Sensor Search <sensors>` page and use the UI there to find sensors.  The sensor search text box allows you to search by sensor name and description.  Click on tags to find sensors that use the selected tags.
 
 Viewing a Sensor
-===============
+================
 
 To sensor details and data click on the sensor in the list link in the map view in the sensor search page.  This will bring up a monitor page where you get information about the sensors such as its name, contributor, location, a table containing the data stream.  See the :wotkit:`Yellow Taxi <sensors/1/monitor>` for example.
 
@@ -32,7 +32,7 @@ To create your own sensors or add visualizations to your own dashboards, you'll 
 Create a Widget
 ===============
 
-Now that we're logged in, lets create a widget that displays sensor data on a dashboard using a line chart. 
+Now that we're logged in, lets create a widget that displays sensor data on a dashboard using a line chart.
 
     1. First, choose a sensor that you would like to visualize using the :wotkit:`sensor search <sensors>` page.
 
@@ -55,20 +55,20 @@ To add your own sensors to the WoTkit, you will first use the UI to create a sen
 for your sensor script to send data using the WoTKit API, then run your script to send data to the WoTKit.
 
     1. Create a sensor by clicking on the Sensors tab in the navigation bar to take you to the :wotkit:`Sensor Search <sensors>` page.  Click on the *New Sensor* button in the top right.
-    
+
     2. Fill in the new sensor form.  Lets call it 'Test Sensor' with the name 'test-sensor'.  Click on the map to set a location for your sensor.
-    
+
     3. Once you've filled in the form, you can view the :wotkit:`monitor page <sensors/test-sensor/monitor>` for that sensor.
-    
+
 At this point you've created a resource on the wotkit for your sensor.  Now it is time to create a key to use in your
-sensor scripts to send data to the WoTKit using the API. 
+sensor scripts to send data to the WoTKit using the API.
 
     1. Create an API key by clicking on the Keys button in the navigation bar to take you to the :wotkit:`Keys <keys>` page.
-    
+
     2. Click on the *New Key* button in the top right.
-    
+
     3. Fill in the new key form.  Lets call the key a 'Test Key' since we'll only use it for our test sensors.
-    
+
 Now that we've created a sensor resource and a key, lets write a script to send data to our sensor.  Lets start with
 something simple like sending a random value to the sensor using Python.
 
@@ -82,45 +82,45 @@ Here's the code:
     import urllib
     import urllib2
     import base64
-    
+
     KEY_ID = 'PASTE_YOUR_KEY_ID_HERE'
     KEY_PASS = 'PASTE_YOUR_KEY_PASSWORD_HERE'
-    
+
     if __name__ == '__main__':
-    
+
         random.seed(time.time())
-        
+
         # encode our key id and password
         base64string = base64.encodestring('%s:%s' % (KEY_ID, KEY_PASS))[:-1]
-    
+
         # the URL for our sensor
         url = 'http://wotkit.sensetecnic.com/api/sensors/test-sensor/data'
-    
+
         while 1:
-    
+
             # get value from the sensor, in this case we'll just generate a random number
             value = random.randint(0,100)
-            
+
             datafields = [('value','%d' % value)]
-            
+
             params = urllib.urlencode(datafields)
-    
+
             headers = {
                 'User-Agent': 'httplib',
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': "Basic %s" % base64string
             }
-        
+
             req = urllib2.Request(url,params,headers)
             try:
                 result = urllib2.urlopen(req)
-            
+
             except urllib2.URLError, e:
                 print "error", e
-                
-            
+
+
             print 'random value sent: %d' % (value)
-            
+
             time.sleep(2.0)
 
 Be sure to paste your generated key id and password into the variables above and make sure the sensor name is the one
@@ -132,7 +132,7 @@ with line charts and graphs.
 Where to go from here
 =====================
 
-Consult the :ref:`user-documentation` for more information on using the WoTKit portal.
+Consult the :doc:`../index` for more information on using the WoTKit portal.
 
-To create your own WoTKit applications, register sensors dynamically and take advantage of the WoTKit platform with your own applications, consult the :ref:`WoTKit API documentation <api-documentation>`.
+To create your own WoTKit applications, register sensors dynamically and take advantage of the WoTKit platform with your own applications, consult the :doc:`../api_v1/index`.
 

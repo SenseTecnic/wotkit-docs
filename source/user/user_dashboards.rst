@@ -3,25 +3,27 @@
 Dashboards
 ==========
 
-Dashboards allow you to view multiple widgets displaying sensor data. 
+Dashboards allow you to view multiple widgets displaying sensor data.
 
-To view your dashboards, select the *Dashboards* tab. 
+To view your dashboards, select the *Dashboards* tab.
 
-When viewing a new dashboard, you will see the following view with a help message. 
-By default, there will be an empty dashboard labeled 'untitled'. 
+When viewing a new dashboard, you will see the following view with a help message.
+By default, there will be an empty dashboard labeled 'untitled'.
 
 From here, you can:
-* Select an existing dashboards by clicking another dashboard on the left of the page. 
+* Select an existing dashboards by clicking another dashboard on the left of the page.
 * Add a new dashboard by clicking ''Add Dashboard''.
-* Rename a dashboard by clicking on the Edit link. 
+* Rename a dashboard by clicking on the Edit link.
 * Delete a new dashboard by clicking ''Delete Dashboard''.
 
 .. note::
-    
+
     You must have at least one dashboard at all times. If you only have one dashboard, it cannot be deleted.
 
 .. image:: images/Dashboard.jpg
 	:width: 500px
+
+.. _add_widget:
 
 Adding Widgets to a Dashboard
 -----------------------------

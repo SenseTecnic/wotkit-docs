@@ -19,8 +19,8 @@ Keys and Basic Authentication
 
 A user can generate a key id and key password for WoTKit API clients as follows:
 
-* Select the "Keys" tab and click on the ''New Key'' button. 
-* Fill out the form with information to identify how the key is used, and click ''Add''.  Once created, a 'key id' and 'key password' will be generated. 
+* Select the "Keys" tab and click on the ''New Key'' button.
+* Fill out the form with information to identify how the key is used, and click ''Add''.  Once created, a 'key id' and 'key password' will be generated.
 * To view the key, click ''View Key''.
 
 The generated 'key id' and 'key password' can be used as the name and password in the basic authentication headers used when accessing the WoTKit API.
@@ -34,8 +34,8 @@ Applications and OAuth2 Authorization
 -------------------------------------
 
 Applications are clients of the WoTKit that can access the WoTKit API on behalf of more than one user.
-Application credentials provided during the registration process are unique to that application.  All applications appear in the WoTKit application list.  They can connect to the WoTKit on behalf of a WoTKit user using the OAuth2 authorization process.  
-    
+Application credentials provided during the registration process are unique to that application.  All applications appear in the WoTKit application list.  They can connect to the WoTKit on behalf of a WoTKit user using the OAuth2 authorization process.
+
 .. only:: smartstreets
 
     Applications and Oauth2 Authorization are not supported by smartstreets.
@@ -55,13 +55,13 @@ For an application to obtain an access token it requests authorization.
 
     	:wotkit-api:`oauth/authorize?client_id={application client id}&response_type=code&redirect_uri={redirect uri}`
 
-    2. If no user is currently logged in to the WoTKit, a login page will be presented. A WoTKit user must provide their user name and password to continue. 
+    2. If no user is currently logged in to the WoTKit, a login page will be presented. A WoTKit user must provide their user name and password to continue.
 
     3. A page will then ask the user to authorize the application to connect to the WoTKit on their behalf. Once authorized, the authorization code is provided to the application by redirection.
 
     4. The application receives the authorization code and exchanges it along with the application credentials for an access token to use the WoTKit API.
 
-Please see the :ref:`api-documentation` and in particular :ref:`api_authentication` for more details.
+Please see the :doc:`../api_v1/index` and in particular :doc:`../api_v1/api_authentication` for more details.
 
 .. image:: images/Applications.jpg
 	:width: 500 px

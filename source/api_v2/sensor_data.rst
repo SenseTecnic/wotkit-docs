@@ -1,5 +1,3 @@
-.. _api_sensor_data:
-
 .. index:: Sensor Data API V2
 
 ==============================

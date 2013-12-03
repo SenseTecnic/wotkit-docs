@@ -3,9 +3,9 @@
 Overview
 =========
 
-With the WoTKit user interface, you can easily complete a wide range of tasks including registering sensors, subscribing to sensor feeds, and visualizing sensor data. 
+With the WoTKit user interface, you can easily complete a wide range of tasks including registering sensors, subscribing to sensor feeds, and visualizing sensor data.
 
-For information about the API including sending and receiving data from a sensor or an actuator, please see the :ref:`api-documentation`.
+For information about the API including sending and receiving data from a sensor or an actuator, please see the :doc:`../api_v1/index`.
 
 Public Sensors
 ----------------------
