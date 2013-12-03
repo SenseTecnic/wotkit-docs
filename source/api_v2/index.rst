@@ -10,4 +10,5 @@ feel free to look around.
 
 .. toctree::
 
+  sensors
   sensor_data

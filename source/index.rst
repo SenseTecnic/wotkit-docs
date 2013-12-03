@@ -21,12 +21,12 @@ Guide
 =====
 
 .. toctree::
-   :numbered:
-   :maxdepth: 4
+  :numbered:
+  :maxdepth: 4
 
-   guides/index
-   api_v1/index
-   user/index
+  guides/index
+  api_v1/index
+  user/index
 
 
 Indices and tables

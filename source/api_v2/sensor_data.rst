@@ -1,8 +1,6 @@
-.. index:: Sensor Data API V2
-
-==============================
-API Reference - Sensor Data V2
-==============================
+===========
+Sensor Data
+===========
 
 In the WoTKit, *sensor data* consists of a timestamp followed by one or more
 named fields. By default, sensor have the following sensor fields.
@@ -54,7 +52,7 @@ Sending New Data
 ----------------
 
 To send new data to a sensor, POST name value pairs corresponding to the data
-fields to the ``/sensors/{sensorname}/data`` URL.
+fields to ``/sensors/{sensorname}/data``.
 
 If a timestamp is not provided in the request body, it will be assigned by the
 the server using the current time.
@@ -65,7 +63,7 @@ To send new data:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`sensors/{sensorname}/data`
+    - :wotkit-api:`v2/sensors/{sensorname}/data`
   * - **Privacy**
     - Private
   * - **Format**
@@ -107,7 +105,7 @@ To update data:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`sensors/{sensorname}/data`
+    - :wotkit-api:`v2/sensors/{sensorname}/data`
   * - **Privacy**
     - Private
   * - **Format**
@@ -159,7 +157,7 @@ the following query.
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`sensors/{sensor-name}/data/{data_id}`
+    - :wotkit-api:`v2/sensors/{sensor-name}/data/{data_id}`
   * - **Privacy**
     - Public or Private, depending on sensor privacy
   * - **Format**
@@ -176,14 +174,14 @@ Retrieving Data Using Query
 ---------------------------
 To retrive data over a time range you can use the following endpoint. An
 interactive guide on how to use this endpoint is available at:
-:doc:`api_sensor_data_query`.
+:doc:`../guides/sensor_data_query`.
 
 
 .. list-table::
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`sensors/{sensor-name}/data`
+    - :wotkit-api:`v2/sensors/{sensor-name}/data`
   * - **Privacy**
     - Public or Private, depending on sensor privacy
   * - **Format**
@@ -246,7 +244,7 @@ Same as :ref:`api-v2-get-single-data` instead using HTTP Delete.
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`sensors/{sensorname}/data/{data_id}`
+    - :wotkit-api:`v2/sensors/{sensorname}/data/{data_id}`
   * - **Privacy**
     - Private
   * - **Format**
@@ -265,7 +263,7 @@ restriction on only using **group 3** parameters.
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`sensors/{sensorname}/data`
+    - :wotkit-api:`v2/sensors/{sensorname}/data`
   * - **Privacy**
     - Private
   * - **Format**
