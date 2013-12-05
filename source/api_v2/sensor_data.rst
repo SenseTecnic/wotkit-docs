@@ -2,8 +2,8 @@
 Sensor Data
 ===========
 
-In the WoTKit, *sensor data* consists of a timestamp followed by one or more
-named fields. By default, sensor have the following sensor fields.
+In the WoTKit, *sensor data* elements consist of a timestamp followed by one or more
+named fields. By default, sensor data consists of the following fields.
 
 .. list-table::
   :widths: 15, 50
@@ -26,11 +26,9 @@ named fields. By default, sensor have the following sensor fields.
     - the longitude location of the sensor in degrees (number).  Needed for map
       visualizations.
   * - value
-    - the primary value of the sensor data collected (number).  Needed for most
-      visualizations.
+    - the primary value of the sensor data collected (number).  The default scalar value of the sensor used by visualizations.
   * - message
-    - a text message, for example a twitter message (text).  Needed for text
-      and newsfeed visualizations.
+    - a text message, for example a twitter message (text) or a status message.
 
 In addition to these default fields, additional fields can be added by updating
 the *sensor fields* in the WoTKit UI or :ref:`api_sensor_fields` in the API.
@@ -52,10 +50,11 @@ Sending New Data
 ----------------
 
 To send new data to a sensor, POST name value pairs corresponding to the data
-fields to ``/sensors/{sensorname}/data``.
+fields to ``/sensors/{sensorname}/data``.  There is no need to supply the sensor id, or sensor name fields since the sensor
+is specified in the URL.
 
-If a timestamp is not provided in the request body, it will be assigned by the
-the server using the current time.
+If a timestamp is not provided in the request body, it will be set to the current time by the
+the server.
 
 To send new data:
 
@@ -87,17 +86,16 @@ To send new data:
 .. index:: Bulk Sensor Data
   pair: Sensor Data Creation; Bulk Sensor Data
 
-Sending Multiple Data
----------------------
+Updating a Range of Historical Data
+----------------------------------
 
-To send a range of data, you PUT data (rather than POST) data into the system.
+To insert or update a range of historical data, you PUT data (rather than POST) data into the system.
 Note that data PUT into the WoTKit will not be processed in real time, since it
-occurred in the past
+occurred in the past.
 
 * The request body must be a list of JSON objects containing a timestamp value.
-* If providing a range of data, the list must be ordered from earliest to most
-  recent timestamp. Any existing data within this timestamp range will be
-  deleted and replaced by the data in the request body.
+* Any existing data within this timestamp range will be
+  deleted and replaced by the data supplied.
 
 To update data:
 
@@ -148,8 +146,8 @@ where *data.txt* contains JSON data similar to the above JSON array.
 
 .. _api-v2-get-single-data:
 
-Retrieving Single Data
-----------------------
+Retrieving a Single Data Item
+-----------------------------
 If you know the data element's id, you can query for a single data element using
 the following query.
 
@@ -172,7 +170,7 @@ the following query.
 
 Retrieving Data Using Query
 ---------------------------
-To retrive data over a time range you can use the following endpoint. An
+To retrive sensor data over a time range you can use the following endpoint. An
 interactive guide on how to use this endpoint is available at:
 :doc:`../guides/sensor_data_query`.
 
@@ -236,7 +234,7 @@ together if they appear in the same ``Grouping``.
     - integer
     - controls paging of elements in conjunction with
 
-Delete Data By Id
+Delete Data by Id
 -----------------
 Same as :ref:`api-v2-get-single-data` instead using HTTP Delete.
 
