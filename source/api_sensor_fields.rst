@@ -137,7 +137,7 @@ For instance, to create a new field called "test-field":
 
 	.. parsed-literal::
 
-		curl --user {id}:{password} --request POST 
+		curl --user {id}:{password} --request PUT 
 		--header "Content-Type: application/json" --data-binary @field-data.txt 
 		':wotkit-api:`sensors/test-sensor/fields/test-field`'
 
@@ -146,8 +146,8 @@ The file *field-data.txt* could contain the following.  (This is the minimal inf
 .. code-block:: python
 
 	{
-		"name"=>"test-field",
-		"type"=>"STRING"
+		"name":"test-field",
+		"type":"STRING"
 	} 
 
 To then update "test-field" sub-fields, the same curl command would be used, and ''field-data.txt'' could now contain
@@ -156,11 +156,11 @@ the following.
 .. code-block:: python
 
 	{
-		"name"=>"test-field",
-		"type"=>"NUMBER"
-		"longName"=>"Test Field",
-		"required"=>true,
-		"units"=>"mm"
+		"name":"test-field",
+		"type":"NUMBER",
+		"longName":"Test Field",
+		"required":true,
+		"units":"mm"
 	}	
 
 .. _delete-sensor-field-label:
