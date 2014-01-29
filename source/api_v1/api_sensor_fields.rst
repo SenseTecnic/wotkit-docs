@@ -108,10 +108,13 @@ the URL. The field information is supplied in a JSON format.
 If the sensor already has a field with the given "fieldname", it will be updated with new information. Otherwise, a new
 field will be created. 
 
+**Notes:**
+
 * When inputting field data, the sub-fields "name" and "type" are required-both for adding a new field or updating an existing one.
 * The "name" sub-field of an existing field cannot be updated. 
 * For user defined fields, the "longName", "type", "required", and "units" sub-fields may be updated. 
-* For the default fields (lat, lng, value, message), only the "longName" and "unit" sub-fields may be updated. 
+* For the default fields (lat, lng, value, message), only the "longName" and "unit" sub-fields may be updated.
+* You cannot change the index of a field. If a field is deleted, the index of the following fields will be adjusted to maintain the field order.
 
 To update/add a sensor field:
 
