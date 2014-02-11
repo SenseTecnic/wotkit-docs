@@ -1,4 +1,5 @@
 wotkit-docs
 ===========
 
-WoTKit public documentation
+WoTKit public documentation.
+
