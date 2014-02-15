@@ -90,7 +90,7 @@ Note that data PUT into the WoTKit will not be processed in real time, since it 
 
 * The data sent must contain a list of JSON objects containing a timestamp and a value.
 * If providing a single piece of data, existing data with the provided timestamp will be deleted and replaced. Otherwise, the new data will be added.
-* If providing a range of data, the list must be ordered from earliest to most recent timestamp. Any existing data within this timestamp range will be deleted and replaced by the new data.
+* If providing a range of data, any existing data within this timestamp range will be deleted and replaced by the new data.
 
 To update data:
 
