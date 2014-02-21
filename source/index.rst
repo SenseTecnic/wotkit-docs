@@ -8,9 +8,7 @@ Welcome to the WoTKit
 
 The WoTKit is a web-centric toolkit that helps organizations manage sensors and actuators to collect, aggregate, store and process sensor data and react to changes in the physical and virtual world.
 
-To get started quickly, see the :ref:`Quick Start <quickstart>` guide.  For more information see consult the API reference
-
-    * :doc:`api_v1/index`
+To get started quickly, see the :ref:`Quick Start <quickstart>` guide.  For more information see consult the :doc:`api_v1/index`.
 
 Please send any questions and feedback to info@sensetecnic.com.
 
