@@ -1,4 +1,4 @@
-.. WoTKit Api documentation master file, created by
+.. WoTKit API documentation master file, created by
    sphinx-quickstart on Wed Jul 31 10:23:52 2013.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
@@ -8,14 +8,11 @@ Welcome to the WoTKit
 
 The WoTKit is a web-centric toolkit that helps organizations manage sensors and actuators to collect, aggregate, store and process sensor data and react to changes in the physical and virtual world.
 
-To get started quickly, see the :ref:`Quick Start <quickstart>` guide.  For more information see:
+To get started quickly, see the :ref:`Quick Start <quickstart>` guide.  For more information see consult the API reference
 
-    * :doc:`user/index`
     * :doc:`api_v1/index`
 
-.. note::
-
-    This documentation is work in progress.  Please send questions and feedback to info@sensetecnic.com.
+Please send any questions and feedback to info@sensetecnic.com.
 
 Guide
 =====
@@ -26,7 +23,7 @@ Guide
 
   guides/index
   api_v1/index
-  user/index
+
 
 
 Indices and tables
