@@ -11,7 +11,7 @@ reserved fields supported by the WoTKit:
 .. list-table::
 	:widths: 15, 50
 	:header-rows: 1
-	
+
 	* - Name
 	  - Value Description
 	* - timestamp
@@ -34,15 +34,15 @@ reserved fields supported by the WoTKit:
 In addition to these reserved fields, additional fields can be added by updating the *sensor fields* in the WoTKit UI
 or :ref:`sensor_fields` in the API.
 
-.. note:: \* Python's ``time.time()`` function generates the system time in *seconds*, not milliseconds.  
-	
-	To convert this to an integer in milliseconds use ``int(time.time()*1000)``. 
+.. note:: \* Python's ``time.time()`` function generates the system time in *seconds*, not milliseconds.
+
+	To convert this to an integer in milliseconds use ``int(time.time()*1000)``.
 	Using Java: ``System.currentTime()``.
 
-.. _send-data-label:	
+.. _send-data-label:
 
 .. index:: Sensor Data Creation
-	
+
 Sending New Data
 -----------------
 
@@ -74,12 +74,12 @@ To send new data:
 
 	.. parsed-literal::
 
-		curl --user {id}:{password} --request POST 
+		curl --user {id}:{password} --request POST
 		-d value=5 -d lng=6 -d lat=7 ':wotkit-api:`sensors/test-sensor/data`'
 
 |
-	
-.. _send-bulk-data-label:	
+
+.. _send-bulk-data-label:
 
 .. index:: Bulk Sensor Data
 	pair: Sensor Data Creation; Bulk Sensor Data
@@ -109,11 +109,11 @@ To update data:
 	  - PUT
 	* - **Returns**
 	  - HTTP status code; No Response 204 if successful
-	  
+
 |
 
 Example of valid data:
- 
+
 .. code-block:: python
 
 	[{"timestamp":"2012-12-12T03:34:28.626Z","value":67.0,"lng":-123.1404,"lat":49.20532},
@@ -132,19 +132,19 @@ Example of valid data:
 
 	.. parsed-literal::
 
-		curl --user {id}:{password} --request PUT --data-binary @data.txt 
+		curl --user {id}:{password} --request PUT --data-binary @data.txt
 		':wotkit-api:`sensors/test-sensor/data`'
 
 where *data.txt* contains JSON data similar to the above JSON array.
 
-.. _delete-data-label:	
+.. _delete-data-label:
 
 .. index:: Sensor Data Deletion
 
 Deleting Data
 --------------
 
-Currently you can only delete data by timestamp, where timestamp is in numeric or ISO form. 
+Currently you can only delete data by timestamp, where timestamp is in numeric or ISO form.
 Note that if more than one sensor data point has the same timestamp, they all will be deleted.
 
 To delete data:
@@ -162,11 +162,11 @@ To delete data:
 	  - DELETE
 	* - **Returns**
 	  - HTTP status code; No Response 204 if successful
-	  
+
 |
 
 
-.. _raw-data-label:	
+.. _raw-data-label:
 
 .. index:: Raw Sensor Data, Sensor Data Retrieval
 	seealso: Sensor Data Retrieval; Formatted Sensor Data
@@ -219,9 +219,7 @@ The query parameters supported are the following:
 	* - Name
 	  - Value Description
 	* - start
-	  - the absolute start time of a range of data selected in milliseconds.  When start is not specified, it is set to the current time.  It may only be used in combination with another range parameter: end, after, afterE, before, and beforeE.
-	* - startE
-	  - the id of the specific data item to start with.  This is needed to disambiguate data items in a sensor stream with the same timestamp.  This parameter may only be used with beforeE and afterE currently.
+	  - the absolute start time of a range of data selected in milliseconds.  When start is not specified, it defaults to the current time.
 	* - end
 	  - the absolute end time in milliseconds of a range of data after a specified start time.  The end parameter MUST be greater than the start time (start).
 	* - after
@@ -242,7 +240,7 @@ The query parameters supported are the following:
 
 .. _formatted-data-label:
 
-.. index:: Formatted Sensor Data	
+.. index:: Formatted Sensor Data
 	seealso: Formatted Sensor Data; Sensor Data Retrieval
 
 Formatted Data Retrieval
@@ -264,7 +262,7 @@ resource for retrieving data called the *dataTable*.
 	  - GET
 	* - **Returns**
 	  - On success, OK 200 with a list of timestamped data records.
-	  
+
 |
 
 In addition to the above query parameters, the following parameters are also supported:
@@ -272,14 +270,14 @@ In addition to the above query parameters, the following parameters are also sup
 .. list-table::
 	:widths: 5, 50
 	:header-rows: 1
-	
+
 	* -
 	  -
 	* - tqx
 	  - A set of colon-delimited key/value pairs for standard parameters, `defined here <http://code.google.com/apis/visualization/documentation/dev/implementing_data_source.html>`_.
 	* - tq
 	  - A SQL clause to select and process data fields to return, `explained here <http://code.google.com/apis/visualization/documentation/querylanguage.html>`_.
-	
+
 |
 
 .. note:: When using tq sql queries, they must be url encoded. When using tqx name/value pairs, the reqId parameter is necessary.
@@ -287,21 +285,21 @@ In addition to the above query parameters, the following parameters are also sup
 |
 
 For instance, the following would take the "test-sensor", select all data where value was greater than 20, and display
-the output as an html table. 
+the output as an html table.
 
 .. admonition:: example
 
 	.. parsed-literal::
-	
+
 		curl --user {id}:{password} :wotkit-api:`sensors/test-sensor/
 		dataTable?tq=select%20*%20where%20value%3E20&reqId=1&out=html`
 
 |
-	
-.. _aggregated-data-label:	
 
-.. index:: Aggregated Sensor Data	
-	seealso: Aggregated Sensor Data; Sensor Data	
+.. _aggregated-data-label:
+
+.. index:: Aggregated Sensor Data
+	seealso: Aggregated Sensor Data; Sensor Data
 
 Aggregated Data Retrieval
 --------------------------
@@ -324,7 +322,7 @@ The following parameters may be added to the ``/data`` url:
 * beforeE
 
 * orderBy
-	* **sensor**: which groups data by sensor_id 
+	* **sensor**: which groups data by sensor_id
 	* **time** (default): which orders data by timestamp, regardless of the sensor it comes from.
 
 To receive data from more that one sensor, use the following:
@@ -342,12 +340,12 @@ To receive data from more that one sensor, use the following:
 	  - GET
 	* - **Returns**
 	  - On success, OK 200 with a list of timestamped data records.
-	  
+
 |
 
 .. admonition:: example
 
 	.. parsed-literal::
 
-		curl --user {id}:{password} 
+		curl --user {id}:{password}
 		":wotkit-api:`data?subscribed=all&beforeE=20&orderBy=sensor`"
