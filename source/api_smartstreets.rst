@@ -6,13 +6,14 @@
 .. _api-smartstreets-label:
 
 Smart Streets Authentication
-============================	
+============================
 
 The WoTKit API for Smart Streets supports basic authentication using user name and password, WoTKit keys, as well as a developer key.  Note that Smart Streets does not support OAuth2.
 
 Authenticating using Smart Streets Developer Keys
 -------------------------------------------------
-The developer key is assigned when a new user account is created. Developer keys are unique to each user. To obtain your developer key, please login to the SmartStreets Hub and go to your profile page. The developer key is located in the user profile under the field "API Key".
+The developer key is assigned when a new user account is created. Developer keys are unique to each user. To obtain your developer key, please login to the SmartStreets Hub and go to your profile page. The developer key is located in the left column of the user profile under the heading "API Key". Your profile page is located at: https://smartstreets.sensetecnic.com/data/user/<USER_NAME>, where <USER_NAME> is your own username.
+
 
 To authenticate with Smart Streets Developer Keys when sending private API requests, please supply the HTTP headers with either of the following formats:
 
