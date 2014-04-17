@@ -21,6 +21,7 @@ Guide
 
   guides/index
   api_v1/index
+  api_v2/index
 
 
 
