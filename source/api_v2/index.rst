@@ -12,3 +12,5 @@ feel free to look around.
 
   sensors
   sensor_data
+  api_alerts
+  api_inbox
