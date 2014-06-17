@@ -7,4 +7,5 @@ reference documentation, refer to :doc:`../api_v2/sensor_data`.
 .. toctree::
   :numbered:
 
+  organizations
   sensor_data_query
