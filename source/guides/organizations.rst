@@ -6,9 +6,9 @@ WoTKit *organizations* are used to group sensors owned by an organization, and r
 
 Organization members may have different roles: OWNER, ADMIN, and MEMBER.
 
-* OWNER - an owner can manage members of an organization, add groups and sensors to an organization, view private sensors and groups in the organization, send data to sensors, and receive commands from actuators (read and write priveledges).  Only an owner can delete an organization.
-* ADMIN - a member administrator can do everything an owner can, other than delete the organization.
-* MEMBER - a member can view sensors and groups.  They cannot modify organization membership or roles, or delete the organization.
+* MEMBER - a member can view private sensors and groups in the organization.  They cannot add sensors or groups to the organization, modify organization membership or roles, or delete the organization.
+* ADMIN - an admin is a MEMBER who can add or remove members, and add or remove sensors and groups to an organization.  They have read and write priveledges to sensors and groups.
+* OWNER - an owner is an ADMIN who owns the organization and can delete the organization.
 
 Private Sensors and Groups
 --------------------------
