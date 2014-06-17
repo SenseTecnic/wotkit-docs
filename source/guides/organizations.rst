@@ -15,7 +15,7 @@ Private Sensors and Groups
 
 When group or sensor is marked as *private*, it can only be viewed by organization members.
 
-Note: when a group contains a mix of private and public sensors from different organizations, some sensors in a group may not be visible to all users in a given (single) organization.
+Note: when a group contains a mix of private and public sensors from different organizations, some sensors in a group may not be visible to all users in a given organization.
 
 Creating an Organization
 ------------------------
