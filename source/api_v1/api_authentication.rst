@@ -71,8 +71,7 @@ For instance, the following curl command uses a 'key id' and 'key password' to g
 
 	.. parsed-literal::
 
-		curl --user {key_id}:{key_password} 
-		":wotkit-api:`sensors/sensetecnic.mule1`"
+		curl --user {key_id}:{key_password} ":wotkit-api:`sensors/sensetecnic.mule1`"
 
 
 This returns:
@@ -108,17 +107,15 @@ This returns:
 	single: OAuth2
 	
 Registered Applications and OAuth2
-------------------------------------
-*Applications* are registered on the WoTKit UI (:wotkit:`apps`). They can be installed by many users, but the credentials are unique to the contributor.
+----------------------------------
 
-To grant a client access to your sensors, you first register an *application*. The client can then be supplied the 'application client id' and auto-generated 'application secret'. 
-These will act as credentials, allowing clients to access the WoTKit on the user's behalf, using OAuth2 authorization.
+The WoTKit supports the OAuth2 authorization framework as described in RFC 6749.
 
-The OAuth2 authorization asks the user's permission for a client to utilize the application credentials on the user's behalf. 
-If the user allows this, an access token is generated. This access token can then be appended to the end of each WoTKit URL, authorizing access. 
-(No further id/passwords are needed.) 
+*Applications* are registered on the WoTKit UI (:wotkit:`apps`) by an application developer. Applications can be installed by many users, but the application credentials called the client_id and client_secret are unique to that application.
 
-For instance, the following curl command uses an access token to get information about the sensor **sensetecnic.mule1**. 
+Once registered, the client application then uses its  'Client ID' and generated 'Application Secret' as credentials in the OAuth2 authorization process to request permission to access WoTKit resources on a user's behalf by generating an access token.  Using an access token, the application can them make API calls to the WoTKit on behalf of the user -- no further id/passwords are needed.
+
+For example, the following curl command uses an access token to get information about the sensor **sensetecnic.mule1**. 
 
 .. admonition:: example
 
@@ -127,16 +124,24 @@ For instance, the following curl command uses an access token to get information
 		curl ":wotkit-api:`sensors/sensetecnic.mule1?access_token={access_token}`"
 
 
-In order to obtain an access token for your client, the following steps are taken:
+The first step of OAuth 2 is to get authorization from the user. The WoTKit supports two grant types:
 
-#. An attempt to access the WoTKit is made by providing an 'application client id' and requesting a code. 
+* **Authorization Code** for apps running on a web server
+* **Password** for logging in with a username and password
+
+Authorization Code Grant
+----------------------------------------
+
+In order to obtain an access token for a web server application using the Authorization Code grant, the following needs to be done:
+
+#. Request an authorization code by providing the 'Client ID' as follows:
 
 	``http://wotkit.sensetecnic.com/api/oauth/authorize?client_id={application client id}
 	&response_type=code&redirect_uri={redirect uri}``
 	
-#. If no user is currently logged in to the WoTKit, a login page will be presented. A WoTKit user must log in to continue. 
-#. A prompt asks the user to authorize the 'application client id' to act on their behalf. Once authorized, a code is provided. 
-#. Using the application credentials, this code is exchanged for an access token. This access token is then appended to the end of each URL, authorizing access. 
+#. If the user has not previously logged into the WoTKit authorization server, a login page will be presented. A WoTKit user must first log in. 
+#. Once logged in, a prompt will ask the user to authorize the 'application client id' to act on their behalf. Once authorized, an 'authorization code' is provided. 
+#. Using the application credentials, this authorization code is exchanged for an access token used to access the WoTKit API.
 
 Example: PHP file pointed to by ``{redirect_uri}``
 
@@ -164,6 +169,30 @@ Example: PHP file pointed to by ``{redirect_uri}``
 		$access_token = json_decode($response)->access_token;	
 		}	
 		?>
+
+Password Grant
+--------------
+
+The password grant type can be used to exchange the user name and password for an access token directly.  This is generally used by applications that are part of the WoTKit service, since they need to collect the user's name and password.
+
+To use the password grant type, you simply POST the name and password along with the client id and secret directly, in response you will receive an access token.
+
+.. admonition:: example
+
+	.. parsed-literal::
+			curl -d "grant_type=password&username={username}&password={password}&client_id={clientid}&client_secret={clientsecret}&scope=all" https://wotkit.sensetecnic.com/api/oauth/token
+
+returns:
+
+.. code-block:: javascript
+
+	{
+		"access_token":"{access_token}",
+		"token_type":"bearer",
+		"refresh_token":"{refresh_token}",
+		"expires_in":43199,
+		"scope":"all"
+	}
 
 
 .. _access-token-label:		
