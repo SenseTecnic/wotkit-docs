@@ -3,7 +3,9 @@
 Tags
 =====
 
-You can get a list of tags, either the most used by public sensors or by a sensor query.
+Sensors can specify several tags that can be used to organize them. You can get
+a list of tags, either the most used by public sensors or by a particular 
+sensor query.
 
 .. _get_tags:
 
@@ -25,9 +27,8 @@ A list of matching tags. The query parameters are as follows:
 	  - | **all**-all tags used by sensors that the current user has access to; 
 		| **subscribed**-tags for sensors the user has subscribed to; 
 		| **contributed**-tags for sensors the user has contributed to the system.
-	* - :strikethrough:`private` 
-	  - :strikethrough:`true - private sensors only; false - public only`
-		(Deprecated, use visibility instead)
+	* - `private` 
+	  - **DEPRECATED**, use visibility instead. (true - private sensors only; false - public only)
 	* - visibility
 	  - filter by the visibility of the sensors, either of **public**, **organization** or **private**
 	* - text
@@ -45,7 +46,7 @@ A list of matching tags. The query parameters are as follows:
 	
 |
 
-To query for tags, add query parameters after the sensors URL as follows:
+To query for tags, add query parameters after the tags URL as follows:
 
 .. list-table::
 	:widths: 10, 50
@@ -63,12 +64,14 @@ To query for tags, add query parameters after the sensors URL as follows:
 	  
 |
 
+To query for all tags that contain the text *bicycles* use the URL:
+
 .. admonition:: example
 
 	.. parsed-literal::
 	
 		curl --user {id}:{password} 
-		":wotkit-api:`sensors/tags?text=bicycles`"
+		":wotkit-api:`tags?text=bicycles`"
 
 
 Output:

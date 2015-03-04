@@ -5,11 +5,12 @@
 Sensor Control Channel: Actuators
 =================================
 
-An actuator is a sensor that uses a control channel to actuate things.  Rather than POSTing data to the WoTKit, an
-actuator script or gateway polls the control URL for messages to affect the actuator, to do things like move a servo
-motor, turn a light on or off, or display a message on a screen.  
+An actuator is a sensor that uses a control channel to actuate things.  
+Rather than POSTing data to the WoTKit, an actuator script or gateway polls 
+the control URL for messages to affect the actuator, to do things like move 
+a servo motor, turn a light on or off, or display a message on a screen. Any name/value pair can be sent to an actuator in a message. 
 
-To demonstrate actuators, the control visualization that comes with the WoTKit sends three type of events to the sensor control channel:
+For example, provided with the WoTKit at , a *control* widget that can be added to a dashboard (:wotkit:`/dashboards`) sends three types of events to the sensor control channel:
 
 .. list-table::
 	:widths: 10, 50
@@ -26,8 +27,6 @@ To demonstrate actuators, the control visualization that comes with the WoTKit s
   
 |
 
-Any name/value pair can be sent to an actuator in a message, these are just the names sent by the visualization. 
-
 
 .. _send_actuator:
 
@@ -36,8 +35,9 @@ Any name/value pair can be sent to an actuator in a message, these are just the 
 Sending Actuator Messages
 -------------------------
 
-To send a control message to a sensor (actuator), POST name value pairs corresponding to the data fields 
-to the ``/sensors/{sensorname}/message`` URL.
+To send a control message to a sensor (actuator), you must POST name value 
+pairs corresponding to the data fields to the 
+``/sensors/{sensorname}/message`` URL.
 
 .. list-table::
 	:widths: 10, 50
@@ -66,7 +66,10 @@ to the ``/sensors/{sensorname}/message`` URL.
 Receiving Actuator Messages
 -----------------------------
 
-In order to receive messages from an actuator, you must own that actuator.
+To receive actuator messages you must first subscribe to an Actuator Controller,
+then you can query for messages. 
+
+.. NOTE:: In order to receive messages from an actuator, you must own that actuator.
 
 .. _sub_actuator:
 
@@ -112,7 +115,7 @@ Query an Actuator
 	
 Using the subscription id, then poll the following resource:
 ``/api/control/sub/{subscription-id}?wait=10``. 
-The ``wait`` specifies the time to wait in seconds for a control message.  
+The ``wait`` parameter specifies the time to wait in seconds for a control message.  
 If unspecified, a default wait time of 10 seconds is used. The maximum wait time is 20 seconds.  
 The server will respond on timeout, or when a control messages is received.
 
