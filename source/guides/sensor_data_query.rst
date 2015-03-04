@@ -23,7 +23,7 @@ provides parameters for you to either:
   2) get sensor_data since *t* milliseconds in the past
 
 
-:ref:`time-range-query-label` are useful for going through data in the past.
+are useful for going through data in the past.
     These queries allow you to page through data by specifying a start & end
     point in time.
 
