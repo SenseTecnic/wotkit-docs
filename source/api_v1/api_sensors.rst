@@ -1,4 +1,4 @@
-.. _api_sensors:
+l.. _api_sensors:
 
 .. index:: Sensor Fields
 
@@ -27,8 +27,8 @@ A sensor has the following attributes:
 	  - a description of the sensor for text searches.
 	* - longName **
 	  - longer display name of the sensor.
-	* - :strikethrough:`url`
-	  - deprecated
+	* - `url`
+	  - **DEPRECATED**
 	* - latitude
 	  - the latitude location of the sensor in degrees.
 		This is a static location used for locating sensors on a map and for location-based queries.
@@ -57,9 +57,10 @@ A sensor has the following attributes:
 
 |
 
-.. _query-sensor-label:
 
 .. index:: Sensors
+
+.. _query-sensor-label:
 
 Querying Sensors
 ----------------
@@ -82,8 +83,7 @@ The current query parameters are as follows:
 	* - orgs
 	  - list of comma separated organization names
 	* - :strikethrough:`private`
-	  - :strikethrough:`**true** - private sensors only; **false** - public only`
-		deprecated, use **visibility** instead
+	  - **DEPRECATED**, use **visibility** instead. (*true* - private sensors only; *false* - public only`).
 	* - visibility
 	  - filter by the visibility of the sensors, either of **public**, **organization**, or **private**
 	* - text
@@ -267,24 +267,17 @@ Output:
 		"lastUpdate":"2012-12-07T01:47:18.639Z"}
 	}
 
-.. _create-sensor-label:
 
 .. index:: Sensor Registration
+
+.. _create-sensor-label:
 
 Creating/Registering a Sensor
 ------------------------------
 
-To register a sensor, you POST a sensor resource to the url ``/sensors``.
+The sensor resource is a JSON object. To register a sensor, you POST a sensor resource to the url ``/sensors``.
 
-* The sensor resources is a JSON object.
-* The "name", "longName", and "description" fields are required when creating a sensor.
-* The "latitude" and "longitude" fields are optional and will default to 0 if not provided. 
-* The "visibility" field is optional and will default to "PUBLIC" if not provided.
-* The "tags", "fields" and "organization" information are optional.
-* If "visibility" is set to ORGANIZATION, a valid "organization" must be supplied.
-* The sensor name must be at least 4 characters long, contain only lowercase letters, numbers, dashes and underscores, and can start with a lowercase letter or an underscore only.
-
-To create a sensor:
+To create a sensor the API end-point is:
 
 .. list-table::
 	:widths: 10, 50
@@ -300,7 +293,40 @@ To create a sensor:
 	* - **Returns**
 	  - HTTP status code; Created 201 if successful; Bad Request 400 if sensor is invalid; Conflict 409 if sensor with the same name already exists
 
-|
+The JSON object has the following fields: 
+
+.. list-table::
+	:widths: 25, 15, 50
+	:header-rows: 1
+	
+	* - 
+	  - Field Name
+	  - Information	
+	* - (*REQUIRED*)
+	  - name 
+	  - The unique name for the sensor field. It is required when creating/updating/deleting a field and cannot be changed. The sensor name must be at least 4 characters long, contain only lowercase letters, numbers, dashes and underscores, and can start with a lowercase letter or an underscore only.
+	* - (*REQUIRED*)
+	  - longName 
+	  - The display name for the field. It is required when creating/updating/deleting a field and can be changed.
+	* - (*OPTIONAL*)
+	  - latitude 
+	  - The GPS latitude position of the sensor, it will default to 0 if not provided.
+	* - (*OPTIONAL*)
+	  - longitude 
+	  - The GPS longitude position of the sensor, it will default to 0 if not provided.
+	* - (*OPTIONAL*)
+	  - visibility 
+	  - It will default to "PUBLIC" if not provided. If visibility is set to ORGANIZATION, a valid "organization" must be provided.
+	* - (*OPTIONAL*)
+	  - tags 
+	  -
+	* - (*SEMI-OPTIONAL*)
+	  - organization 
+	  - If a visibility key is set an organization is required
+	* - (*OPTIONAL*)
+	  - fields 
+	  - 
+| 
 
 .. admonition:: example
 
@@ -318,6 +344,7 @@ register a sensor resource.
 	{
 		"visibility":"PUBLIC",
 		"name":"taxi-cab",
+		"longName":"taxi-cab"
 		"description":"A big yellow taxi.",
 		"longName":"Big Yellow Taxi",
 		"latitude":51.060386316691,
@@ -333,7 +360,7 @@ Creating/Registering multiple Sensors
 --------------------------------------
 To register multiple sensors, you PUT a list of sensor resources to the url ``/sensors``.
 
-* The sensor resources is a JSON list of objects as described in Creating/Registering a Sensor.
+* The sensor resources is a JSON list of objects as described in :ref:`create-sensor-label`.
 * Limited to 100 new sensors per call. (subject to change)
 
 .. list-table::
@@ -350,9 +377,9 @@ To register multiple sensors, you PUT a list of sensor resources to the url ``/s
 	* - **Returns**
 	  - HTTP status code; Created 201 if successful; Bad Request 400 if sensor is invalid; Conflict 409 if sensor with the same name already exists ; On Created 201 or some errors (not all) you will receive a JSON dictionary where the keys are the sensor names and the values are true/false depending on whether creating the sensor succeeded. For Created 201 all values will be true.
 
-.. _update-sensor-label:
-
 .. index:: Update Sensors
+
+.. _update-sensor-label:
 
 Updating a Sensor
 -----------------
@@ -414,7 +441,7 @@ The file *update-sensor.txt* would contain the following:
 
 Deleting a Sensor
 ------------------
-Deleting a sensor is done by deleting the sensor resource.
+Deleting a sensor is done by deleting the sensor resource through a DELETE request.
 
 To delete a sensor owned by the current user:
 

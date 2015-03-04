@@ -227,14 +227,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "source/api_sensor_data_query.rst",
-			"settings":
-			{
-				"buffer_size": 18527,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "Sphinx",
 	"command_palette":
@@ -759,13 +751,7 @@
 	},
 	"console":
 	{
-		"height": 130.0,
-		"history":
-		[
-			"sublime.log_commands(False)",
-			"clear",
-			"sublime.log_commands(True)"
-		]
+		"height": 130.0
 	},
 	"distraction_free":
 	{
@@ -778,6 +764,8 @@
 	},
 	"file_history":
 	[
+		"/Users/roberto/Sensetecnic/wotkit-docs/source/index.rst",
+		"/Users/roberto/Sensetecnic/wotkit-docs/source/api_sensor_data_query.rst",
 		"/Users/rayh/projects/wotkit/wotkit-docs/wotkit-docs.sublime-project",
 		"/Users/rayh/projects/wotkit/wotkit-docs/source/api_actuators.rst",
 		"/Users/rayh/projects/wotkit/wotkit-docs/source/user_processor.rst",
@@ -903,9 +891,7 @@
 		"/Users/rayh/projects/moves_api/moves_statistics/config/environments/development.rb",
 		"/Users/rayh/projects/moves_api/moves_statistics/app/models/user.rb",
 		"/Users/rayh/projects/moves_api/moves_statistics/Gemfile.lock",
-		"/Users/rayh/projects/moves_api/moves_statistics/Gemfile",
-		"/Users/rayh/Downloads/output.txt",
-		"/Users/rayh/Downloads/input.txt"
+		"/Users/rayh/projects/moves_api/moves_statistics/Gemfile"
 	],
 	"find":
 	{
@@ -913,7 +899,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"",
@@ -1134,77 +1120,13 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "source/api_sensor_data_query.rst",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 18527,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								10769,
-								10769
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/RestructuredText Improved/reStructuredText.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true,
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 5678.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
 			]
 		},
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "source/api_sensor_data_query.rst",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 18527,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1460,
-								1460
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/RestructuredText Improved/reStructuredText.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true,
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 226.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1270,7 +1192,6 @@
 	{
 		"height": 108.0
 	},
-	"project": "wotkit-docs.sublime-project",
 	"replace":
 	{
 		"height": 64.0
@@ -1804,32 +1725,10 @@
 		],
 		"width": 380.0
 	},
-	"select_symbol":
-	{
-		"height": 93.0,
-		"selected_items":
-		[
-			[
-				"visFa",
-				"visFactory"
-			],
-			[
-				"visFacto",
-				"visFactory"
-			]
-		],
-		"width": 552.0
-	},
-	"settings":
-	{
-	},
 	"show_minimap": false,
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 218.0,
-	"status_bar_visible": true,
-	"template_settings":
-	{
-	}
+	"status_bar_visible": true
 }
