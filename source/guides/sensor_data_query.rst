@@ -591,7 +591,7 @@ the entire range this will become more aparent:
         {
             "id": 48232722,
             "timestamp": "1385031531000",
-            "timestamp": "2013-11-21T10:58:51.000Z",
+            "timestamp_iso": "2013-11-21T10:58:51.000Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 6.7
@@ -599,7 +599,7 @@ the entire range this will become more aparent:
         {
             "id": 48232723,
             "timestamp": "1385031591000",
-            "timestamp": "2013-11-21T10:59:51.000Z",
+            "timestamp_iso": "2013-11-21T10:59:51.000Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 6.8
@@ -607,7 +607,7 @@ the entire range this will become more aparent:
         {
             "id": 48232724,
             "timestamp": "1385031651000",
-            "timestamp": "2013-11-21T11:00:51.000Z",
+            "timestamp_iso": "2013-11-21T11:00:51.000Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 6.9
@@ -615,7 +615,7 @@ the entire range this will become more aparent:
         {
             "id": 48232725,
             "timestamp": "1385765949472",
-            "timestamp": "2013-11-29T22:59:09.472Z",
+            "timestamp_iso": "2013-11-29T22:59:09.472Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "valua": 81
@@ -623,7 +623,7 @@ the entire range this will become more aparent:
         {   "_comment": "HIDDEN DUE TO DUPLICATE TIMESTAMP"
             "id": 48232726,
             "timestamp": "1385765949472",
-            "timestamp": "2013-11-29T22:59:09.472Z",
+            "timestamp_iso": "2013-11-29T22:59:09.472Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "valua": 53
@@ -631,7 +631,7 @@ the entire range this will become more aparent:
         {
             "id": 48232727,
             "timestamp": "1385765959633",
-            "timestamp": "2013-11-29T22:59:19.633Z",
+            "timestamp_iso": "2013-11-29T22:59:19.633Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "valua": 0
@@ -639,7 +639,7 @@ the entire range this will become more aparent:
         {
             "id": 48232728,
             "timestamp": "1385765964715",
-            "timestamp": "2013-11-29T22:59:24.715Z",
+            "timestamp_iso": "2013-11-29T22:59:24.715Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "valua": 56
@@ -647,7 +647,7 @@ the entire range this will become more aparent:
         {
             "id": 48232729,
             "timestamp": "1385765994862",
-            "timestamp": "2013-11-29T22:59:54.862Z",
+            "timestamp_iso": "2013-11-29T22:59:54.862Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 97
@@ -655,7 +655,7 @@ the entire range this will become more aparent:
         {
             "id": 48232730,
             "timestamp": "1385766024862",
-            "timestamp": "2013-11-29T23:00:24.862Z",
+            "timestamp_iso": "2013-11-29T23:00:24.862Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 6.7
