@@ -42,7 +42,7 @@ In this section we'll dive in quickly and briefly show an example of
 Recent Num Queries
 ^^^^^^^^^^^^^^^^^^
 
-By default, the data endpoint will return the 100 most recent queries. Try it
+By default, the data endpoint will return the 1000 most recent queries. Try it
 using a URL like this:
 
 .. code-block:: javascript
@@ -60,7 +60,8 @@ The response should look similar to the following:
     "data": [
       {
         "id": 47902511,
-        "timestamp": "2013-11-29T00:46:36.056Z",
+        "timestamp": "1398698531445",
+        "timestamp_iso": "2013-11-29T00:46:36.056Z",
         "sensor_id": 1,
         "sensor_name": "sensetecnic.mule1",
         "value": 69,
@@ -69,7 +70,8 @@ The response should look similar to the following:
       },
       {
         "id": 47902514,
-        "timestamp": "2013-11-29T00:46:39.556Z",
+        "timestamp": "1398698531445",
+        "timestamp_iso": "2013-11-29T00:46:39.556Z",
         "sensor_id": 1,
         "sensor_name": "sensetecnic.mule1",
         "value": 52,
@@ -79,8 +81,8 @@ The response should look similar to the following:
       ... // more data
     ],
     "query": {
-      "limit": 100,
-      "recent_n": 100
+      "limit": 1000,
+      "recent_n": 1000
     }
   }
 
@@ -94,7 +96,7 @@ container to aid paging and debugging.
   * - Field
     - Description
   * - numFound
-    - The total number of elements matching this query
+    - The total number of elements matching this query (In version > 1.9.0 *numFound* is deprecated showing a value of 0)
   * - data
     - The enclosed sensor_data. Always sorted from oldest to newest timestamp
   * - query
@@ -104,8 +106,8 @@ container to aid paging and debugging.
 
 
 The query field is particularly interesting because it tells you how the query
-was interpreted. In this case, the query has a **limit** of *100*
-and a **recent_n** of *100*. A recent_n query fetches the **n** most recent
+was interpreted. In this case, the query has a **limit** of *1000*
+and a **recent_n** of *1000*. A recent_n query fetches the **n** most recent
 items. This is useful when API users want to peek at the recent data without
 having to construct complex queries.
 
@@ -113,7 +115,7 @@ In essence, the query we ran is a convenient default for the explicit version:
 
 .. code-block:: javascript
 
-  http://wotkit.sensetecnic.com/api/v2/sensors/sensetecnic.mule1/data?limit=100&recent_n=100
+  http://wotkit.sensetecnic.com/api/v2/sensors/sensetecnic.mule1/data?limit=1000&recent_n=1000
 
 Next we can try a recent_t query, which looks up the timestamp
 
@@ -138,11 +140,12 @@ where we're interested in the elements from the last hour, or the 12 hours.
   :linenos:
 
   {
-    "numFound": 3,
+    "numFound": 0,
     "data": [
         {
             "id": 47967438,
-            "timestamp": "2013-11-29T18:34:09.557Z",
+            "timestamp": "1398698531445",
+            "timestamp_iso": "2013-11-29T18:34:09.557Z",
             "sensor_id": 1,
             "sensor_name": "sensetecnic.mule1",
             "value": 62,
@@ -151,7 +154,8 @@ where we're interested in the elements from the last hour, or the 12 hours.
         },
         {
             "id": 47967445,
-            "timestamp": "2013-11-29T18:34:13.059Z",
+            "timestamp": "1398698531445",
+            "timestamp_iso": "2013-11-29T18:34:13.059Z",
             "sensor_id": 1,
             "sensor_name": "sensetecnic.mule1",
             "value": 53,
@@ -160,7 +164,8 @@ where we're interested in the elements from the last hour, or the 12 hours.
         },
         {
             "id": 47967446,
-            "timestamp": "2013-11-29T18:34:16.557Z",
+            "timestamp": "1398698531445",           
+            "timestamp_iso": "2013-11-29T18:34:16.557Z",
             "sensor_id": 1,
             "sensor_name": "sensetecnic.mule1",
             "value": 67,
@@ -169,7 +174,7 @@ where we're interested in the elements from the last hour, or the 12 hours.
         }
     ],
     "query": {
-        "limit": 100,
+        "limit": 1000,
         "recent_t": 10000
     }
   }
@@ -181,15 +186,13 @@ milliseconds). You can verify this by inspecting the timestamp of the data.
 
 .. note::
 
-  When accessing WoTKit anonymously, the date string is set to UTC. If you
-  access it an api-key, the timezone will be set based on the account's settings.
-
+  When accessing WoTKit anonymously, the date string is set to UTC. When accessing
+  it using an api-key the timezone will be set based on the account's settings.
 
 We've just shown you how to run both **Recent Queries**. One parameter to make
-note of is the limit parameter. At the moment, limit is capped at 100 -- which
+note of is the limit parameter. At the moment, limit is capped at 1000 -- which
 restricts how much data you get in **recent_n** and **recent_t** queries. To overcome
 this we will look into paging through historical data next.
-
 
 .. _time-range-query-label:
 
@@ -197,10 +200,9 @@ Time Range Queries
 ------------------
 
 At the end of the last section, we noted that there is a weakness in the recent
-queries which limit your ability to sift through historical data. So, to look
-through historical data, you can page through historical data using the
-following query parameters. For the remainder of this, we will be working with
-the sensor ``rymndhng.sdq-test``.
+queries which limit your ability to sift through historical data. You can page
+through historical data using the following query parameters. For the remainder
+of this tutorial we will be working with the sensor ``rymndhng.sdq-test``.
 
 .. _time-range-start-end-label:
 
@@ -208,14 +210,14 @@ Querying with Start and End
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 We'll start with a simple practical example. We have a defined starting time and
 ending time where we want to get all the data in between. I want to know what
-data was there between ``start: "2013-11-21T11:00:51.000Z"`` to
-``end: "2013-11-29T22:59:54.862Z"``
+data was there between the iso timestamp ``2013-11-21T11:00:51.000Z`` and the iso
+timestamp ``2013-11-29T22:59:54.862Z``, or from ``start: 1385031651000`` to
+``end: 1385765994862``
 
 .. Note::
 
-  It's important to note that ``start`` is *exclusive* and ``end`` is
-  *inclusive*. i.e. for ``start=100`` and ``end=200``, then the query does the
-  following:
+  It is important to note that ``start`` is *exclusive* and ``end`` is
+  *inclusive*. When using ``start=100`` and ``end=200`` the query will return: 
 
     ``start < sensor_data.timestamp <= end``
 
@@ -233,8 +235,8 @@ data was there between ``start: "2013-11-21T11:00:51.000Z"`` to
   * - end
     - 1385765994862 (2013-11-29T22:59:54.862Z)
 
-Translating those two strings to milliseconds,
-we end up with the request below. Execute it and follow the response.
+The API requires timestamp values to be in milliseconds, thus we can execute the
+following request:
 
 **Request**
 
@@ -248,66 +250,67 @@ we end up with the request below. Execute it and follow the response.
   :linenos:
 
   {
-    "numFound": 5,
+    "numFound": 0,
     "data": [
         {
             "id": 48232725,
-            "timestamp": "2013-11-29T22:59:09.472Z",
+            "timestamp": "1398698531445",
+            "timestamp_iso": "2013-11-29T22:59:09.472Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "valua": 81
         },
         {
             "id": 48232726,
-            "timestamp": "2013-11-29T22:59:09.472Z",
+            "timestamp": "1398698531445",
+            "timestamp_iso": "2013-11-29T22:59:09.472Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "valua": 53
         },
         {
             "id": 48232727,
-            "timestamp": "2013-11-29T22:59:19.633Z",
+            "timestamp": "1398698531445",            
+            "timestamp_iso": "2013-11-29T22:59:19.633Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "valua": 0
         },
         {
             "id": 48232728,
-            "timestamp": "2013-11-29T22:59:24.715Z",
+            "timestamp": "1398698531445",
+            "timestamp_iso": "2013-11-29T22:59:24.715Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "valua": 56
         },
         {
             "id": 48232729,
-            "timestamp": "2013-11-29T22:59:54.862Z",
+            "timestamp": "1398698531445",
+            "timestamp_iso": "2013-11-29T22:59:54.862Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 97
         }
     ],
     "query": {
-        "end": 1385765994862,
-        "start": 1385031651000,
-        "limit": 100
+        "end": "2013-11-29T22:59:54.862Z",
+        "start": "2013-11-21T11:00:51.000Z",
+        "limit": 1000
     }
   }
 
-Once again, let's look at the query parameter in the response to see what was
-interpreted. We can see that start/end was interpreted in the query. Inspect the
-timestamps of of both data points, we can see it's between the start/end points,
-specifically ``start < data[0].timestamp < ... < data[4].timestamp < end``.
+We can see that start/end was interpreted in the query between the start and end
+points, specifically ``start < data[0].timestamp < ... < data[4].timestamp < end``.
 
 Paging Through Data
 ^^^^^^^^^^^^^^^^^^^
-In the previous section, we gave a very naive example. In this case, only two
-elements were in the range and therefore all the relevent data was returned.
-Very often this isn't the case -- and you may want to sift through thousands of
-entries at a time. To do this, we enabled paging through data entries. We'll
-also specify `limit` to 10 to make the Response more comprehenedable.
-
-Let's try to query all the data by choosing ``start: 0`` and and a really large
-``end: 2000000000000``.
+The previous section illustrated a simple example returning a small range of 
+elements. In real world applications the response of a query will often return
+thousands of entries. In such case you might want to sift through a small ammount
+of these entries at a time. Let's try querying a large range by using ``start=0`` and 
+ ``end=2000000000000``. We will specify a `limit` of 3 to make the response
+more comprehendable. 
 
 **Query Parameters**
 
@@ -336,51 +339,46 @@ Let's try to query all the data by choosing ``start: 0`` and and a really large
   :linenos:
 
   {
-      "numFound": 9,
+      "numFound": 0,
       "data": [
           {
               "id": 48232722,
-              "timestamp": "2013-11-21T10:58:51.000Z",
+              "timestamp": "1398698531445",
+              "timestamp_iso": "2013-11-21T10:58:51.000Z",
               "sensor_id": 531,
               "sensor_name": "rymndhng.sdq-test",
               "value": 6.7
           },
           {
               "id": 48232723,
-              "timestamp": "2013-11-21T10:59:51.000Z",
+              "timestamp": "1398698531445",
+              "timestamp_iso": "2013-11-21T10:59:51.000Z",
               "sensor_id": 531,
               "sensor_name": "rymndhng.sdq-test",
               "value": 6.8
           },
           {
               "id": 48232724,
-              "timestamp": "2013-11-21T11:00:51.000Z",
+              "timestamp": "1398698531445",
+              "timestamp_iso": "2013-11-21T11:00:51.000Z",
               "sensor_id": 531,
               "sensor_name": "rymndhng.sdq-test",
               "value": 6.9
           }
       ],
+      "fields" [ /*an array of expected values*/ ],
       "query": {
-          "end": 2000000000000,
-          "start": 0,
+          "end": "2033-05-18T03:33:20.000Z",
+          "start": "1970-01-01T00:00:00.000Z",
           "limit": 3
       }
   }
 
-So this time, first we look at the query parameter. As mentioned previously, the
-limit is currently capped at 3. So how do we know if we there's more data? Well,
-there is another field in the response which can help us: ``numFound``.
-``numFound`` counts all the data found within the data range from start to end.
-In this example, we know there's more data because ``data.length < numFound``.
-
-
-Given this information, we can now continue paging data by setting ``offset``.
-We can retrieve the next page by choosing ``offset = data.size``, in this case,
-data.size is 10. Generally, we can page by specifying ``offset = prev_offset +
-data.size``. We can also figure out if we're at the end of the data range
-generally by testing that ``data.size + offset < numFound``.
-
-Now, let's rerun the last query with an offset.
+In this query we have only asked for 3 elements. We can page data by setting the
+parameter ``offset`` in our request. In our example, we can retrieve the next page 
+by setting ``offset=data.size``, in our case 3: ``offset=3``. By specifying 
+``offset = prev_offset + data.size`` we can paginate data in each subsequent request.
+Now, let's retry the last query with an offset.
 
 **Query Parameters**
 
@@ -395,7 +393,7 @@ Now, let's rerun the last query with an offset.
   * - end
     - 2000000000000 (same as before)
   * - limit
-    - 10
+    - 3
   * - offset
     - 3
 
@@ -410,30 +408,34 @@ Now, let's rerun the last query with an offset.
 .. code-block:: javascript
 
   {
-      "numFound": 9,
+      "numFound": 0,
       "data": [
           {
               "id": 48232725,
-              "timestamp": "2013-11-29T22:59:09.472Z",
+              "timestamp": "1398698531445",
+              "timestamp_iso": "2013-11-29T22:59:09.472Z",
               "sensor_id": 531,
               "sensor_name": "rymndhng.sdq-test",
               "valua": 81
           },
           {
               "id": 48232726,
-              "timestamp": "2013-11-29T22:59:09.472Z",
+              "timestamp": "1398698531445",
+              "timestamp_iso": "2013-11-29T22:59:09.472Z",
               "sensor_id": 531,
               "sensor_name": "rymndhng.sdq-test",
               "valua": 53
           },
           {
               "id": 48232727,
-              "timestamp": "2013-11-29T22:59:19.633Z",
+              "timestamp": "1398698531445",
+              "timestamp_iso": "2013-11-29T22:59:19.633Z",
               "sensor_id": 531,
               "sensor_name": "rymndhng.sdq-test",
               "valua": 0
           }
       ],
+      "fields" [ /*an array of expected values*/ ],
       "query": {
           "offset": 3,
           "end": 2000000000000,
@@ -445,56 +447,60 @@ Now, let's rerun the last query with an offset.
 Once again, looking at the query, we can now see that offset is specfied as 3.
 We can also verify that an offset was used by looking at ``id`` and
 ``timestamp`` of the two responses. The **last** element of the first response
-has ``id: 48232724`` and ``timestamp: "2013-11-21T11:00:51.000Z"``. The
-**first** element in the second response has ``id: 48232725`` and ``timestamp:
+has ``id: 48232724`` and ``timestamp_iso: "2013-11-21T11:00:51.000Z"``. The
+**first** element in the second response has ``id: 48232725`` and ``timestamp_iso:
 "2013-11-29T22:59:09.472Z"``. You can easily verify that they are in sequence.
 
 
 Advanced Time Range Queries
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-In general, using `start, end, offset` provides enough flexibility. However,
-sensors are allowed to have multiple data on the same timestamp. This can easily
-happen when historical data is ``PUT`` into the system. In other words, you
-cannot expect timestamp to be unique for sensor data (generally they are good
-enough). So, we introduce the idea of ``start_id`` and ``end_id`` to allow
+In general, using `start, end, offset` provides enough flexibility for most queries. However, sensors are allowed to have multiple data on the same timestamp. This can easily happen when historical data is ``PUT`` into the system. As a result several 
+datapoints can have identical timestamps. What this means is that you cannot 
+expect the timestamp value to be unique for a sensor data. 
+
+To solve this we can use the parameters ``start_id`` and ``end_id`` for a more 
 precise selection of start and end elements.
 
 We'll start off with our first query
 .. code-block:: javascript
 
-  http://wotkit.sensetecnic.com/api/v2/sensors/rymndhng.sdq-test/data?start=0&limit=4
+  http://wotkit.sensetecnic.com/api/v2/sensors/rymndhng.sdq-test/data?start=0&end=2000000000000&limit=4
 
 **Response**
 
 .. code-block:: javascript
 
   {
-    "numFound": 9,
+    "numFound": 0,
     "data": [
         {
             "id": 48232722,
-            "timestamp": "2013-11-21T10:58:51.000Z",
+            "timestamp": "1385031531000",
+            "timestamp_iso": "2013-11-21T10:58:51.000Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 6.7
         },
         {
             "id": 48232723,
-            "timestamp": "2013-11-21T10:59:51.000Z",
+            "timestamp": "1385031531000",
+            "timestamp_iso": "2013-11-21T10:59:51.000Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 6.8
         },
         {
             "id": 48232724,
-            "timestamp": "2013-11-21T11:00:51.000Z",
+            "timestamp": "1385031651000",
+            "timestamp_iso": "2013-11-21T11:00:51.000Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 6.9
         },
         {
             "id": 48232725,
-            "timestamp": "2013-11-29T22:59:09.472Z",
+            "timestamp": "1385765949472",
+            "timestamp_iso": "2013-11-29T22:59:09.472Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "valua": 81
@@ -506,64 +512,66 @@ We'll start off with our first query
     }
   }
 
-Now sometime in the future, we want to rerun the query using the information we
-had previously. So, we'll use the last item's timestamp
-(2013-11-29T22:59:09.472Z) as the start value.
+If we want to re-run this query in the future using the information we obtained 
+in this query we will use the last item's timestamp "1385765949472" (2013-11-29T22:59:09.472Z) as the start value:
 
 **Request**
 
 .. code-block:: javascript
 
-  http://wotkit.sensetecnic.com/api/v2/sensors/rymndhng.sdq-test/data?start=1385765949472&limit=4
+  http://wotkit.sensetecnic.com/api/v2/sensors/rymndhng.sdq-test/data?start=1385765949472&end=2000000000000&limit=4
 
 **Response**
 
 .. code-block:: javascript
 
   {
-    "numFound": 4,
+    "numFound": 0,
     "data": [
         {
             "id": 48232727,
-            "timestamp": "2013-11-29T22:59:19.633Z",
+            "timestamp": "1385765959633",
+            "timestamp_iso": "2013-11-29T22:59:19.633Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "valua": 0
         },
         {
             "id": 48232728,
-            "timestamp": "2013-11-29T22:59:24.715Z",
+            "timestamp": "1385765964715",
+            "timestamp_iso": "2013-11-29T22:59:24.715Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "valua": 56
         },
         {
             "id": 48232729,
-            "timestamp": "2013-11-29T22:59:54.862Z",
+            "timestamp": "1385765994862",
+            "timestamp_iso": "2013-11-29T22:59:54.862Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 97
         },
         {
             "id": 48232730,
-            "timestamp": "2013-11-29T23:00:24.862Z",
+            "timestamp": "1385766024862,","
+            "timestamp_iso": "2013-11-29T23:00:24.862Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 6.7
         }
     ],
+    "fields": [/*Fields*/],
     "query": {
         "start": 1385765949472,
         "limit": 4
     }
   }
 
-Everything looks fine and dandy doesn't it? The timestamps are incremental, and
-therefore all is well is it? Well, no it actually isn't. There's a problem which
-we are unaware of. We've actually skipped an element because of duplicate
-timestamps.
-
-Run this request which querys the entire range and look at the data.
+Everything looks fine doesn't it? Although the timestamps seem incremental there
+is a problem we are unaware of. We have actually skyppped an element because of 
+the existence of duplicate timestamps. If we run the following request querying 
+the entire range this will become more aparent: 
 
 **Request**
 
@@ -574,14 +582,15 @@ Run this request which querys the entire range and look at the data.
 **Response**
 
 .. code-block:: javascript
-  :emphasize-lines: 32,33,34,35,36,37,38
+  :emphasize-lines: 36,37,38,39,40,41,42,43
   :linenos:
 
   {
-    "numFound": 9,
+    "numFound": 0,
     "data": [
         {
             "id": 48232722,
+            "timestamp": "1385031531000",
             "timestamp": "2013-11-21T10:58:51.000Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
@@ -589,6 +598,7 @@ Run this request which querys the entire range and look at the data.
         },
         {
             "id": 48232723,
+            "timestamp": "1385031591000",
             "timestamp": "2013-11-21T10:59:51.000Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
@@ -596,6 +606,7 @@ Run this request which querys the entire range and look at the data.
         },
         {
             "id": 48232724,
+            "timestamp": "1385031651000",
             "timestamp": "2013-11-21T11:00:51.000Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
@@ -603,13 +614,15 @@ Run this request which querys the entire range and look at the data.
         },
         {
             "id": 48232725,
+            "timestamp": "1385765949472",
             "timestamp": "2013-11-29T22:59:09.472Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "valua": 81
         },
-        {
+        {   "_comment": "HIDDEN DUE TO DUPLICATE TIMESTAMP"
             "id": 48232726,
+            "timestamp": "1385765949472",
             "timestamp": "2013-11-29T22:59:09.472Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
@@ -617,6 +630,7 @@ Run this request which querys the entire range and look at the data.
         },
         {
             "id": 48232727,
+            "timestamp": "1385765959633",
             "timestamp": "2013-11-29T22:59:19.633Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
@@ -624,6 +638,7 @@ Run this request which querys the entire range and look at the data.
         },
         {
             "id": 48232728,
+            "timestamp": "1385765964715",
             "timestamp": "2013-11-29T22:59:24.715Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
@@ -631,6 +646,7 @@ Run this request which querys the entire range and look at the data.
         },
         {
             "id": 48232729,
+            "timestamp": "1385765994862",
             "timestamp": "2013-11-29T22:59:54.862Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
@@ -638,64 +654,72 @@ Run this request which querys the entire range and look at the data.
         },
         {
             "id": 48232730,
+            "timestamp": "1385766024862",
             "timestamp": "2013-11-29T23:00:24.862Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 6.7
         }
     ],
+    "fields": [/*Fields*/],
     "query": {
         "limit": 100,
         "recent_n": 10
     }
   }
 
-The highlighted lines for ``id: 48232726`` did not exist in either of our
-queries. In :ref:`time-range-start-end-label`, we specified the second query did
-exactly what you asked for: *Query sensor data after timestamp 1385765949472
-limit 3*. So, to solve this, we introduce a new parameter ``start_id``. This
-parameter can be used in conjuction with ``start`` to specify specify which data
-element's id to start with. Essentially, sensor_data are uniquely identified
-using this tuple ``(timestamp, id)``. So, let's rerun the second query with
-``start_id: 48232725`` from the first query.
+You can see that the highlighted lines for ``id: 48232726`` did not exist in either
+of our previous queries. For example, in :ref:`time-range-start-end-label`, we performed a query for data after timestamp 1385765949472, but the element highlighted 
+above was not returned. 
 
+To solve this issue, we have introduced a new parameter ``start_id``. This
+parameter can be used in conjuction with ``start`` to specify specify which data
+element's id to start with. This works because sensor data are uniquely identified 
+using a tuple ``(timestamp, id)``.
+
+Let's rerun the second query with ``start_id: 48232725`` from the first query.
 
 **Request**
 
 .. code-block:: javascript
 
-  http://wotkit.sensetecnic.com/api/v2/sensors/rymndhng.sdq-test/data?start=1385765949472&limit=4&start_id=48232725
+  http://wotkit.sensetecnic.com/api/v2/sensors/rymndhng.sdq-test/data?start=1385031651000&end=1385765994862&start_id=48232725
 
 **Response**
 
 .. code-block:: javascript
 
   {
-      "numFound": 5,
+      "numFound": 0,
       "data": [
           {
               "id": 48232726,
+              "timestamp": "1385765949472",
               "timestamp": "2013-11-29T22:59:09.472Z",
               "sensor_id": 531,
               "sensor_name": "rymndhng.sdq-test",
-              "valua": 53
+              "value": 53
           },
           {
               "id": 48232727,
+              "timestamp": "1385765959633",
+
               "timestamp": "2013-11-29T22:59:19.633Z",
               "sensor_id": 531,
               "sensor_name": "rymndhng.sdq-test",
-              "valua": 0
+              "value": 0
           },
           {
               "id": 48232728,
+              "timestamp": "1385765964715",
               "timestamp": "2013-11-29T22:59:24.715Z",
               "sensor_id": 531,
               "sensor_name": "rymndhng.sdq-test",
-              "valua": 56
+              "value": 56
           },
           {
               "id": 48232729,
+              "timestamp": "1385765994862",
               "timestamp": "2013-11-29T22:59:54.862Z",
               "sensor_id": 531,
               "sensor_name": "rymndhng.sdq-test",
@@ -710,33 +734,37 @@ using this tuple ``(timestamp, id)``. So, let's rerun the second query with
   }
 
 
-There, we got the response with ``id: 48232726``. The ``start_id`` allowed us to
-filter ids greater than 3. ``end_id`` works the same way as ``start_id`` if you
-really need fine-grained control over the range of a data query.
+When we used the parameter ``start_id`` we got a response with the element whose
+`id: 48232726``. The ``start_id`` allowed us to filter ids greater than 48232726.
+``end_id`` works the same way as ``start_id`` if you really need fine-grained 
+control over the range of a data query.
 
 .. _time-range-query-summary-label:
 
 Summary of Time Range Data Query
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-With all the information given, we can really condense the query parameters into
-the following query. ``data_ts`` is the sensor data's timestamp, and ``data_id``
-is the data's id element.
+We have learned all the parameters that can be used in a sensor query. But which
+approach should you use?
 
-Without start_id or end_id, the query range is done like this.
+  1) Without start_id or end_id, the query range is performed like this:
 
-.. code-block:: ruby
+    .. code-block:: ruby
 
-  start < data_ts <= end
+      start < data_ts <= end
 
-With start_id and/or end_id, the query range adds extra checks near the bounds
+    where ``data_ts`` is the sensor data's timestamp, and ``data_id`` 
+    is the data's id element.
 
-.. code-block:: ruby
+  2) With start_id and/or end_id, the query range adds extra checks near 
+  the bounds like this:
 
-  (start < data_ts <= end)
-  OR (data_ts = start AND data_id > start_id)
-  OR (data_ts = end   AND data_id <= end_id)
+    .. code-block:: ruby
 
-Below is a quicky summary of what query parameter means:
+      (start < data_ts <= end)
+      OR (data_ts = start AND data_id > start_id)
+      OR (data_ts = end   AND data_id <= end_id)
+
+Below is a quicky summary of what each query parameter means:
 
 .. list-table::
   :widths: 15, 15, 40
@@ -760,20 +788,19 @@ Below is a quicky summary of what query parameter means:
 
 
 
-Sensor Data Query Recipes
--------------------------
-In this section, we will highlight some novel ways of combining the information
-above to query the data.
+Additional Sensor Data Query Recipes
+------------------------------------
+You can combine the information above in novel ways to query sensor data. 
 
-Use start_id instead of start for start of query
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-In the documentation, we used ``start_id`` alongisde ``start``, but actually,
-this is optional. If you use ``start_id`` without ``start``, we will actually
-lookup the ``timestamp`` of the element with id ``start_id``, and then use that
-as the starting timestamp.
+1) Use start_id instead of start for start of query
 
-Making Start Inclusive
-^^^^^^^^^^^^^^^^^^^^^^
-From :ref:`time-range-query-summary-label`, it shows the start range is
-exclusive. But, there is a way to make this inclusive. If you set ``start_id: 0``,
-it will make the data range inclusive.
+  In the documentation, we used ``start_id`` alongisde ``start``, but actually,
+  this is optional. If you use ``start_id`` without ``start``, WoTKit will lookup
+  the ``timestamp`` of the element with id ``start_id``, and then use that
+  as the starting timestamp.
+
+2) Making Start Inclusive
+
+  From :ref:`time-range-query-summary-label`, it shows the start range is
+  exclusive. But, there is a way to make this inclusive. If you set ``start_id: 0``,
+  it will make the data range inclusive.
