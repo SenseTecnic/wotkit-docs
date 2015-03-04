@@ -751,7 +751,11 @@
 	},
 	"console":
 	{
+<<<<<<< HEAD
 		"height": 130.0
+=======
+		"height": 195.0
+>>>>>>> update
 	},
 	"distraction_free":
 	{
@@ -764,8 +768,19 @@
 	},
 	"file_history":
 	[
+<<<<<<< HEAD
 		"/Users/roberto/Sensetecnic/wotkit-docs/source/index.rst",
 		"/Users/roberto/Sensetecnic/wotkit-docs/source/api_sensor_data_query.rst",
+=======
+		"/home/roberto/Sensetecnic/wotkit-docs/source/api_v1/api_authentication.rst",
+		"/home/roberto/Sensetecnic/wotkit-docs/source/api_v1/index.rst",
+		"/home/roberto/Sensetecnic/wotkit-docs/source/guides/sensor_data_query.rst",
+		"/home/roberto/Sensetecnic/wotkit-docs/source/guides/index.rst",
+		"/home/roberto/Sensetecnic/wotkit-docs/source/index.rst",
+		"/home/roberto/Sensetecnic/wotkit-docs/.gitignore",
+		"/home/roberto/Sensetecnic/wotkit-docs/README.md",
+		"/home/roberto/Sensetecnic/wotkit-docs/source/api_sensor_data_query.rst",
+>>>>>>> update
 		"/Users/rayh/projects/wotkit/wotkit-docs/wotkit-docs.sublime-project",
 		"/Users/rayh/projects/wotkit/wotkit-docs/source/api_actuators.rst",
 		"/Users/rayh/projects/wotkit/wotkit-docs/source/user_processor.rst",
@@ -885,6 +900,7 @@
 		"/Users/rayh/projects/moves_api/moves_statistics/app/controllers/sessions_controller.rb",
 		"/Users/rayh/Library/Application Support/Sublime Text 3/Packages/GitGutter/GitGutter.sublime-settings",
 		"/Users/rayh/Library/Application Support/Sublime Text 3/Packages/SublimeGit/SublimeGit.sublime-settings",
+<<<<<<< HEAD
 		"/Users/rayh/Library/Application Support/Sublime Text 3/Packages/User/GitGutter.sublime-settings",
 		"/Users/rayh/projects/moves_api/moves_statistics/app/views/layouts/application.html.haml",
 		"/Users/rayh/projects/moves_api/moves_statistics/app/assets/stylesheets/application.css",
@@ -892,6 +908,9 @@
 		"/Users/rayh/projects/moves_api/moves_statistics/app/models/user.rb",
 		"/Users/rayh/projects/moves_api/moves_statistics/Gemfile.lock",
 		"/Users/rayh/projects/moves_api/moves_statistics/Gemfile"
+=======
+		"/Users/rayh/Library/Application Support/Sublime Text 3/Packages/User/GitGutter.sublime-settings"
+>>>>>>> update
 	],
 	"find":
 	{
@@ -932,6 +951,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			" \n",
+			"recent-query-label",
 			"be",
 			"  \n",
 			"    ",
@@ -1057,9 +1078,7 @@
 			"render",
 			"event-attend-status",
 			"event-attend",
-			"inviteUserCallback",
-			"friend-diff:redraw",
-			"fb-event-block-template"
+			"inviteUserCallback"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1111,7 +1130,7 @@
 			"type=\"integer\"",
 			"nullable=true"
 		],
-		"reverse": false,
+		"reverse": true,
 		"show_context": true,
 		"use_buffer2": false,
 		"whole_word": false,
@@ -1170,7 +1189,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 162.0
+		"height": 313.0
 	},
 	"output.find_results":
 	{

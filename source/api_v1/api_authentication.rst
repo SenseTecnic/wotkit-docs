@@ -1,18 +1,16 @@
-
-.. index::
-	single: Authentication
-
 .. _api_authentication:
+
+.. index:: single: Authentication
 
 Authentication
 ==============	
 
-The WoTKit API supports three forms of authentication to control access to a user's sensors
-and other information on the WoTKit.
+The WoTKit API supports three forms of authentication to control access to a user's
+sensors and other information on the WoTKit.
 
-#. Basic authentication using the user's name and password
-#. Basic authentication with *Keys* (key id and key password)
-#. OAuth2 authorization of server-based *Applications*
+1) Basic authentication using the user's name and password
+2) Basic authentication with *Keys* (key id and key password)
+3) OAuth2 authorization of server-based *Applications*
 
 Using the WoTKit portal, developers can create *keys* for use by one or more sensor gateways
 or scripts.  Users can also register new server side applications and then authorize
@@ -25,13 +23,14 @@ these applications to allow them to access a user's sensors on their behalf.
 
 .. note::
 
-	Most examples in this document use basic authentication with keys or WoTKit username and passwords. However,
-	OAuth2 authorization is also possible by removing the id and password and by appending an access_token parameter.
+	Most examples in this document use basic authentication with keys or WoTKit username and passwords. However, OAuth2 authorization is also possible by 
+	removing the id and password and by appending an access_token parameter. 
 	See :ref:`apps-oauth-label` for details.
 
-.. _methods-privacy-label:
 
 .. index:: API Permissions, Methods Privacy
+
+.. _methods-privacy-label:
 	
 Methods privacy
 ----------------
@@ -51,9 +50,9 @@ Every method has a description of its private level in one of the following form
 	
 * **Admin** accessible only to authenticated admin users
 
-.. _keys-basic-auth-label:
-
 .. index:: Keys
+
+.. _keys-basic-auth-label:
 
 Keys and Basic Authentication
 ------------------------------
@@ -65,14 +64,16 @@ sensors on the user's behalf.
 
 For instance, the following curl command uses a 'key id' and 'key password' to get information about the sensor **sensetecnic.mule1**.  
 
-(Please replace the ``{key_id}`` and ``{key_password}`` in the code with appropriate values copied from the WoTKit UI.)
+.. note::
+
+	Replace the ``{key_id}`` and ``{key_password}`` in the code below with your own generated keys. To generate them visit the WoTKit UI at :wotkit:`keys`, click on `New API Key`, after filling form with *Key Name* and *Key Description* to track your
+	keys you will be presented with the values you can use.
 
 .. admonition:: example
 
 	.. parsed-literal::
 
-		curl --user {key_id}:{key_password} 
-		":wotkit-api:`sensors/sensetecnic.mule1`"
+		curl --user {key_id}:{key_password} ":wotkit-api:`sensors/sensetecnic.mule1`"
 
 
 This returns:
@@ -102,23 +103,29 @@ This returns:
 		"lastUpdate":"2012-12-07T01:47:18.639Z"}
 	}
 
-.. _apps-oauth-label:
 
 .. index:: Applications
 	single: OAuth2
-	
+
+.. _apps-oauth-label:
+
 Registered Applications and OAuth2
 ------------------------------------
-*Applications* are registered on the WoTKit UI (:wotkit:`apps`). They can be installed by many users, but the credentials are unique to the contributor.
 
-To grant a client access to your sensors, you first register an *application*. The client can then be supplied the 'application client id' and auto-generated 'application secret'. 
-These will act as credentials, allowing clients to access the WoTKit on the user's behalf, using OAuth2 authorization.
+*Applications* can registered on the WoTKit UI (:wotkit:`apps`) and they provide
+an easy way to allow several clients access to a WoTKit user's data. An common 
+scenario is when a developer creates an application that publishes data *on 
+behalf* of other WoTKit users.
 
-The OAuth2 authorization asks the user's permission for a client to utilize the application credentials on the user's behalf. 
-If the user allows this, an access token is generated. This access token can then be appended to the end of each WoTKit URL, authorizing access. 
-(No further id/passwords are needed.) 
+For example, to grant a third-party client access to your sensors, you first register an *application*. The client can then be supplied the 'application client id' and auto-generated 'application secret'. These will act as credentials, allowing clients to access the WoTKit on your behalf, using OAuth2 authorization. You can always delete the application
+and revoke access to any clients using the generated oauth credentials.
+
+In more detail, an OAuth2 authorization will ask the user's permission for a client to utilize the application credentials on the user's behalf. If the user allows this, an access token is generated. This access token can then be appended to the end of each WoTKit URL. In this case no further id/passwords are needed. 
 
 For instance, the following curl command uses an access token to get information about the sensor **sensetecnic.mule1**. 
+
+.. note::
+	Replace the ``{access_token}`` the request below with your own generated access token as explained below
 
 .. admonition:: example
 
@@ -127,54 +134,67 @@ For instance, the following curl command uses an access token to get information
 		curl ":wotkit-api:`sensors/sensetecnic.mule1?access_token={access_token}`"
 
 
-In order to obtain an access token for your client, the following steps are taken:
+In order to obtain an access token a client must follow the following steps, which
+follow the oauth2 specification (http://oauth.net/2/).
 
-#. An attempt to access the WoTKit is made by providing an 'application client id' and requesting a code. 
+	1) An attempt to access the WoTKit is made by providing an 'application client id' and requesting a code. This can be obtained  
 
-	``http://wotkit.sensetecnic.com/api/oauth/authorize?client_id={application client id}
-	&response_type=code&redirect_uri={redirect uri}``
+		``http://wotkit.sensetecnic.com/api/oauth/authorize?client_id={application client id}
+	&response_type=code&redirect_uri={redirect_uri}``
 	
-#. If no user is currently logged in to the WoTKit, a login page will be presented. A WoTKit user must log in to continue. 
-#. A prompt asks the user to authorize the 'application client id' to act on their behalf. Once authorized, a code is provided. 
-#. Using the application credentials, this code is exchanged for an access token. This access token is then appended to the end of each URL, authorizing access. 
+	2) If no user is currently logged in to the WoTKit, a login page will be presented. A WoTKit user must log in to continue. 
 
-Example: PHP file pointed to by ``{redirect_uri}``
+	3) A prompt asks the user to authorize the 'application client id' to act on their behalf. Once authorized, a code is provided. 
+	
+	4) The user is redirected to a *redirect_uri* that obtains an access token that can	
+	be appended to the end of each URL to perform queries on behalf of the user.
+
+.. Note:: 
+	An application's *Client ID* and *Application Secret* can be found at after you have created an application in the WoTKit UI:
+	:wotkit:`apps/`{application-id}`
+
+The following example in PHP exemplifies the flow explained above. The example below
+is deployed at a *{redirect_uri}* that is pointed to by the WoTKit after the request 
+in (1) above is made.
 
 .. code-block:: php
 
 	<?php
-	$code = $_GET['code'];
-	$access_token = "none";
-	$ch = curl_init();
+		$code = $_GET['code'];
+		$access_token = "none";
+		$ch = curl_init();
 		
-	if(isset($code)) {
-		// try to get an access token
-		$params = array("code" => $code,
+		if(isset($code)) {
+			// try to get an access token
+			$params = array("code" => $code,
 				"client_id"=> {application client id},
 				"client_secret" => {application secret},
 				"redirect_uri" => {redirect uri},
 				"grant_type" => "authorization_code");			
-		$data = ArraytoNameValuePairs ($params);
+			$data = ArraytoNameValuePairs ($params);
 				
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_URL, "http://wotkit.sensetecnic.com/api/oauth/token");
-		curl_setopt($ch, CURLOPT_POST, TRUE);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_URL, "http://wotkit.sensetecnic.com/api/oauth/token");
+			curl_setopt($ch, CURLOPT_POST, TRUE);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 			
-		$access_token = json_decode($response)->access_token;	
+			$access_token = json_decode($response)->access_token;	
 		}	
-		?>
+	?>
 
-
-.. _access-token-label:		
 
 .. index:: Access Token
+
+.. _access-token-label:		
 		
 Access Token Facts
 ------------------
-When obtaining an access token, the 'response' field holds the  following useful information:
+When obtaining an access token, the 'response' field holds the  access token required
+by an application to make future requests on behalf of a user: 
 
 * ``response->access_token``
 * ``response->expires_in``
 
-	* default value is approx. 43200 seconds (or 12 hrs)
+.. Note:: 	
+
+	The default value of response->expires_in is approx. 43200 seconds (or 12 hrs)
