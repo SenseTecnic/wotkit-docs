@@ -34,6 +34,7 @@ When a new sensor is created, a number of default fields are created by the wotk
 .. list-table::
   :widths: 15, 50
   :header-rows: 1
+
   * - Default field name
     - Description
   * - lat
