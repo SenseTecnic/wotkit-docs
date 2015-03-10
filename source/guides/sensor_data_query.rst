@@ -234,6 +234,7 @@ timestamp ``2013-11-29T22:59:54.862Z``, or from ``start: 1385031651000`` to
     - 1385031651000 (2013-11-21T11:00:51.000Z)
   * - end
     - 1385765994862 (2013-11-29T22:59:54.862Z)
+|
 
 The API requires timestamp values to be in milliseconds, thus we can execute the
 following request:
@@ -308,8 +309,7 @@ Paging Through Data
 The previous section illustrated a simple example returning a small range of 
 elements. In real world applications the response of a query will often return
 thousands of entries. In such case you might want to sift through a small ammount
-of these entries at a time. Let's try querying a large range by using ``start=0`` and 
- ``end=2000000000000``. We will specify a `limit` of 3 to make the response
+of these entries at a time. Let's try querying a large range by using *start=0* and *end=2000000000000*. We will specify a `limit` of 3 to make the response
 more comprehendable. 
 
 **Query Parameters**
