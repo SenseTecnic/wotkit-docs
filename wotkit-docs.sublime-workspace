@@ -228,11 +228,19 @@
 	"buffers":
 	[
 		{
-			"file": "source/guides/sensor_data_query.rst",
+			"file": "source/api_v1/api_users.rst",
 			"settings":
 			{
-				"buffer_size": 23912,
-				"line_ending": "Unix"
+				"buffer_size": 3858,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "source/api_v1/api_sensor_fields.rst",
+			"settings":
+			{
+				"buffer_size": 5622,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -772,6 +780,11 @@
 	},
 	"file_history":
 	[
+		"/home/roberto/Dropbox/Sensetecnic/wotkit-docs/source/api_v1/api_sensor_data.rst",
+		"/home/roberto/Dropbox/Sensetecnic/wotkit-docs/source/api_v1/api_sensors.rst",
+		"/home/roberto/Dropbox/Sensetecnic/wotkit-docs/source/api_v1/api_sensor_fields.rst",
+		"/home/roberto/Dropbox/Sensetecnic/wotkit-docs/source/guides/sensor_data_query.rst",
+		"/home/roberto/Dropbox/Sensetecnic/wotkit-docs/.gitignore",
 		"/Users/roberto/Documents/Sensetecnic/wotkit-docs/source/guides/sensor_data_query.rst",
 		"/Users/roberto/Documents/Sensetecnic/wotkit-docs/source/api_v1/api_actuators.rst",
 		"/Users/roberto/Documents/Sensetecnic/wotkit-docs/source/api_v1/api_sensor_data.rst",
@@ -894,12 +907,7 @@
 		"/Users/rayh/projects/moves_api/moves_statistics/config/application.rb",
 		"/Users/rayh/projects/moves_api/moves_statistics/app/controllers/static_controller.rb",
 		"/Users/rayh/projects/moves_api/moves_statistics/app/services/moves.rb",
-		"/Users/rayh/projects/moves_api/moves_statistics/app/views/static/home.html.haml",
-		"/Users/rayh/projects/moves_api/moves_statistics/config/routes.rb",
-		"/Users/rayh/projects/moves_api/moves_statistics/app/controllers/sessions_controller.rb",
-		"/Users/rayh/Library/Application Support/Sublime Text 3/Packages/GitGutter/GitGutter.sublime-settings",
-		"/Users/rayh/Library/Application Support/Sublime Text 3/Packages/SublimeGit/SublimeGit.sublime-settings",
-		"/Users/rayh/Library/Application Support/Sublime Text 3/Packages/User/GitGutter.sublime-settings"
+		"/Users/rayh/projects/moves_api/moves_statistics/app/views/static/home.html.haml"
 	],
 	"find":
 	{
@@ -1133,28 +1141,54 @@
 			[
 				{
 					"buffer": 0,
-					"file": "source/guides/sensor_data_query.rst",
+					"file": "source/api_v1/api_users.rst",
 					"settings":
 					{
-						"buffer_size": 23912,
+						"buffer_size": 3858,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								19640,
-								19640
+								2371,
+								2371
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/RestructuredText/reStructuredText.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 9769.0,
+						"translation.y": 1802.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "source/api_v1/api_sensor_fields.rst",
+					"settings":
+					{
+						"buffer_size": 5622,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								291,
+								291
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/RestructuredText/reStructuredText.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 102.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1195,7 +1229,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 67.0
+		"height": 139.0
 	},
 	"output.find_results":
 	{

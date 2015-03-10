@@ -52,7 +52,7 @@ All request body and response bodies use JSON. The following fields are present:
     - Array[Sensor]
     - Contains a JSON list of sensors. This field is only useful for viewing sensors. To append/remove sensors from Sensor Groups, refer to :ref:`api_sensor_groups_add_sensor`.
 
-An example of a Sensor Group JSON would be as follows:
+An example of a Sensor Group JSON would be follows::
 
   {
     id: 49,

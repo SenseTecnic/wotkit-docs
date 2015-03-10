@@ -6,7 +6,7 @@
 Statistics
 ===========
 
-The "stats" resource provides statistics, like number of public sensors, active sensors, or new sensors. It can be accessed via:
+The "stats" resource provides statistics, like number of public sensors, active sensors, or new sensors.
 
 .. list-table::
 	:widths: 10, 50

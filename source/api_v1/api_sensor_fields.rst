@@ -3,7 +3,8 @@
 Sensor Fields
 ==============
 
-Sensor fields are the fields of data saved in a sensor stream.  Together they make up the sensor schema.
+Sensor fields are the fields of data saved in a sensor stream.  Together they 
+make up the sensor schema. Sensor data objects must follow declared fields.
 
 .. index:: Default Sensor Fields
 

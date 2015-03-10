@@ -3,8 +3,7 @@
 V2 API Reference
 ================
 
-This documentation is a work in process. It's not production ready yet -- but
-feel free to look around.
+Please be advised that V2 is in beta and not ready for production. 
 
 .. toctree::
 

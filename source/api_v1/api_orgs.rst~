@@ -118,13 +118,13 @@ resources is a JSON object with the following fields:
 	  - The name of the organization. Must be at least 4 characters long.
 	* - (*REQUIRED*)
 	  - longName 
-	  - A descriptive name of the organization. Must be at least 4 characters long. Can be updated.
+	  - A descriptive name of the organization. Must be at least 4 characters long.
 	* - (*OPTIONAL*)
 	  - description 
-	  - Description of the organization. Can be updated.
+	  - Description of the organization.
 	* - (*OPTIONAL*)
 	  - imageUrl
-	  - An image that often used in thumbnails to identify the organization. Can be updated.
+	  - An image that often used in thumbnails to identify the organization.
 |
 
 
