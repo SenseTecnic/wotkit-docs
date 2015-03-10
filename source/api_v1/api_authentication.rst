@@ -143,11 +143,8 @@ follow the oauth2 specification (http://oauth.net/2/).
 	&response_type=code&redirect_uri={redirect_uri}``
 	
 	2) If no user is currently logged in to the WoTKit, a login page will be presented. A WoTKit user must log in to continue. 
-
 	3) A prompt asks the user to authorize the 'application client id' to act on their behalf. Once authorized, a code is provided. 
-	
-	4) The user is redirected to a *redirect_uri* that obtains an access token that can	
-	be appended to the end of each URL to perform queries on behalf of the user.
+	4) The user is redirected to a *redirect_uri* that obtains an access token that can be appended to the end of each URL to perform queries on behalf of the user.
 
 .. Note:: 
 	An application's *Client ID* and *Application Secret* can be found at after you have created an application in the WoTKit UI:

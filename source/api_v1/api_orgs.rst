@@ -143,7 +143,6 @@ To create an organization:
 	  - POST
 	* - **Returns**
 	  - HTTP status code; Created 201 if successful; Bad Request 400 if organization is invalid; Conflict 409 if an organization with the same name already exists
-
 |
 
 .. _update_org:
@@ -211,7 +210,7 @@ Organization Membership
 .. index:: Organization Members
 
 List all members of an Organization
-####################################
+###################################
 
 To query for organization members:
 
