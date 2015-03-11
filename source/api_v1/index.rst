@@ -22,4 +22,4 @@ following URL :wotkit-api:`api-docs?path=v1`.
    api_sensor_groups
    api_news
    api_stats
-   api_smartstreets
+

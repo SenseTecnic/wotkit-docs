@@ -142,7 +142,7 @@ To create an organization:
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - HTTP status code; Created 201 if successful; Bad Request 400 if organization is invalid; Conflict 409 if an organization with the same name already exists
+	  - HTTP status code; Created 201 if successful; Bad Request 400 if organization is invalid; Conflict 409 if an organization with the same name already exists.
 |
 
 .. _update_org:

@@ -1,4 +1,4 @@
-l.. _api_sensors:
+.. _api_sensors:
 
 .. index:: Sensor Fields
 

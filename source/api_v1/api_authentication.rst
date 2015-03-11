@@ -112,9 +112,7 @@ This returns:
 Registered Applications and OAuth2
 ------------------------------------
 
-*Applications* can registered on the WoTKit UI (:wotkit:`apps`) and they provide
-an easy way to allow several clients access to a WoTKit user's data. An common 
-scenario is when a developer creates an application that publishes data *on 
+*Applications* registered with the WoTKit UI (:wotkit:`apps`) provide an easy way to allow several clients access to a WoTKit's user data. A common scenario is when a developer creates an application that publishes data *on 
 behalf* of other WoTKit users.
 
 For example, to grant a third-party client access to your sensors, you first register an *application*. The client can then be supplied the 'application client id' and auto-generated 'application secret'. These will act as credentials, allowing clients to access the WoTKit on your behalf, using OAuth2 authorization. You can always delete the application
@@ -195,3 +193,22 @@ by an application to make future requests on behalf of a user:
 .. Note:: 	
 
 	The default value of response->expires_in is approx. 43200 seconds (or 12 hrs)
+
+
+.. index:: SmartStreets
+
+.. _api-smartstreets-label:
+
+Smart Streets Authentication
+----------------------------
+
+The WoTKit API for Smart Streets supports basic authentication using user name and password, WoTKit keys, as well as a developer key.  Note that Smart Streets does not support OAuth2.
+
+..   Authenticating using Smart Streets Developer Keys
+..   -------------------------------------------------
+..   More on this to come
+
+
+
+
+
