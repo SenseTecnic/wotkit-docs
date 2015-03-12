@@ -25,9 +25,9 @@ Recent Queries
 
 To query for recent data, the API provides parameters for you to either:
 
-  1) get *n* most recent sensor_data
+  1) get the *n* most recent sensor data
 
-  2) get sensor_data since *t* milliseconds in the past
+  2) get sensor data from *t* milliseconds in the past until now
   
 In this section we'll dive in quickly and briefly show an example of
 :ref:`recent-n-label` and :ref:`recent-t-label`.
@@ -37,7 +37,7 @@ In this section we'll dive in quickly and briefly show an example of
 Recent Num Queries
 ^^^^^^^^^^^^^^^^^^
 
-By default, the data endpoint will return the 1000 most recent queries. Try it
+By default, the data endpoint will return the 1000 most recent sensor data items. Try it
 using a URL like this:
 
 .. code-block:: javascript
@@ -81,9 +81,6 @@ The response should look similar to the following:
     }
   }
 
-The data is returned in JSON. Generally, all list responses are returned in this
-container to aid paging and debugging.
-
 .. list-table::
   :widths: 15, 40
   :header-rows: 1
@@ -91,7 +88,7 @@ container to aid paging and debugging.
   * - Field
     - Description
   * - numFound
-    - The total number of elements matching this query (In version > 1.9.0 *numFound* is deprecated showing a value of 0)
+    - The total number of elements matching this query (Note: that *numFound* is deprecated showing a value of 0)
   * - data
     - The enclosed sensor_data. Always sorted from oldest to newest timestamp
   * - query
@@ -112,16 +109,16 @@ In essence, the query we ran is a convenient default for the explicit version:
 
   http://wotkit.sensetecnic.com/api/v2/sensors/sensetecnic.mule1/data?limit=1000&recent_n=1000
 
-Next we can try a recent_t query, which looks up the timestamp
+Next we can try a recent_t query, which looks up the timestamp.
 
 .. _recent-t-label:
 
 Recent Time Queries
 ^^^^^^^^^^^^^^^^^^^
-Recent Time are very similar to Recent Num Queries. The difference is that
+Recent Time Queries are very similar to Recent Num Queries. While
 Recent Num Queries look at data count i.e. the last 10 elements, or the last 50
-elements. Recent Time queries look at the timestamp instead. So, it's useful for
-where we're interested in the elements from the last hour, or the 12 hours.
+elements, Recent Time queries look at the timestamp instead. So, it's useful for
+where we're interested in the elements from the last hour, or the last 12 hours.
 
 **Request**
 
@@ -174,15 +171,14 @@ where we're interested in the elements from the last hour, or the 12 hours.
     }
   }
 
-
 Looking at the *query* field this time, we can see it was interpreted as a
 recent_t query. The query looked for items up to 10 seconds ago (10000
 milliseconds). You can verify this by inspecting the timestamp of the data.
 
 .. note::
 
-  When accessing WoTKit anonymously, the date string is set to UTC. When accessing
-  it using an api-key the timezone will be set based on the account's settings.
+  When accessing WoTKit anonymously for public data, the date string is set to UTC. When accessing
+  it using an api-key the timezone will be set based on the account's timezone setting.
 
 We've just shown you how to run both **Recent Queries**. One parameter to make
 note of is the limit parameter. At the moment, limit is capped at 1000 -- which
@@ -230,7 +226,6 @@ timestamp ``2013-11-29T22:59:54.862Z``, or from ``start: 1385031651000`` to
   * - end
     - 1385765994862 (2013-11-29T22:59:54.862Z)
 |
-
 The API requires timestamp values to be in milliseconds, thus we can execute the
 following request:
 
@@ -247,7 +242,8 @@ following request:
 
   {
     "numFound": 0,
-    "data": [
+    "data": {
+      data: [
         {
             "id": 48232725,
             "timestamp": "1398698531445",
@@ -288,7 +284,9 @@ following request:
             "sensor_name": "rymndhng.sdq-test",
             "value": 97
         }
-    ],
+      ],
+      fields: [/* field information */]
+    },
     "query": {
         "end": "2013-11-29T22:59:54.862Z",
         "start": "2013-11-21T11:00:51.000Z",
@@ -336,7 +334,8 @@ more comprehendable.
 
   {
       "numFound": 0,
-      "data": [
+      "data": {
+          data: [
           {
               "id": 48232722,
               "timestamp": "1398698531445",
@@ -361,8 +360,9 @@ more comprehendable.
               "sensor_name": "rymndhng.sdq-test",
               "value": 6.9
           }
-      ],
-      "fields" [ /*an array of expected values*/ ],
+        ],
+        "fields" [ /*an array of expected values*/ ]
+      },
       "query": {
           "end": "2033-05-18T03:33:20.000Z",
           "start": "1970-01-01T00:00:00.000Z",
@@ -373,7 +373,7 @@ more comprehendable.
 In this query we have only asked for 3 elements. We can page data by setting the
 parameter ``offset`` in our request. In our example, we can retrieve the next page 
 by setting ``offset=data.size``, in our case 3: ``offset=3``. By specifying 
-``offset = prev_offset + data.size`` we can paginate data in each subsequent request.
+``offset = prev_offset + data.size`` we can page through data in each subsequent request.
 Now, let's retry the last query with an offset.
 
 **Query Parameters**
@@ -405,7 +405,8 @@ Now, let's retry the last query with an offset.
 
   {
       "numFound": 0,
-      "data": [
+      "data": {
+          data: [
           {
               "id": 48232725,
               "timestamp": "1398698531445",
@@ -430,8 +431,9 @@ Now, let's retry the last query with an offset.
               "sensor_name": "rymndhng.sdq-test",
               "valua": 0
           }
-      ],
-      "fields" [ /*an array of expected values*/ ],
+        ],
+        "fields" [ /*an array of expected values*/ ]
+      },
       "query": {
           "offset": 3,
           "end": 2000000000000,
@@ -468,7 +470,8 @@ We'll start off with our first query
 
   {
     "numFound": 0,
-    "data": [
+    "data": {
+      data: [
         {
             "id": 48232722,
             "timestamp": "1385031531000",
@@ -501,7 +504,9 @@ We'll start off with our first query
             "sensor_name": "rymndhng.sdq-test",
             "valua": 81
         }
-    ],
+      ],
+      "fields": [/*Fields*/],
+    },
     "query": {
         "start": 0,
         "limit": 4
@@ -583,7 +588,8 @@ the entire range this will become more aparent:
 
   {
     "numFound": 0,
-    "data": [
+    "data": {
+      data: [
         {
             "id": 48232722,
             "timestamp": "1385031531000",
@@ -656,8 +662,9 @@ the entire range this will become more aparent:
             "sensor_name": "rymndhng.sdq-test",
             "value": 6.7
         }
-    ],
-    "fields": [/*Fields*/],
+      ],
+      "fields": [/*Fields*/],
+    },
     "query": {
         "limit": 100,
         "recent_n": 10
@@ -668,7 +675,7 @@ You can see that the highlighted lines for ``id: 48232726`` did not exist in eit
 of our previous queries. For example, in :ref:`time-range-start-end-label`, we performed a query for data after timestamp 1385765949472, but the element highlighted 
 above was not returned. 
 
-To solve this issue, we have introduced a new parameter ``start_id``. This
+To solve this issue, use the parameter ``start_id``. This
 parameter can be used in conjuction with ``start`` to specify specify which data
 element's id to start with. This works because sensor data are uniquely identified 
 using a tuple ``(timestamp, id)``.
@@ -686,41 +693,41 @@ Let's rerun the second query with ``start_id: 48232725`` from the first query.
 .. code-block:: javascript
 
   {
-      "numFound": 0,
-      "data": [
-          {
-              "id": 48232726,
-              "timestamp": "1385765949472",
-              "timestamp": "2013-11-29T22:59:09.472Z",
-              "sensor_id": 531,
-              "sensor_name": "rymndhng.sdq-test",
-              "value": 53
-          },
-          {
-              "id": 48232727,
-              "timestamp": "1385765959633",
+    "numFound": 0,
+    "data": [
+        {
+            "id": 48232726,
+            "timestamp": "1385765949472",
+            "timestamp": "2013-11-29T22:59:09.472Z",
+            "sensor_id": 531,
+            "sensor_name": "rymndhng.sdq-test",
+            "value": 53
+        },
+        {
+            "id": 48232727,
+            "timestamp": "1385765959633",
 
-              "timestamp": "2013-11-29T22:59:19.633Z",
-              "sensor_id": 531,
-              "sensor_name": "rymndhng.sdq-test",
-              "value": 0
-          },
-          {
-              "id": 48232728,
-              "timestamp": "1385765964715",
-              "timestamp": "2013-11-29T22:59:24.715Z",
-              "sensor_id": 531,
-              "sensor_name": "rymndhng.sdq-test",
-              "value": 56
-          },
-          {
-              "id": 48232729,
-              "timestamp": "1385765994862",
-              "timestamp": "2013-11-29T22:59:54.862Z",
-              "sensor_id": 531,
-              "sensor_name": "rymndhng.sdq-test",
-              "value": 97
-          }
+            "timestamp": "2013-11-29T22:59:19.633Z",
+            "sensor_id": 531,
+            "sensor_name": "rymndhng.sdq-test",
+            "value": 0
+        },
+        {
+            "id": 48232728,
+            "timestamp": "1385765964715",
+            "timestamp": "2013-11-29T22:59:24.715Z",
+            "sensor_id": 531,
+            "sensor_name": "rymndhng.sdq-test",
+            "value": 56
+        },
+        {
+            "id": 48232729,
+            "timestamp": "1385765994862",
+            "timestamp": "2013-11-29T22:59:54.862Z",
+            "sensor_id": 531,
+            "sensor_name": "rymndhng.sdq-test",
+            "value": 97
+        }
       ],
       "query": {
           "start": 1385765949472,
@@ -781,8 +788,6 @@ Below is a quicky summary of what each query parameter means:
   * - ``end_id``
     - timestamp
     - The end id of sensor_data with timestamp ``end``. Used for paging.
-
-
 
 Additional Sensor Data Query Recipes
 ------------------------------------
