@@ -6,26 +6,14 @@
 Querying Sensor Data
 ====================
 
-WoTKit provides flexibility in how you want to query your data.  In the following
+WoTKit provides flexibility in how you want to query your data.  In this
 section, we walk through the different ways of building a query to get
 sensor data out of wotkit. The queries are constructed using query parameters
 which you append to a URL endpoint.
 
-Generally, the use cases of the data api is to query for the raw time-series
+Typically applications will need to query for raw time-series
 data of a sensor or group of sensors. There are two different types of queries:
 :ref:`recent-query-label` and :ref:`time-range-query-label`.
-
-:ref:`recent-query-label` are used to easily look at recent information. The API
-provides parameters for you to either:
-
-  1) get *n* most recent sensor_data
-
-  2) get sensor_data since *t* milliseconds in the past
-
-
-are useful for going through data in the past.
-    These queries allow you to page through data by specifying a start & end
-    point in time.
 
 The following document will walk through some examples of how to take advantage
 of *Recent Queries* and *Time Range Queries*
@@ -34,6 +22,13 @@ of *Recent Queries* and *Time Range Queries*
 
 Recent Queries
 --------------
+
+To query for recent data, the API provides parameters for you to either:
+
+  1) get *n* most recent sensor_data
+
+  2) get sensor_data since *t* milliseconds in the past
+  
 In this section we'll dive in quickly and briefly show an example of
 :ref:`recent-n-label` and :ref:`recent-t-label`.
 
