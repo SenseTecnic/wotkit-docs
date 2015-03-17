@@ -47,9 +47,9 @@ A sensor has the following attributes:
 	* - owner
 	  - the owner of the sensor
 	* - fields
-	  - the expected data fields, their type (number or string), units and if available, last update time and value.
-	* - tags
-	  - the list of tags for the sensor
+	  - the expected data fields, their type (number or string), units and if available, last update time and value. (For more info: :ref:`sensor-fields-label` )
+	* - tags 
+	  - the list of tags for the sensor (For more info: :ref:`tags-label`)
 	* - data
 	  - sensor data (not shown yet)
 
@@ -319,13 +319,14 @@ The JSON object has the following fields:
 	  - It will default to "PUBLIC" if not provided. If visibility is set to ORGANIZATION, a valid "organization" must be provided.
 	* - (*OPTIONAL*)
 	  - tags 
-	  -
+	  - A list of tags for the sensor (For more info: :ref:`tags-label`)
 	* - (*SEMI-OPTIONAL*)
 	  - organization 
 	  - If a visibility key is set an organization is required
 	* - (*OPTIONAL*)
 	  - fields 
-	  - 
+	  - A fields object in the format ``{"name":"test-field","type":"STRING"}`` (For more info: :ref:`sensor-fields-label`)	
+
 | 
 
 .. admonition:: example
@@ -351,10 +352,12 @@ register a sensor resource.
 		"longitude":-114.087524414062
 	}
 
-.. _create-multiple-sensors-label:
+
 
 .. index:: Multiple Sensor Registration
 	pair: Sensor Registration; Multiple Sensor Registration
+
+.. _create-multiple-sensors-label:
 	
 Creating/Registering multiple Sensors
 --------------------------------------

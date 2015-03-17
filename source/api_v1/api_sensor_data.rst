@@ -49,7 +49,7 @@ When a new sensor is created, a number of default fields are created by the wotk
 In addition to these reserved fields, additional required or optional fields can be added by updating the *sensor fields* in the WoTKit UI
 or :ref:`sensor_fields` in the API.
 
-.. note:: Remember that \* Python's ``time.time()`` function generates the system time in *seconds*, not milliseconds. To convert this to an integer in milliseconds use ``int(time.time()*1000)``.  Using Java you can obtain the timestam in m illiseconds via ``System.currentTime()``.
+.. note:: Remember that \* Python's ``time.time()`` function generates the system time in *seconds*, not milliseconds. To convert this to an integer in milliseconds use ``int(time.time()*1000)``.  Using Java you can obtain the timestam in milliseconds via ``System.currentTime()``.
 
 
 .. index:: Sensor Data Creation

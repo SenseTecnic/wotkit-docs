@@ -1,5 +1,7 @@
 .. _api_users:
 
+.. NOTE: This Section has been removed from the public Docs, as it's only relevant for admins.
+
 Users
 =======
 
@@ -129,9 +131,9 @@ is a JSON object with the following fields:
 	* - (*REQUIRED*)
 	  - password 
 	  - Password of the user. Can be updated.
-        * - (*OPTIONAL*)
+        * - (*REQUIRED*)
 	  - timeZone 
-	  - A timezone can be provided, if not provided it will default to UTC. Can be updated.
+	  - A timezone must be provided, for example ``UTC``. Can be updated.
 |
 
 To create a user:

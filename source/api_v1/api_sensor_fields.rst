@@ -1,5 +1,8 @@
 .. _api_sensor_fields:
 
+
+.. _sensor-fields-label:
+
 Sensor Fields
 ==============
 

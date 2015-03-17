@@ -17,7 +17,6 @@ following URL :wotkit-api:`api-docs?path=v1`.
    api_sensor_data
    api_actuators
    api_tags
-   api_users
    api_orgs
    api_sensor_groups
    api_news

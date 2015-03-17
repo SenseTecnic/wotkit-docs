@@ -1,5 +1,7 @@
 .. _api_tags:
 
+.. _tags-label:
+
 Tags
 =====
 

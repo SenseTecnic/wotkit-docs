@@ -51,30 +51,33 @@ The response should look similar to the following:
   :linenos:
 
   {
-    "numFound": 100564,
-    "data": [
-      {
-        "id": 47902511,
-        "timestamp": "1398698531445",
-        "timestamp_iso": "2013-11-29T00:46:36.056Z",
-        "sensor_id": 1,
-        "sensor_name": "sensetecnic.mule1",
-        "value": 69,
-        "lng": -123.17608,
-        "lat": 49.14103
-      },
-      {
-        "id": 47902514,
-        "timestamp": "1398698531445",
-        "timestamp_iso": "2013-11-29T00:46:39.556Z",
-        "sensor_id": 1,
-        "sensor_name": "sensetecnic.mule1",
-        "value": 52,
-        "lng": -123.17599,
-        "lat": 49.13919
-      },
-      ... // more data
-    ],
+    "numFound": 0,
+    "data": {
+      "data": [
+        {
+          "id": 47902511,
+          "timestamp": "1398698531445",
+          "timestamp_iso": "2013-11-29T00:46:36.056Z",
+          "sensor_id": 1,
+          "sensor_name": "sensetecnic.mule1",
+          "value": 69,
+          "lng": -123.17608,
+          "lat": 49.14103
+        },
+        {
+          "id": 47902514,
+          "timestamp": "1398698531445",
+          "timestamp_iso": "2013-11-29T00:46:39.556Z",
+          "sensor_id": 1,
+          "sensor_name": "sensetecnic.mule1",
+          "value": 52,
+          "lng": -123.17599,
+          "lat": 49.13919
+        },
+        /*more data*/
+      ],
+      "fields": [ /*Fields information*/ ]
+    },
     "query": {
       "limit": 1000,
       "recent_n": 1000
@@ -133,38 +136,41 @@ where we're interested in the elements from the last hour, or the last 12 hours.
 
   {
     "numFound": 0,
-    "data": [
-        {
-            "id": 47967438,
-            "timestamp": "1398698531445",
-            "timestamp_iso": "2013-11-29T18:34:09.557Z",
-            "sensor_id": 1,
-            "sensor_name": "sensetecnic.mule1",
-            "value": 62,
-            "lng": -123.14509,
-            "lat": 49.186
-        },
-        {
-            "id": 47967445,
-            "timestamp": "1398698531445",
-            "timestamp_iso": "2013-11-29T18:34:13.059Z",
-            "sensor_id": 1,
-            "sensor_name": "sensetecnic.mule1",
-            "value": 53,
-            "lng": -123.1454,
-            "lat": 49.18565
-        },
-        {
-            "id": 47967446,
-            "timestamp": "1398698531445",           
-            "timestamp_iso": "2013-11-29T18:34:16.557Z",
-            "sensor_id": 1,
-            "sensor_name": "sensetecnic.mule1",
-            "value": 67,
-            "lng": -123.14844,
-            "lat": 49.18323
-        }
-    ],
+    "data":{
+      "data": [
+          {
+              "id": 47967438,
+              "timestamp": "1398698531445",
+              "timestamp_iso": "2013-11-29T18:34:09.557Z",
+              "sensor_id": 1,
+              "sensor_name": "sensetecnic.mule1",
+              "value": 62,
+              "lng": -123.14509,
+              "lat": 49.186
+          },
+          {
+               "id": 47967445,
+              "timestamp": "1398698531445",
+              "timestamp_iso": "2013-11-29T18:34:13.059Z",
+              "sensor_id": 1,
+              "sensor_name": "sensetecnic.mule1",
+              "value": 53,
+              "lng": -123.1454,
+              "lat": 49.18565
+          },
+          {
+              "id": 47967446,
+              "timestamp": "1398698531445",           
+              "timestamp_iso": "2013-11-29T18:34:16.557Z",
+              "sensor_id": 1,
+              "sensor_name": "sensetecnic.mule1",
+              "value": 67,
+              "lng": -123.14844,
+              "lat": 49.18323
+          }
+      ],
+      "fields": [ /*Fields information*/ ]
+    }
     "query": {
         "limit": 1000,
         "recent_t": 10000
@@ -285,7 +291,7 @@ following request:
             "value": 97
         }
       ],
-      fields: [/* field information */]
+      fields: [/* Fields information */]
     },
     "query": {
         "end": "2013-11-29T22:59:54.862Z",
@@ -361,7 +367,7 @@ more comprehendable.
               "value": 6.9
           }
         ],
-        "fields" [ /*an array of expected values*/ ]
+        "fields": [ /*Fields information*/ ]
       },
       "query": {
           "end": "2033-05-18T03:33:20.000Z",
@@ -432,7 +438,7 @@ Now, let's retry the last query with an offset.
               "valua": 0
           }
         ],
-        "fields" [ /*an array of expected values*/ ]
+        "fields": [ /*an array of expected values*/ ]
       },
       "query": {
           "offset": 3,
@@ -528,41 +534,43 @@ in this query we will use the last item's timestamp "1385765949472" (2013-11-29T
 
   {
     "numFound": 0,
-    "data": [
-        {
-            "id": 48232727,
-            "timestamp": "1385765959633",
-            "timestamp_iso": "2013-11-29T22:59:19.633Z",
-            "sensor_id": 531,
-            "sensor_name": "rymndhng.sdq-test",
-            "valua": 0
-        },
-        {
-            "id": 48232728,
-            "timestamp": "1385765964715",
-            "timestamp_iso": "2013-11-29T22:59:24.715Z",
-            "sensor_id": 531,
-            "sensor_name": "rymndhng.sdq-test",
-            "valua": 56
-        },
-        {
-            "id": 48232729,
-            "timestamp": "1385765994862",
-            "timestamp_iso": "2013-11-29T22:59:54.862Z",
-            "sensor_id": 531,
-            "sensor_name": "rymndhng.sdq-test",
-            "value": 97
-        },
-        {
-            "id": 48232730,
-            "timestamp": "1385766024862,","
-            "timestamp_iso": "2013-11-29T23:00:24.862Z",
-            "sensor_id": 531,
-            "sensor_name": "rymndhng.sdq-test",
-            "value": 6.7
-        }
-    ],
-    "fields": [/*Fields*/],
+    "data": {
+      "data": [
+          {
+             "id": 48232727,
+             "timestamp": "1385765959633",
+             "timestamp_iso": "2013-11-29T22:59:19.633Z",
+             "sensor_id": 531,
+             "sensor_name": "rymndhng.sdq-test",
+             "valua": 0
+          },
+          {
+             "id": 48232728,
+             "timestamp": "1385765964715",
+             "timestamp_iso": "2013-11-29T22:59:24.715Z",
+             "sensor_id": 531,
+             "sensor_name": "rymndhng.sdq-test",
+             "valua": 56
+          },
+          {
+             "id": 48232729,
+             "timestamp": "1385765994862",
+             "timestamp_iso": "2013-11-29T22:59:54.862Z",
+             "sensor_id": 531,
+             "sensor_name": "rymndhng.sdq-test",
+             "value": 97
+          },
+           {
+             "id": 48232730,
+             "timestamp": "1385766024862,","
+             "timestamp_iso": "2013-11-29T23:00:24.862Z",
+             "sensor_id": 531,
+             "sensor_name": "rymndhng.sdq-test",
+             "value": 6.7
+          }
+      ],
+      "fields": [/*Fields information*/]
+    },
     "query": {
         "start": 1385765949472,
         "limit": 4
@@ -589,81 +597,81 @@ the entire range this will become more aparent:
   {
     "numFound": 0,
     "data": {
-      data: [
-        {
+       data: [
+         {
             "id": 48232722,
             "timestamp": "1385031531000",
             "timestamp_iso": "2013-11-21T10:58:51.000Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 6.7
-        },
-        {
+         },
+         {
             "id": 48232723,
             "timestamp": "1385031591000",
             "timestamp_iso": "2013-11-21T10:59:51.000Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 6.8
-        },
-        {
+         },
+         {
             "id": 48232724,
             "timestamp": "1385031651000",
             "timestamp_iso": "2013-11-21T11:00:51.000Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 6.9
-        },
-        {
+         },
+         {
             "id": 48232725,
             "timestamp": "1385765949472",
             "timestamp_iso": "2013-11-29T22:59:09.472Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "valua": 81
-        },
-        {   "_comment": "HIDDEN DUE TO DUPLICATE TIMESTAMP"
+         },
+         {  "_comment": "HIDDEN DUE TO DUPLICATE TIMESTAMP"
             "id": 48232726,
             "timestamp": "1385765949472",
             "timestamp_iso": "2013-11-29T22:59:09.472Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "valua": 53
-        },
-        {
+         },
+         {
             "id": 48232727,
             "timestamp": "1385765959633",
             "timestamp_iso": "2013-11-29T22:59:19.633Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "valua": 0
-        },
-        {
+         },
+         {
             "id": 48232728,
             "timestamp": "1385765964715",
             "timestamp_iso": "2013-11-29T22:59:24.715Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "valua": 56
-        },
-        {
+         },
+         {
             "id": 48232729,
             "timestamp": "1385765994862",
             "timestamp_iso": "2013-11-29T22:59:54.862Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 97
-        },
-        {
+         },
+         {
             "id": 48232730,
             "timestamp": "1385766024862",
             "timestamp_iso": "2013-11-29T23:00:24.862Z",
             "sensor_id": 531,
             "sensor_name": "rymndhng.sdq-test",
             "value": 6.7
-        }
-      ],
-      "fields": [/*Fields*/],
+         }
+       ],
+       "fields": [ /*Fields information*/ ]
     },
     "query": {
         "limit": 100,
@@ -694,46 +702,48 @@ Let's rerun the second query with ``start_id: 48232725`` from the first query.
 
   {
     "numFound": 0,
-    "data": [
-        {
-            "id": 48232726,
-            "timestamp": "1385765949472",
-            "timestamp": "2013-11-29T22:59:09.472Z",
-            "sensor_id": 531,
-            "sensor_name": "rymndhng.sdq-test",
-            "value": 53
-        },
-        {
-            "id": 48232727,
-            "timestamp": "1385765959633",
-
-            "timestamp": "2013-11-29T22:59:19.633Z",
-            "sensor_id": 531,
-            "sensor_name": "rymndhng.sdq-test",
-            "value": 0
-        },
-        {
-            "id": 48232728,
-            "timestamp": "1385765964715",
-            "timestamp": "2013-11-29T22:59:24.715Z",
-            "sensor_id": 531,
-            "sensor_name": "rymndhng.sdq-test",
-            "value": 56
-        },
-        {
-            "id": 48232729,
-            "timestamp": "1385765994862",
-            "timestamp": "2013-11-29T22:59:54.862Z",
-            "sensor_id": 531,
-            "sensor_name": "rymndhng.sdq-test",
-            "value": 97
-        }
-      ],
-      "query": {
-          "start": 1385765949472,
-          "limit": 4,
-          "start_id": 48232725
-      }
+    "data": {
+      "data": [
+          {
+              "id": 48232726,
+              "timestamp": "1385765949472",
+              "timestamp": "2013-11-29T22:59:09.472Z",
+              "sensor_id": 531,
+              "sensor_name": "rymndhng.sdq-test",
+              "value": 53
+          },
+          {
+              "id": 48232727,
+              "timestamp": "1385765959633",
+              "timestamp": "2013-11-29T22:59:19.633Z",
+              "sensor_id": 531,
+              "sensor_name": "rymndhng.sdq-test",
+              "value": 0
+          },
+          {
+              "id": 48232728,
+              "timestamp": "1385765964715",
+              "timestamp": "2013-11-29T22:59:24.715Z",
+              "sensor_id": 531,
+              "sensor_name": "rymndhng.sdq-test",
+              "value": 56
+          },
+          {
+              "id": 48232729,
+              "timestamp": "1385765994862",
+              "timestamp": "2013-11-29T22:59:54.862Z",
+              "sensor_id": 531,
+              "sensor_name": "rymndhng.sdq-test",
+              "value": 97
+          }
+        ],
+      "fields": [ /*Fields information*/ ] 
+    }
+    "query": {
+        "start": 1385765949472,
+        "limit": 4,
+        "start_id": 48232725
+    }
   }
 
 
