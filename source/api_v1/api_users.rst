@@ -49,7 +49,7 @@ To query for users, add query parameters after the sensors URL as follows:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - On error, an appropriate HTTP status code; On success, OK 200 and a list of users matching the query.
+	  - **200 OK** on success. A JSON object in the response body containing a list of users matching the query.
 	  
 |
 
@@ -72,7 +72,7 @@ To view a single user, query by username or id as follows:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - Appropriate HTTP status code; OK 200 - if successful
+	  - **200 OK** if successful. A JSON object in the response body describing a user.
 	  
 |
 
@@ -152,7 +152,7 @@ To create a user:
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - HTTP status code; Created 201 if successful; Bad Request 400 if user is invalid; Conflict 409 if user with the same username already exists
+	  - **201 Created** if successful; **400 Bad Request** if user is invalid; **409 Conflict** if user with the same username already exists.
 	  
 |
 
@@ -181,7 +181,7 @@ To update a user:
 	* - **Method**
 	  - PUT
 	* - **Returns**
-	  - HTTP status code; No Content 204 if successful
+	  - **204 No Content** if successful.
 	  
 |
 
@@ -209,6 +209,6 @@ To delete a user:
 	* - **Method**
 	  - DELETE
 	* - **Returns**
-	  - HTTP status code; No Response 204 if successful
+	  - **204 No Content** if successful.
 	  
 |

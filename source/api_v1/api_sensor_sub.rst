@@ -29,7 +29,7 @@ To view sensors that the current user is subscribed to:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - Appropriate HTTP status code; OK 200 - if successful. A JSON object containing sensors subscribed by the user will be returned in the body of the response.
+	  - **200 OK** if successful. A JSON object in the response body containing sensors subscribed by the user.
 
 |
 
@@ -54,7 +54,7 @@ To subscribe to a non-private sensor or private sensor owned by the current user
 	* - **Method**
 	  - PUT
 	* - **Returns**
-	  - HTTP status code; No Content 204 if successful.
+	  - **204 No Content** if successful.
 
 |
 
@@ -80,6 +80,6 @@ To unsubscribe from a sensor:
 	* - **Method**
 	  - DELETE
 	* - **Returns**
-	  - HTTP status code; No Content 204 if successful
+	  - **204 No Content** if successful.
 
 |

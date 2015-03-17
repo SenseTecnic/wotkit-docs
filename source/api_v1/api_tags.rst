@@ -62,7 +62,7 @@ To query for tags, add query parameters after the tags URL as follows:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - On error, an appropriate HTTP status code; On success, OK 200 and a list of tag count objects matching the query.
+	  - **200 OK** on success. A JSON object in the response body containing a list of tag count objects matching the query.
 	  
 |
 

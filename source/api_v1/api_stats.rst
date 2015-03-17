@@ -22,7 +22,7 @@ The "stats" resource provides statistics, like number of public sensors, active 
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - Appropriate HTTP status code; OK 200 - if successful
+	  - **200 OK** if successful. A JSON object in the response body containing describing statistics.
 	  
 |
 

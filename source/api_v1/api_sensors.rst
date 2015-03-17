@@ -118,7 +118,7 @@ To query for sensors, add query parameters after the sensors URL as follows:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - On error, an appropriate HTTP status code; On success, OK 204 and a list of sensor descriptions matching the query.
+	  - **200 OK** if successful. A JSON object in the response body containing a list of sensor descriptions matching the query.
 
 |
 
@@ -230,7 +230,7 @@ To view a single sensor, query the sensor by sensor name or id as follows:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - Appropriate HTTP status code; OK 200 - if successful
+	  - **200 OK** if successful. A JSON object in the response body describing a sensor.
 	  
 |
 
@@ -295,7 +295,7 @@ To create a sensor the API end-point is:
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - HTTP status code; Created 201 if successful; Bad Request 400 if sensor is invalid; Conflict 409 if sensor with the same name already exists
+	  -  **201 Created** if successful; **400 Bad Request** if sensor is invalid; **409 Conflict** if sensor with the same name already exists.
 
 The JSON object has the following fields: 
 
@@ -382,7 +382,7 @@ To register multiple sensors, you PUT a list of sensor resources to the url ``/s
 	* - **Method**
 	  - PUT
 	* - **Returns**
-	  - HTTP status code; Created 201 if successful; Bad Request 400 if sensor is invalid; Conflict 409 if sensor with the same name already exists ; On Created 201 or some errors (not all) you will receive a JSON dictionary where the keys are the sensor names and the values are true/false depending on whether creating the sensor succeeded. For Created 201 all values will be true.
+	  - **201 Created** if successful; **400 Bad Request** if sensor is invalid; **409 Conflict** if sensor with the same name already exists ; **201 Created** and a JSON object in the response body describing a dictionary where the keys are the sensor names and the values are true/false depending on whether creating the sensor succeeded.
 
 
 .. index:: Update Sensors
@@ -415,7 +415,7 @@ To update a sensor owned by the current user:
 	* - **Method**
 	  - PUT
 	* - **Returns**
-	  - HTTP status code; No Content 204 if successful
+	  - **204 No Content** if successful.
 
 |
 
@@ -467,7 +467,7 @@ To delete a sensor owned by the current user:
 	* - **Method**
 	  - DELETE
 	* - **Returns**
-	  - HTTP status code; No Response 204 if successful
+	  - **204 No Content** if successful.
 
 |
 

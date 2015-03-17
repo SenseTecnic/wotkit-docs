@@ -49,7 +49,7 @@ To query for organizations, add query parameters after the sensors URL as follow
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - On error, an appropriate HTTP status code; On success, OK 200 and a list of organizations matching the query from newest to oldest.
+	  - **200 OK** on success. A JSON object in the response body containing a list of organizations matching the query from newest to oldest.
 	  
 |
 
@@ -75,7 +75,7 @@ To view a single organization, query by name:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - Appropriate HTTP status code; OK 200 - if successful
+	  - **200 OK** if successful and a JSON on body describing the organization.
 	  
 |
 
@@ -152,7 +152,8 @@ To create an organization:
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - HTTP status code; Created 201 if successful; Bad Request 400 if organization is invalid; Conflict 409 if an organization with the same name already exists.
+	  - **201 Created** if successful; **Bad Request 400** if organization is invalid; **Conflict 409** if an organization with the same name already exists.
+
 |
 
 
@@ -182,7 +183,7 @@ To update an organization:
 	* - **Method**
 	  - PUT
 	* - **Returns**
-	  - HTTP status code; No Content 204 if successful
+	  - **200 OK** if successful. No content on body.
 
 |
 
@@ -211,7 +212,7 @@ To delete a user:
 	* - **Method**
 	  - DELETE
 	* - **Returns**
-	  - HTTP status code; No Content 204 if successful
+	  - **200 OK** if successful. No content on body.
 
 |
 
@@ -244,7 +245,7 @@ To query for organization members:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - On error, an appropriate HTTP status code; On success, OK 200 and a list of organization members.
+	  - **200 OK** on success. A JSON object in the response body containing a list of organization members.
 	  
 |
 
@@ -272,7 +273,7 @@ To add new members to an organization, post a JSON array of usernames:
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - On error, an appropriate HTTP status code; On success, OK 204.
+	  - **201 Created** on success.
 	  
 |
 
@@ -319,7 +320,7 @@ To remove members from an organization, DELETE a JSON array of usernames:
 	* - **Method**
 	  - DELETE
 	* - **Returns**
-	  - On error, an appropriate HTTP status code; On success, OK 204.
+	  - **200 OK** on success. A JSON object in the response body containing a list of usernames.
 	  
 |
 

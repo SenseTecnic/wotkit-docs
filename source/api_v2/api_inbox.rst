@@ -2,7 +2,6 @@
 
 
 .. index:: Inbox
-	seealso: Alerts
 
 .. _inbox-label:
 
@@ -55,7 +54,7 @@ To view a list of "inbox messages" of an user:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - Appropriate HTTP status code; OK 200 - if successful
+	  - **200 OK** if successful. A JSON object in the response body containing a list of messages.
 	  
 |
 

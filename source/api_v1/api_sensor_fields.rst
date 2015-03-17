@@ -84,7 +84,7 @@ To retrieve the sensor fields for a specific sensor:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - Appropriate HTTP status code; OK 200 - if successful. A JSON object containing the fields of the sensor is returned in the body of the response.
+	  - **200 OK** if successful. A JSON object in the response body containing the fields of the sensor is returned in the body of the response.
 
 |
 
@@ -102,7 +102,7 @@ To query a single sensor field for a specific sensor:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - Appropriate HTTP status code; OK 200 - if successful. A JSON object describing the field is returned in the body of the response.
+	  - **200 OK** if successful. A JSON object in the response body describing the field is returned in the body of the response.
 
 |
 
@@ -141,7 +141,7 @@ To update/add a sensor field:
 	* - **Method**
 	  - PUT
 	* - **Returns**
-	  - HTTP status code; No Content 204 if successful
+	  - **204 No Content** if successful.
 
 |
 
@@ -210,6 +210,6 @@ To delete a sensor field:
 	* - **Method**
 	  - DELETE
 	* - **Returns**
-	  - HTTP status code; No Content 204 if successful
+	  - **204 No Content** if successful.
 
 |

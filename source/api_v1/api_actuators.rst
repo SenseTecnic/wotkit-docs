@@ -51,7 +51,7 @@ pairs corresponding to the data fields to the
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - On success, OK 200 (no content).
+	  - **OK 200 (no content)** on success.
 	  
 |
 
@@ -94,7 +94,7 @@ In return, we receive a json object containing a subscription id.
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - On success, OK 200 with JSON containing subscription id.
+	  - **200 OK** on success. A JSON object in the response body containing subscription id.
 	  
 |
 
@@ -131,7 +131,7 @@ The server will respond on timeout, or when a control messages is received.
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - On success, OK 200 with JSON containing control messages.
+	  - **200 OK** on success. A JSON object in the response body containing control messages.
 	  
 |
 

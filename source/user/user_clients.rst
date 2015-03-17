@@ -25,9 +25,6 @@ A user can generate a key id and key password for WoTKit API clients as follows:
 
 The generated 'key id' and 'key password' can be used as the name and password in the basic authentication headers used when accessing the WoTKit API.
 
-.. image:: images/Keys.jpg
-	:width: 500 px
-
 .. _applications-and-oath:
 
 Applications and OAuth2 Authorization

@@ -91,7 +91,7 @@ To view a list of "alerts" created by an user:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - Appropriate HTTP status code; OK 200 - if successful
+	  - **200 OK** if successful. A JSON object in the response body containing a list of alerts.
 	  
 |
 
@@ -175,7 +175,7 @@ To view an alert, query the alert by its id as followed:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - Appropriate HTTP status code; OK 200 - if successful
+	  - **200 OK** if successful. A JSON object in the response body describing an alert.
 	  
 |
 
@@ -238,7 +238,7 @@ To create an alert:
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - HTTP status code; Created 201 if successful; Bad Request 400 if sensor is invalid; Conflict 409 if alert with the same name already exists
+	  - **201 Created** if successful; **400 Bad Request** if sensor is invalid; **409 Conflict** if alert with the same name already exists.
 
 .. admonition:: example1
 
@@ -317,7 +317,7 @@ To update an alert owned by the current user:
 	* - **Method**
 	  - PUT
 	* - **Returns**
-	  - HTTP status code; No Content 204 if successful
+	  - **204 No Content** if successful.
 
 |
 
@@ -364,7 +364,7 @@ To delete an alert owned by the current user:
 	* - **Method**
 	  - DELETE
 	* - **Returns**
-	  - HTTP status code; No Response 204 if successful
+	  - **204 No Response** if successful.
 
 |
 

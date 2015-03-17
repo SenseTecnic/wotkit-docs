@@ -34,6 +34,7 @@ reserved fields supported by the WoTKit:
 
 When a new sensor is created, a number of default fields are created by the wotkit for a sensor as follows.  Note that these can be changed by editing the sensor fields.
 
+
 .. list-table::
   :widths: 15, 50
   :header-rows: 1
@@ -50,7 +51,7 @@ When a new sensor is created, a number of default fields are created by the wotk
     - a text message, for example a twitter message (text).  Needed for text/newsfeed visualizations.
 
 In addition to these reserved fields, additional required or optional fields can be added by updating the *sensor fields* in the WoTKit UI
-or :ref:`sensor_fields` in the API.
+or :ref:`sensor-fields-label` in the API.
 
 .. note:: Remember that \* Python's ``time.time()`` function generates the system time in *seconds*, not milliseconds. To convert this to an integer in milliseconds use ``int(time.time()*1000)``.  Using Java you can obtain the timestam in milliseconds via ``System.currentTime()``.
 
@@ -82,7 +83,7 @@ To send new data:
   * - **Method**
     - POST
   * - **Returns**
-    - HTTP status code; No Response 201 (Created) if successful
+    - **201 Created** if successful HTTP status code; No Response 201 (Created) if successful
 
 |
 
@@ -125,9 +126,10 @@ To update data:
   * - **Method**
     - PUT
   * - **Returns**
-    - HTTP status code; No Response 204 if successful
+    - ****HTTP status code; No Response 204 if successful
 
 |
+
 
 Example of valid data:
 
@@ -180,7 +182,7 @@ To delete data:
   * - **Method**
     - DELETE
   * - **Returns**
-    - HTTP status code; No Response 204 if successful
+    - **204 No Content** if successful.
 
 |
 
@@ -207,7 +209,7 @@ To retrieve raw data use the following:
   * - **Method**
     - GET
   * - **Returns**
-    - On success, OK 200 with a list of timestamped data records.
+    - **200 OK** on success. A JSON object in the response body containing a list of timestamped data records.
 
 |
 
@@ -263,7 +265,7 @@ called the *dataTable*.
   * - **Method**
     - GET
   * - **Returns**
-    - On success, OK 200 with a list of timestamped data records.
+    - **200 OK** on success. A JSON object in the response body containing a list of timestamped data records.
 
 |
 
@@ -403,7 +405,7 @@ To receive data from more that one sensor, use the following:
   * - **Method**
     - GET
   * - **Returns**
-    - On success, OK 200 with a list of timestamped data records.
+    - **200 OK** on success. A JSON object in the response body containing a list of timestamped data records.
 
 
 .. admonition:: example
