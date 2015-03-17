@@ -164,7 +164,7 @@ switch based on the message received.
 	headers = {'Authorization': authheader}
 		   
 	#subscribe to the controller and get the subscriber ID
-	conn.request("POST", "/api/V1/control/sub/" + actuator, headers=headers)
+	conn.request("POST", "/api/v1/control/sub/" + actuator, headers=headers)
 	response = conn.getresponse()
 	data = response.read()
 
@@ -174,7 +174,7 @@ switch based on the message received.
 	#loop to long poll for actuator messages
 	while 1:
 		print "request started for subId: " + str(subId)
-		conn.request("GET", "/api/control/sub/" + str(subId) + "?wait=10", headers=headers)
+		conn.request("GET", "/api/v1/control/sub/" + str(subId) + "?wait=10", headers=headers)
 		response = conn.getresponse()
 		data = response.read()
 
