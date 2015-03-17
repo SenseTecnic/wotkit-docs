@@ -41,7 +41,7 @@ To query for organizations, add query parameters after the sensors URL as follow
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`orgs?{query}`
+	  - :wotkit-api-v1:`orgs?{query}`
 	* - **Privacy**
 	  - Public
 	* - **Format**
@@ -67,7 +67,7 @@ To view a single organization, query by name:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`orgs/{org-name}`
+	  - :wotkit-api-v1:`orgs/{org-name}`
 	* - **Privacy**
 	  - Public
 	* - **Format**
@@ -83,7 +83,7 @@ To view a single organization, query by name:
 
 	.. parsed-literal::
 
-		curl ":wotkit-api:`orgs/electric-inc`"
+		curl ":wotkit-api-v1:`orgs/electric-inc`"
 
 
 Output:
@@ -144,7 +144,7 @@ To create an organization:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`orgs`
+	  - :wotkit-api-v1:`orgs`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -174,7 +174,7 @@ To update an organization:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`orgs/{org-name}`
+	  - :wotkit-api-v1:`orgs/{org-name}`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -203,7 +203,7 @@ To delete a user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`orgs/{org-name}`
+	  - :wotkit-api-v1:`orgs/{org-name}`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -236,7 +236,7 @@ To query for organization members:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`orgs/{org-name}/members`
+	  - :wotkit-api-v1:`orgs/{org-name}/members`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -264,7 +264,7 @@ To add new members to an organization, post a JSON array of usernames:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`orgs/{org-name}/members`
+	  - :wotkit-api-v1:`orgs/{org-name}/members`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -286,7 +286,7 @@ For instance, to add the users "abe", "beth", "cecilia" and "dylan" to the organ
 	
 		curl --user {id}:{password} --request POST 
 		--header "Content-Type: application/json" --data-binary @users-list.txt 
-		':wotkit-api:`orgs/electric-inc/members`'
+		':wotkit-api-v1:`orgs/electric-inc/members`'
 
 
 The file *users-list.txt* would contain the following.
@@ -311,7 +311,7 @@ To remove members from an organization, DELETE a JSON array of usernames:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`orgs/{org-name}/members`
+	  - :wotkit-api-v1:`orgs/{org-name}/members`
 	* - **Privacy**
 	  - Admin
 	* - **Format**

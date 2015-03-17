@@ -54,7 +54,7 @@ To query for tags, add query parameters after the tags URL as follows:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`tags?{query}`
+	  - :wotkit-api-v1:`tags?{query}`
 	* - **Privacy**
 	  - Public or Private
 	* - **Format**
@@ -73,7 +73,7 @@ To query for all tags that contain the text *bicycles* use the URL:
 	.. parsed-literal::
 	
 		curl --user {id}:{password} 
-		":wotkit-api:`tags?text=bicycles`"
+		":wotkit-api-v1:`tags?text=bicycles`"
 
 
 Output:

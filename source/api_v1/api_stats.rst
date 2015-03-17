@@ -14,7 +14,7 @@ The "stats" resource provides statistics, like number of public sensors, active 
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`stats`
+	  - :wotkit-api-v1:`stats`
 	* - **Privacy**
 	  - Public
 	* - **Format**
@@ -30,7 +30,7 @@ The "stats" resource provides statistics, like number of public sensors, active 
 
 	.. parsed-literal::
 	
-		curl ":wotkit-api:`stats`"
+		curl ":wotkit-api-v1:`stats`"
 
 
 Output:

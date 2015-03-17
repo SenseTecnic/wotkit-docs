@@ -110,7 +110,7 @@ To query for sensors, add query parameters after the sensors URL as follows:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors?{query}`
+	  - :wotkit-api-v1:`sensors?{query}`
 	* - **Privacy**
 	  - Public or Private
 	* - **Format**
@@ -127,7 +127,7 @@ To query for sensors, add query parameters after the sensors URL as follows:
 	.. parsed-literal::
 
 		curl --user {id}:{password} 
-		":wotkit-api:`sensors?tags=canada`"
+		":wotkit-api-v1:`sensors?tags=canada`"
 
 Output:
 
@@ -222,7 +222,7 @@ To view a single sensor, query the sensor by sensor name or id as follows:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}`
+	  - :wotkit-api-v1:`sensors/{sensorname}`
 	* - **Privacy**
 	  - Public or Private
 	* - **Format**
@@ -239,7 +239,7 @@ To view a single sensor, query the sensor by sensor name or id as follows:
 	.. parsed-literal::
 
 		curl --user {id}:{password}
-		":wotkit-api:`sensors/sensetecnic.mule1`"
+		":wotkit-api-v1:`sensors/sensetecnic.mule1`"
 
 Output:
 
@@ -287,7 +287,7 @@ To create a sensor the API end-point is:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors`
+	  - :wotkit-api-v1:`sensors`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -338,7 +338,7 @@ The JSON object has the following fields:
 	.. parsed-literal::
 
 		curl --user {id}:{password} --request POST --header "Content-Type: application/json" 
-		--data-binary @test-sensor.txt ':wotkit-api:`sensors`'
+		--data-binary @test-sensor.txt ':wotkit-api-v1:`sensors`'
 
 
 For this example, the file *test-sensor.txt* contains the following.  This is the minimal information needed to
@@ -374,7 +374,7 @@ To register multiple sensors, you PUT a list of sensor resources to the url ``/s
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors`
+	  - :wotkit-api-v1:`sensors`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -407,7 +407,7 @@ To update a sensor owned by the current user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}`
+	  - :wotkit-api-v1:`sensors/{sensorname}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -425,22 +425,23 @@ For instance, to update a sensor description and add tags:
 
 	.. parsed-literal::
 
-		curl --user {id}:{password} --request PUT --header "Content-Type: application/json" 
-		--data-binary @update-sensor.txt ':wotkit-api:`sensors/taxi-cab`'
-
+		curl --user {id}:{password} --request PUT 
+		--header "Content-Type: application/json"
+		--data-binary @update-sensor.txt
+		':wotkit-api-v1:`sensors/taxi-cab`'
 
 The file *update-sensor.txt* would contain the following:
 
 .. code-block:: python
 
 	{
-		"visibility":"PUBLIC",
-		"name":"taxi-cab",
-		"description":"A big yellow taxi. Updated description",
-		"longName":"Big Yellow Taxi",
-		"latitude":51.060386316691,
-		"longitude":-114.087524414062,
-		"tags": ["big", "yellow", "taxi"]
+	   "visibility":"PUBLIC",
+	   "name":"taxi-cab",
+	   "description":"A big yellow taxi. Updated description",
+	   "longName":"Big Yellow Taxi",
+	   "latitude":51.060386316691,
+	   "longitude":-114.087524414062,
+	   "tags": ["big", "yellow", "taxi"]
 	}
 
 
@@ -458,7 +459,7 @@ To delete a sensor owned by the current user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}`
+	  - :wotkit-api-v1:`sensors/{sensorname}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -475,4 +476,4 @@ To delete a sensor owned by the current user:
 	.. parsed-literal::
 
 		curl --user {id}:{password} --request DELETE 
-		':wotkit-api:`sensors/test-sensor`'
+		':wotkit-api-v1:`sensors/test-sensor`'

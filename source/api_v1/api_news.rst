@@ -15,7 +15,7 @@ The "news" resource provides a list of interesting and recent activities in the 
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`news`
+	  - :wotkit-api-v1:`news`
 	* - **Privacy**
 	  - Public
 	* - **Format**
@@ -31,7 +31,7 @@ The "news" resource provides a list of interesting and recent activities in the 
 
 	.. parsed-literal::
 	
-		curl ":wotkit-api:`news`"
+		curl ":wotkit-api-v1:`news`"
 
 
 Output:

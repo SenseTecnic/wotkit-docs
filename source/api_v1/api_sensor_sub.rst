@@ -21,7 +21,7 @@ To view sensors that the current user is subscribed to:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`subscribe`
+	  - :wotkit-api-v1:`subscribe`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -46,7 +46,7 @@ To subscribe to a non-private sensor or private sensor owned by the current user
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`subscribe/{sensorname}`
+	  - :wotkit-api-v1:`subscribe/{sensorname}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -72,7 +72,7 @@ To unsubscribe from a sensor:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`subscribe/{sensorname}`
+	  - :wotkit-api-v1:`subscribe/{sensorname}`
 	* - **Privacy**
 	  - Private
 	* - **Format**

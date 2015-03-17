@@ -45,9 +45,13 @@ Recent Num Queries
 By default, the data endpoint will return the 1000 most recent sensor data items. Try it
 using a URL like this:
 
-.. code-block:: javascript
 
-  http://wotkit.sensetecnic.com/api/v2/sensors/sensetecnic.mule1/data
+.. admonition:: example
+
+  .. parsed-literal::
+
+    :wotkit-api-v2:`sensors/sensetecnic.mule1/data`
+
 
 
 The response should look similar to the following:
@@ -113,9 +117,11 @@ having to construct complex queries.
 
 In essence, the query we ran is a convenient default for the explicit version:
 
-.. code-block:: javascript
+.. admonition:: example
 
-  http://wotkit.sensetecnic.com/api/v2/sensors/sensetecnic.mule1/data?limit=1000&recent_n=1000
+  .. parsed-literal::
+
+    :wotkit-api-v2:`sensors/sensetecnic.mule1/data?limit=1000&recent_n=1000`
 
 Next we can try a recent_t query, which looks up the timestamp.
 
@@ -131,9 +137,11 @@ where we're interested in the elements from the last hour, or the last 12 hours.
 
 **Request**
 
-.. code-block:: javascript
+.. admonition:: example
 
-  http://wotkit.sensetecnic.com/api/v2/sensors/sensetecnic.mule1/data?recent_t=10000
+  .. parsed-literal::
+
+    :wotkit-api-v2:`sensors/sensetecnic.mule1/data?recent_t=10000`
 
 **Response**
 
@@ -245,9 +253,11 @@ following request:
 
 **Request**
 
-.. code-block:: javascript
+.. admonition:: example
 
-  http://wotkit.sensetecnic.com/api/v2/sensors/rymndhng.sdq-test/data?start=1385031651000&end=1385765994862
+  .. parsed-literal::
+ 
+    :wotkit-api-v2:`sensors/rymndhng.sdq-test/data?start=1385031651000&end=1385765994862`
 
 **Response**
 
@@ -340,9 +350,11 @@ more comprehendable.
 
 **Request**
 
-.. code-block:: javascript
+.. admonition:: example
 
-  http://wotkit.sensetecnic.com/api/v2/sensors/rymndhng.sdq-test/data?start=0&end=2000000000000&limit=3
+  .. parsed-literal::
+
+    :wotkit-api-v2:`sensors/rymndhng.sdq-test/data?start=0&end=2000000000000&limit=3`
 
 **Response**
 
@@ -412,9 +424,11 @@ Now, let's retry the last query with an offset.
 
 **Request**
 
-.. code-block:: javascript
+.. admonition:: example
 
-  http://wotkit.sensetecnic.com/api/v2/sensors/rymndhng.sdq-test/data?start=0&end=2000000000000&limit=3&offset=3
+  .. parsed-literal::
+
+    :wotkit-api-v2:`sensors/rymndhng.sdq-test/data?start=0&end=2000000000000&limit=3&offset=3`
 
 **Response**
 
@@ -479,9 +493,12 @@ To solve this we can use the parameters ``start_id`` and ``end_id`` for a more
 precise selection of start and end elements.
 
 We'll start off with our first query
-.. code-block:: javascript
 
-  http://wotkit.sensetecnic.com/api/v2/sensors/rymndhng.sdq-test/data?start=0&end=2000000000000&limit=4
+.. admonition:: example
+
+  .. parsed-literal::
+
+    :wotkit-api-v2:`sensors/rymndhng.sdq-test/data?start=0&end=2000000000000&limit=4`
 
 **Response**
 
@@ -537,9 +554,11 @@ in this query we will use the last item's timestamp "1385765949472" (2013-11-29T
 
 **Request**
 
-.. code-block:: javascript
+.. admonition:: example
 
-  http://wotkit.sensetecnic.com/api/v2/sensors/rymndhng.sdq-test/data?start=1385765949472&end=2000000000000&limit=4
+  .. parsed-literal::
+
+    :wotkit-api-v2:`sensors/rymndhng.sdq-test/data?start=1385765949472&end=2000000000000&limit=4`
 
 **Response**
 
@@ -597,9 +616,11 @@ the entire range this will become more aparent:
 
 **Request**
 
-.. code-block:: javascript
+.. admonition:: example
 
-  http://wotkit.sensetecnic.com/api/v2/sensors/rymndhng.sdq-test/data
+  .. parsed-literal::
+
+    :wotkit-api-v2:`sensors/rymndhng.sdq-test/data`
 
 **Response**
 
@@ -705,9 +726,11 @@ Let's rerun the second query with ``start_id: 48232725`` from the first query.
 
 **Request**
 
-.. code-block:: javascript
+.. admonition:: example
 
-  http://wotkit.sensetecnic.com/api/v2/sensors/rymndhng.sdq-test/data?start=1385031651000&end=1385765994862&start_id=48232725
+  .. parsed-literal::
+
+    :wotkit-api-v2:`sensors/rymndhng.sdq-test/data?start=1385031651000&end=1385765994862&start_id=48232725`
 
 **Response**
 

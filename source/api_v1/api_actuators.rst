@@ -43,7 +43,7 @@ pairs corresponding to the data fields to the
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}/message`
+	  - :wotkit-api-v1:`sensors/{sensorname}/message`
 	* - **Privacy**
 	  - Public or Private
 	* - **Format**
@@ -86,7 +86,7 @@ In return, we receive a json object containing a subscription id.
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`control/sub/{sensor-name}`
+	  - :wotkit-api-v1:`control/sub/{sensor-name}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -123,7 +123,7 @@ The server will respond on timeout, or when a control messages is received.
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`control/sub/{subscription-id}?wait={wait-time}`
+	  - :wotkit-api-v1:`control/sub/{subscription-id}?wait={wait-time}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -164,7 +164,7 @@ switch based on the message received.
 	headers = {'Authorization': authheader}
 		   
 	#subscribe to the controller and get the subscriber ID
-	conn.request("POST", "/api/control/sub/" + actuator, headers=headers)
+	conn.request("POST", "/api/V1/control/sub/" + actuator, headers=headers)
 	response = conn.getresponse()
 	data = response.read()
 

@@ -79,7 +79,7 @@ Provides a list of groups on the system as an array using the JSON format specif
   :widths: 10, 80
 
   * - **URL**
-    - :wotkit-api:`groups/`
+    - :wotkit-api-v1:`groups/`
   * - **Method**
     - GET
   * - **Returns**
@@ -88,7 +88,7 @@ Provides a list of groups on the system as an array using the JSON format specif
 .. admonition:: example
 
   .. parsed-literal::
-    curl --user {id}:{password} --request GET ':wotkit-api:`groups`'
+    curl --user {id}:{password} --request GET ':wotkit-api-v1:`groups`'
 
 
 .. _view-sensor-group-label:
@@ -102,7 +102,7 @@ with ``group.id`` or ``group.name``. The API accepts both formats
   :widths: 10, 80
 
   * - **URL**
-    - :wotkit-api:`groups/{group-name}`
+    - :wotkit-api-v1:`groups/{group-name}`
   * - **Method**
     - GET
   * - **Returns**
@@ -111,7 +111,7 @@ with ``group.id`` or ``group.name``. The API accepts both formats
 .. admonition:: example
 
   .. parsed-literal::
-    curl --user {id}:{password} --request GET ':wotkit-api:`groups`'
+    curl --user {id}:{password} --request GET ':wotkit-api-v1:`groups`'
 
 
 .. _create-sensor-group-label:
@@ -126,7 +126,7 @@ On creation, the **id** and **owner** fields are **ignored** because they are sy
   :widths: 10, 80
 
   * - **URL**
-    - :wotkit-api:`groups`
+    - :wotkit-api-v1:`groups`
   * - **Method**
     - POST
   * - **Returns**
@@ -145,7 +145,7 @@ Again, the **id** and **owner** fields in the JSON object are **ignored** if the
   :widths: 10, 80
 
   * - **URL**
-    - :wotkit-api:`groups/{group-name}`
+    - :wotkit-api-v1:`groups/{group-name}`
   * - **Method**
     - PUT
   * - **Returns**
@@ -163,7 +163,7 @@ A request body is unnecessary.
   :widths: 10, 80
 
   * - **URL**
-    - :wotkit-api:`groups/{group-name}`
+    - :wotkit-api-v1:`groups/{group-name}`
   * - **Method**
     - DELETE
   * - **Returns**
@@ -183,7 +183,7 @@ be ``sensor.id``.
   :widths: 10, 80
 
   * - **URL**
-    - :wotkit-api:`groups/{group-name}/sensors/{sensor-id}`
+    - :wotkit-api-v1:`groups/{group-name}/sensors/{sensor-id}`
   * - **Method**
     - POST
 
@@ -214,7 +214,7 @@ The format is the same as :ref:`api_sensor_groups_add_sensor` except replacing `
   :widths: 10, 80
 
   * - **URL**
-    - :wotkit-api:`groups/{group-name}/sensors/{sensor-id}`
+    - :wotkit-api-v1:`groups/{group-name}/sensors/{sensor-id}`
   * - **Method**
     - DELETE
 

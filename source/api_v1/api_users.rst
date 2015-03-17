@@ -41,7 +41,7 @@ To query for users, add query parameters after the sensors URL as follows:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`users?{query}`
+	  - :wotkit-api-v1:`users?{query}`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -64,7 +64,7 @@ To view a single user, query by username or id as follows:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`users/{username}`
+	  - :wotkit-api-v1:`users/{username}`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -81,7 +81,7 @@ To view a single user, query by username or id as follows:
 	.. parsed-literal::
 		
 		curl --user {id}:{password} 
-		":wotkit-api:`users/1`"
+		":wotkit-api-v1:`users/1`"
 
 
 Output:
@@ -144,7 +144,7 @@ To create a user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`users`
+	  - :wotkit-api-v1:`users`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -173,7 +173,7 @@ To update a user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`users/{username}`
+	  - :wotkit-api-v1:`users/{username}`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -201,7 +201,7 @@ To delete a user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`users/{username}`
+	  - :wotkit-api-v1:`users/{username}`
 	* - **Privacy**
 	  - Admin
 	* - **Format**

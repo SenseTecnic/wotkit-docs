@@ -47,7 +47,7 @@ To view a list of "inbox messages" of an user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`v2/inbox`
+	  - :wotkit-api-v2:`inbox`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -63,7 +63,7 @@ To view a list of "inbox messages" of an user:
 
 	.. parsed-literal::
 	
-		curl --user {id}:{password} ":wotkit-api:`v2/inbox`"
+		curl --user {id}:{password} ":wotkit-api-v2:`inbox`"
 
 
 

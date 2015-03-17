@@ -83,7 +83,7 @@ To view a list of "alerts" created by an user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`v2/alerts`
+	  - :wotkit-api-v2:`alerts`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -99,7 +99,7 @@ To view a list of "alerts" created by an user:
 
 	.. parsed-literal::
 	
-		curl --user {id}:{password} ":wotkit-api:`v2/alerts`"
+		curl --user {id}:{password} ":wotkit-api-v2:`alerts`"
 
 
 
@@ -167,7 +167,7 @@ To view an alert, query the alert by its id as followed:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`v2/alerts/{alert id}`
+	  - :wotkit-api-v2:`alerts/{alert id}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -184,7 +184,7 @@ To view an alert, query the alert by its id as followed:
 	.. parsed-literal::
 
 		curl --user {id}:{password}
-		":wotkit-api:`v2/alerts/5`"
+		":wotkit-api-v2:`alerts/5`"
 
 Output:
 
@@ -230,7 +230,7 @@ To create an alert:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`v2/alerts`
+	  - :wotkit-api-v2:`alerts`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -245,7 +245,7 @@ To create an alert:
 	.. parsed-literal::
 
 		curl --user {id}:{password} --request POST --header "Content-Type: application/json" 
-		--data-binary @test-alert.txt ':wotkit-api:`v2/alerts`'
+		--data-binary @test-alert.txt ':wotkit-api-v2:`alerts`'
 
 
 For this example, the file *test-alert.txt* contains the following.  This is the minimal information needed to create an alert.
@@ -309,7 +309,7 @@ To update an alert owned by the current user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`v2/alerts/{alert id}`
+	  - :wotkit-api-v2:`v2/alerts/{alert id}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -328,7 +328,7 @@ For instance, to update an alert:
 	.. parsed-literal::
 
 		curl --user {id}:{password} --request PUT --header "Content-Type: application/json" 
-		--data-binary @update-alert.txt ':wotkit-api:`v2/alerts/{alert id}`'
+		--data-binary @update-alert.txt ':wotkit-api-v2:`alerts/{alert id}`'
 
 
 The file *update-alert.txt* would contain the following:
@@ -356,7 +356,7 @@ To delete an alert owned by the current user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`v2/alertss/{alert id}`
+	  - :wotkit-api-v2:`alerts/{alert id}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -373,5 +373,5 @@ To delete an alert owned by the current user:
 	.. parsed-literal::
 
 		curl --user {id}:{password} --request DELETE 
-		':wotkit-api:`v2/alerts/{alert id}`'
+		':wotkit-api-v2:`alerts/{alert id}`'
 

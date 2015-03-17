@@ -77,8 +77,8 @@ For instance, the following curl command uses a 'key id' and 'key password' to g
 
 	.. parsed-literal::
 
-		curl --user {key_id}:{key_password} ":wotkit-api:`sensors/sensetecnic.mule1`"
-
+		curl --user {key_id}:{key_password}
+		":wotkit-api-v1:`sensors/sensetecnic.mule1`"
 
 This returns:
 
@@ -133,7 +133,7 @@ For instance, the following curl command uses an access token to get information
 
 	.. parsed-literal::
 
-		curl ":wotkit-api:`sensors/sensetecnic.mule1?access_token={access_token}`"
+		curl ":wotkit-api-v1:`sensors/sensetecnic.mule1?access_token={access_token}`"
 
 
 In order to obtain an access token a client must follow the following steps, which

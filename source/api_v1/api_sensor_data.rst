@@ -74,7 +74,7 @@ To send new data:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`sensors/{sensorname}/data`
+    - :wotkit-api-v1:`sensors/{sensorname}/data`
   * - **Privacy**
     - Private
   * - **Format**
@@ -91,7 +91,7 @@ To send new data:
   .. parsed-literal::
 
     curl --user {id}:{password} --request POST
-    -d value=5 -d lng=6 -d lat=7 ':wotkit-api:`sensors/test-sensor/data`'
+    -d value=5 -d lng=6 -d lat=7 ':wotkit-api-v1:`sensors/test-sensor/data`'
 
 |
 
@@ -117,7 +117,7 @@ To update data:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`sensors/{sensorname}/data`
+    - :wotkit-api-v1:`sensors/{sensorname}/data`
   * - **Privacy**
     - Private
   * - **Format**
@@ -150,7 +150,7 @@ Example of valid data:
   .. parsed-literal::
 
     curl --user {id}:{password} --request PUT --data-binary @data.txt
-    ':wotkit-api:`sensors/test-sensor/data`'
+    ':wotkit-api-v1:`sensors/test-sensor/data`'
 
 where *data.txt* contains JSON data similar to the above JSON array.
 
@@ -172,7 +172,7 @@ To delete data:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`sensors/{sensorname}/data/{timestamp}`
+    - :wotkit-api-v1:`sensors/{sensorname}/data/{timestamp}`
   * - **Privacy**
     - Private
   * - **Format**
@@ -199,7 +199,7 @@ To retrieve raw data use the following:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`sensors/{sensor-name}/data?{query-params}`
+    - :wotkit-api-v1:`sensors/{sensor-name}/data?{query-params}`
   * - **Privacy**
     - Public or Private
   * - **Format**
@@ -255,7 +255,7 @@ called the *dataTable*.
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`sensors/{sensor-name}/dataTable?{query-params}`
+    - :wotkit-api-v1:`sensors/{sensor-name}/dataTable?{query-params}`
   * - **Privacy**
     - Public or Private
   * - **Format**
@@ -293,7 +293,7 @@ the output as an html table.
 
   .. parsed-literal::
 
-    curl --user {id}:{password} :wotkit-api:`sensors/test-sensor/
+    curl --user {id}:{password} :wotkit-api-v1:`sensors/test-sensor/
     dataTable?tq=select%20*%20where%20value%3E20&reqId=1&out=html`
 
 |
@@ -395,7 +395,7 @@ To receive data from more that one sensor, use the following:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`data?{query-param}={query-value}&{param}={value}...`
+    - :wotkit-api-v1:`data?{query-param}={query-value}&{param}={value}...`
   * - **Privacy**
     - Public or Private
   * - **Format**
@@ -411,4 +411,4 @@ To receive data from more that one sensor, use the following:
   .. parsed-literal::
 
     curl --user {id}:{password}
-    ":wotkit-api:`data?subscribed=all&beforeE=20&orderBy=sensor`"
+    ":wotkit-api-v1:`data?subscribed=all&beforeE=20&orderBy=sensor`"

@@ -76,7 +76,7 @@ To retrieve the sensor fields for a specific sensor:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}/fields`
+	  - :wotkit-api-v1:`sensors/{sensorname}/fields`
 	* - **Privacy**
 	  - Public or Private
 	* - **Format**
@@ -94,7 +94,7 @@ To query a single sensor field for a specific sensor:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}/fields/{fieldName}`
+	  - :wotkit-api-v1:`sensors/{sensorname}/fields/{fieldName}`
 	* - **Privacy**
 	  - Public or Private
 	* - **Format**
@@ -133,7 +133,7 @@ To update/add a sensor field:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}/fields/{fieldname}`
+	  - :wotkit-api-v1:`sensors/{sensorname}/fields/{fieldname}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -153,7 +153,7 @@ For instance, to create a new field called "test-field":
 
 		curl --user {id}:{password} --request PUT 
 		--header "Content-Type: application/json" --data-binary @field-data.txt 
-		':wotkit-api:`sensors/test-sensor/fields/test-field`'
+		':wotkit-api-v1:`sensors/test-sensor/fields/test-field`'
 
 The file *field-data.txt* could contain the following.  (Note that this is the minimal information needed to create a new field.)
 
@@ -172,7 +172,7 @@ To then update "test-field" sub-fields, the curl command would be used to send a
 
 		curl --user {id}:{password} --request PUT
 		--header "Content-Type: application/json" --data-binary @field-data.txt 
-		':wotkit-api:`sensors/test-sensor/fields/test-field`'
+		':wotkit-api-v1:`sensors/test-sensor/fields/test-field`'
 
 
 And ''field-data.txt'' could now contain the following.
@@ -202,7 +202,7 @@ To delete a sensor field:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}/fields/{fieldname}`
+	  - :wotkit-api-v1:`sensors/{sensorname}/fields/{fieldname}`
 	* - **Privacy**
 	  - Private
 	* - **Format**

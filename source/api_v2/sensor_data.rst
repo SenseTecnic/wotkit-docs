@@ -76,7 +76,7 @@ To send new data:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`v2/sensors/{sensorname}/data`
+    - :wotkit-api-v2:`sensors/{sensorname}/data`
   * - **Privacy**
     - Private
   * - **Format**
@@ -92,7 +92,7 @@ To send new data:
   .. parsed-literal::
 
       curl --user {id}:{password} --request POST -d value=5 -d lng=6 -d lat=7
-      ':wotkit-api:`sensors/test-sensor/data`'
+      ':wotkit-api-v2:`sensors/test-sensor/data`'
 
 
 .. index:: Bulk Sensor Data
@@ -117,7 +117,7 @@ To update data:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`v2/sensors/{sensorname}/data`
+    - :wotkit-api-v2:`sensors/{sensorname}/data`
   * - **Privacy**
     - Private
   * - **Format**
@@ -150,7 +150,7 @@ Example of valid data:
   .. parsed-literal::
 
     curl --user {id}:{password} --request PUT --data-binary @data.txt
-    ':wotkit-api:`sensors/test-sensor/data`'
+    ':wotkit-api-v2:`sensors/test-sensor/data`'
 
 where *data.txt* contains JSON data similar to the above JSON array.
 
@@ -170,7 +170,7 @@ the following query.
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`v2/sensors/{sensor-name}/data/{data_id}`
+    - :wotkit-api-v2:`sensors/{sensor-name}/data/{data_id}`
   * - **Privacy**
     - Public or Private, depending on sensor privacy
   * - **Format**
@@ -194,7 +194,7 @@ interactive guide on how to use this endpoint is available at:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`v2/sensors/{sensor-name}/data`
+    - :wotkit-api-v2:`sensors/{sensor-name}/data`
   * - **Privacy**
     - Public or Private, depending on sensor privacy
   * - **Format**
@@ -253,7 +253,7 @@ Same as :ref:`api-v2-get-single-data` instead using HTTP Delete.
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`v2/sensors/{sensorname}/data/{data_id}`
+    - :wotkit-api-v2:`sensors/{sensorname}/data/{data_id}`
   * - **Privacy**
     - Private
   * - **Format**
@@ -272,7 +272,7 @@ restriction on only using **group 3** parameters.
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`v2/sensors/{sensorname}/data`
+    - :wotkit-api-v2:`sensors/{sensorname}/data`
   * - **Privacy**
     - Private
   * - **Format**
