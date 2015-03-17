@@ -1,5 +1,8 @@
 .. _api_sensor_subs:
 
+
+.. _sensor-subscriptions-label:
+
 Sensor Subscriptions
 =====================
 
@@ -30,9 +33,10 @@ To view sensors that the current user is subscribed to:
 
 |
 
-.. _sub-label:
 
 .. index:: Subscribe to a Sensor
+
+.. _sensor-subscribe-label:
 
 Subscribe
 ---------
@@ -54,10 +58,11 @@ To subscribe to a non-private sensor or private sensor owned by the current user
 
 |
 
-.. _unsub-label:
 
 .. index:: Unsubscribe from a Sensor
 	pair: Subscribe to a Sensor; Unsubscribe from a Sensor
+
+.. _sensor-unsubscribe-label:
 
 Unsubscribe
 -----------

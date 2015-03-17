@@ -2,6 +2,8 @@
 
 .. NOTE: This Section has been removed from the public Docs, as it's only relevant for admins.
 
+.. _users-label:
+
 Users
 =======
 
@@ -51,7 +53,7 @@ To query for users, add query parameters after the sensors URL as follows:
 	  
 |
 
-.. _get_user:
+.. _view_user-label:
 
 Viewing a Single User
 ----------------------
@@ -99,9 +101,9 @@ Output:
 	}
 
 
-.. _create_user:
-
 .. index:: User Creation
+
+.. _create_user-label:
 
 Creating/Registering a User
 ----------------------------
@@ -154,9 +156,10 @@ To create a user:
 	  
 |
 
-.. _update_user:
 
 .. index:: User Updating
+
+.. _update_user-label:
 
 Updating a User
 -----------------
@@ -182,9 +185,10 @@ To update a user:
 	  
 |
 
-.. _delete_user:
 
 .. index:: User Deletion
+
+.. _delete_user-label:
 
 Deleting a User
 ----------------

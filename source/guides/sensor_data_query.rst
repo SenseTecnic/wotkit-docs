@@ -1,6 +1,9 @@
 .. _api_sensor_data_query:
 
+
 .. index:: Querying Sensor Data
+
+.. _querying-sensor-data-label:
 
 ====================
 Querying Sensor Data
@@ -18,6 +21,7 @@ data of a sensor or group of sensors. There are two different types of queries:
 The following document will walk through some examples of how to take advantage
 of *Recent Queries* and *Time Range Queries*
 
+
 .. _recent-query-label:
 
 Recent Queries
@@ -31,6 +35,7 @@ To query for recent data, the API provides parameters for you to either:
   
 In this section we'll dive in quickly and briefly show an example of
 :ref:`recent-n-label` and :ref:`recent-t-label`.
+
 
 .. _recent-n-label:
 
@@ -114,6 +119,7 @@ In essence, the query we ran is a convenient default for the explicit version:
 
 Next we can try a recent_t query, which looks up the timestamp.
 
+
 .. _recent-t-label:
 
 Recent Time Queries
@@ -191,6 +197,7 @@ note of is the limit parameter. At the moment, limit is capped at 1000 -- which
 restricts how much data you get in **recent_n** and **recent_t** queries. To overcome
 this we will look into paging through historical data next.
 
+
 .. _time-range-query-label:
 
 Time Range Queries
@@ -200,6 +207,7 @@ At the end of the last section, we noted that there is a weakness in the recent
 queries which limit your ability to sift through historical data. You can page
 through historical data using the following query parameters. For the remainder
 of this tutorial we will be working with the sensor ``rymndhng.sdq-test``.
+
 
 .. _time-range-start-end-label:
 
@@ -302,6 +310,9 @@ following request:
 
 We can see that start/end was interpreted in the query between the start and end
 points, specifically ``start < data[0].timestamp < ... < data[4].timestamp < end``.
+
+
+.. _paging-through-data-label:
 
 Paging Through Data
 ^^^^^^^^^^^^^^^^^^^
@@ -455,6 +466,8 @@ has ``id: 48232724`` and ``timestamp_iso: "2013-11-21T11:00:51.000Z"``. The
 **first** element in the second response has ``id: 48232725`` and ``timestamp_iso:
 "2013-11-29T22:59:09.472Z"``. You can easily verify that they are in sequence.
 
+
+.. _advanced-time-range-queries-label:
 
 Advanced Time Range Queries
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -751,6 +764,7 @@ When we used the parameter ``start_id`` we got a response with the element whose
 `id: 48232726``. The ``start_id`` allowed us to filter ids greater than 48232726.
 ``end_id`` works the same way as ``start_id`` if you really need fine-grained 
 control over the range of a data query.
+
 
 .. _time-range-query-summary-label:
 

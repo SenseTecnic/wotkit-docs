@@ -1,6 +1,9 @@
 .. _api_sensor_data:
 
+
 .. index:: Sensor Data
+
+.. _sensor-data-label:
 
 Sensor Data
 ==============
@@ -92,10 +95,11 @@ To send new data:
 
 |
 
-.. _send-bulk-data-label:
 
 .. index:: Bulk Sensor Data
   pair: Sensor Data Creation; Bulk Sensor Data
+
+.. _send-bulk-data-label:
 
 Sending Bulk Data
 ------------------
@@ -150,9 +154,11 @@ Example of valid data:
 
 where *data.txt* contains JSON data similar to the above JSON array.
 
-.. _delete-data-label:
+
 
 .. index:: Sensor Data Deletion
+
+.. _delete-data-label:
 
 Deleting Data
 --------------
@@ -179,10 +185,11 @@ To delete data:
 |
 
 
-.. _raw-data-label:
 
 .. index:: Raw Sensor Data, Sensor Data Retrieval
   seealso: Sensor Data Retrieval; Formatted Sensor Data
+
+.. _raw-data-label:
 
 Raw Data Retrieval
 ----------------------
@@ -232,10 +239,11 @@ The query parameters supported are the following:
 .. note:: These queries looks for timestamps > "start" and timestamps <= "end"
 
 
-.. _formatted-data-label:
 
 .. index:: Formatted Sensor Data
   seealso: Formatted Sensor Data; Sensor Data Retrieval
+
+.. _formatted-data-label:
 
 Formatted Data Retrieval
 ---------------------------
@@ -290,10 +298,11 @@ the output as an html table.
 
 |
 
-.. _aggregated-data-label:
 
 .. index:: Aggregated Sensor Data
   seealso: Aggregated Sensor Data; Sensor Data
+
+.. _aggregated-data-label:
 
 Aggregated Data Retrieval
 --------------------------

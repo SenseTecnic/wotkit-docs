@@ -1,7 +1,10 @@
 .. _api_inbox:
 
+
 .. index:: Inbox
 	seealso: Alerts
+
+.. _inbox-label:
 
 Inbox
 =====
@@ -29,10 +32,11 @@ An inbox message has the following attributes:
 	  - the flag of whether the message is read 
 	* - sent
 	  - the flag of whether an email is sent
-	
-.. _get_inbox:
+
 
 .. index:: Inbox Message Query
+
+.. _get_inbox-label:
 
 Listing Inbox Messages of an User
 ---------------------------------

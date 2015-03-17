@@ -1,5 +1,8 @@
 .. _api_orgs:
 
+
+.. _organizations-label:
+
 Organizations
 ===============
 
@@ -9,6 +12,8 @@ only admins can manipulate them.
 .. _get_orgs:
 
 .. index:: Organization Query
+
+.. _list-query-organizations-label:
 
 List/Query Organizations
 ------------------------
@@ -48,7 +53,10 @@ To query for organizations, add query parameters after the sensors URL as follow
 	  
 |
 
+
 .. _get_org:
+
+.. _viewing-organization-label:
 
 Viewing a Single Organization
 -----------------------------
@@ -94,6 +102,8 @@ Output:
 .. _create_org:
 
 .. index:: Organization Creation
+
+.. _creating-organization-label:
 	
 Creating/Registering an Organization
 ------------------------------------
@@ -145,9 +155,12 @@ To create an organization:
 	  - HTTP status code; Created 201 if successful; Bad Request 400 if organization is invalid; Conflict 409 if an organization with the same name already exists.
 |
 
+
 .. _update_org:
 
 .. index:: Organization Updating
+
+.. _updating-organization-label:
 
 Updating an Organization
 ------------------------
@@ -173,9 +186,11 @@ To update an organization:
 
 |
 
-.. delete_org:
+.. _delete_org:
 
 .. index:: Organization Deletion
+
+.. _delete-organization-label:
 
 Deleting an Organization
 ------------------------
@@ -205,9 +220,12 @@ To delete a user:
 Organization Membership
 ---------------------
 
+
 .. _get_org_members:
 
 .. index:: Organization Members
+
+.. _organization-membership-label:
 
 List all members of an Organization
 ###################################
@@ -230,9 +248,12 @@ To query for organization members:
 	  
 |
 
+
 .. _create_org_members:
 
 .. index:: Organization Member Creation
+
+.. _create-organization-member-label:
 
 Add new members to an Organization
 ###################################
@@ -274,9 +295,12 @@ The file *users-list.txt* would contain the following.
 	
 	["abe", "beth", "cecilia", "dylan"]
 
+
 .. _remove_org_member: 
 
 .. index:: Organization Member Removal
+
+.. _remove-organization-member-label:
 
 Remove members from an Organization
 ###################################

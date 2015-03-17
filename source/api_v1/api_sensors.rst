@@ -1,6 +1,9 @@
 .. _api_sensors:
 
+
 .. index:: Sensor Fields
+
+.. _sensors-label:
 
 Sensors
 ===========
@@ -208,6 +211,7 @@ Output:
 	  }
 	]
 
+
 .. _view-sensor-label:
 	
 Viewing a Single Sensor
@@ -380,6 +384,7 @@ To register multiple sensors, you PUT a list of sensor resources to the url ``/s
 	* - **Returns**
 	  - HTTP status code; Created 201 if successful; Bad Request 400 if sensor is invalid; Conflict 409 if sensor with the same name already exists ; On Created 201 or some errors (not all) you will receive a JSON dictionary where the keys are the sensor names and the values are true/false depending on whether creating the sensor succeeded. For Created 201 all values will be true.
 
+
 .. index:: Update Sensors
 
 .. _update-sensor-label:
@@ -438,9 +443,10 @@ The file *update-sensor.txt* would contain the following:
 		"tags": ["big", "yellow", "taxi"]
 	}
 
-.. _delete-sensor-label:
 
 .. index:: Delete Sensor
+
+.. _delete-sensor-label:
 
 Deleting a Sensor
 ------------------

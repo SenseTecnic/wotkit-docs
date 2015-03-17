@@ -1,6 +1,9 @@
 .. _api_authentication:
 
+
 .. index:: single: Authentication
+
+.. _authentication-label:
 
 Authentication
 ==============	
@@ -49,6 +52,7 @@ Every method has a description of its private level in one of the following form
 	* Example of different results is the "get sensors" method, which might return a user's private sensors when the method is called as an authenticated user.
 	
 * **Admin** accessible only to authenticated admin users
+
 
 .. index:: Keys
 

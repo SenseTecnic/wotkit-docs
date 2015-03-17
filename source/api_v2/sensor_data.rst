@@ -1,4 +1,10 @@
-===========
+.. _api_sensor_data:
+
+
+.. index:: Sensor Data
+
+.. _sensor-data-2-label:
+
 Sensor Data
 ===========
 
@@ -49,9 +55,10 @@ the *sensor fields* in the WoTKit UI or :ref:`api_sensor_fields` in the API.
 
   In Java: ``System.currentTime()``.
 
-.. _send-data-label:
 
 .. index:: Sensor Data Creation
+
+.. _send-data-label:
 
 Sending New Data
 ----------------
@@ -88,10 +95,10 @@ To send new data:
       ':wotkit-api:`sensors/test-sensor/data`'
 
 
-.. _send-bulk-data-label:
-
 .. index:: Bulk Sensor Data
   pair: Sensor Data Creation; Bulk Sensor Data
+
+.. _send-bulk-data-label:
 
 Updating a Range of Historical Data
 ----------------------------------
@@ -147,11 +154,12 @@ Example of valid data:
 
 where *data.txt* contains JSON data similar to the above JSON array.
 
-.. _delete-data-label:
+
+.. _api-v2-get-single-data:
 
 .. index:: Sensor Data Deletion
 
-.. _api-v2-get-single-data:
+.. _delete-data-label:
 
 Retrieving a Single Data Item
 -----------------------------

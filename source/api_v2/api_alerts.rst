@@ -3,6 +3,8 @@
 .. index:: Alerts
 	seealso: News; Statistics
 
+.. _alerts-label:
+
 Alerts
 ======
 
@@ -66,10 +68,11 @@ An alert condition is composed of a sensor field, an operator for evaluation, an
 
 	* - value
 	  - value that the operator compares with
-	
-.. _get_alerts:
+
 
 .. index:: Alerts Query
+
+.. _get_alerts-label:
 
 Listing Alerts of an User
 -------------------------
@@ -151,9 +154,10 @@ Sample Output:
         ]
     }]
 
-.. _get_alerts_by_id:
 
 .. index:: Alerts Query by ID
+
+.. _get_alerts_by_id-label:
 
 Viewing an Alert
 ----------------
@@ -207,9 +211,10 @@ Output:
         ]
     }
 
-.. _create_alert:
 
 .. index:: Create Alert
+
+.. _create_alert-label:
 
 Creating Alerts
 ---------------
@@ -283,9 +288,11 @@ For this example, the file *test-alert.txt* contains the following.  This is the
 		}
 		]
 	}
-.. _update_alert:
+
 
 .. index:: Update Alert
+
+.. _update_alert-label:
 
 Updating Alerts
 ---------------
@@ -334,9 +341,10 @@ The file *update-alert.txt* would contain the following:
 	}
 
 
-.. _delete_alert:
 
 .. index:: Delete Alert
+
+.. _delete_alert-label:
 
 Deleting Alerts
 ---------------

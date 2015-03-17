@@ -63,6 +63,7 @@ Additional fields can be added. Each new field consists of the following:
 
 |
 
+
 .. index:: Sensor Fields Query
 
 .. _get-sensor-fields-label:
@@ -186,9 +187,10 @@ And ''field-data.txt'' could now contain the following.
 		"units":"mm"
 	}	
 
-.. _delete-sensor-field-label:
 
 .. index:: Sensor Field Deletion
+
+.. _delete-sensor-field-label:
 
 Deleting a Sensor Field
 -------------------------

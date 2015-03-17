@@ -1,5 +1,8 @@
 .. _api_sensor_groups:
 
+
+.. _sensor-groups-label:
+
 Sensor Groups
 =============
 Sensor Groups are used to logically organize related sensors. Any sensor can be a member of many groups.
@@ -8,7 +11,8 @@ Currently, all Sensor Groups have **public** visibility, but **only** the **owne
 
 Sensor Groups can be manipulated using a REST API in the following section
 
-.. _api_sensor_group_format:
+
+.. _sensor_group_format-label:
 
 Sensor Group Format
 -------------------
@@ -64,6 +68,9 @@ An example of a Sensor Group JSON would be as follows:
     sensors: []
   }
 
+
+.. _list-groups-label:
+
 List Groups
 -----------
 Provides a list of groups on the system as an array using the JSON format specified in :ref:`api_sensor_group_format`
@@ -83,6 +90,8 @@ Provides a list of groups on the system as an array using the JSON format specif
   .. parsed-literal::
     curl --user {id}:{password} --request GET ':wotkit-api:`groups`'
 
+
+.. _view-sensor-group-label:
 
 Viewing a Single Sensor Group
 -----------------------------
@@ -104,6 +113,9 @@ with ``group.id`` or ``group.name``. The API accepts both formats
   .. parsed-literal::
     curl --user {id}:{password} --request GET ':wotkit-api:`groups`'
 
+
+.. _create-sensor-group-label:
+
 Creating a Sensor Group
 -----------------------
 To create a sensor group, append the Sensor Group contents following :ref:`api_sensor_group_format`.
@@ -120,6 +132,8 @@ On creation, the **id** and **owner** fields are **ignored** because they are sy
   * - **Returns**
     - If a sensor with the same name exists, ERROR 409. Otherwise, OK 204.
 
+
+.. _modify-sensor-group-fields-label:
 
 Modifying Sensor Group Fields
 -----------------------------
@@ -138,6 +152,8 @@ Again, the **id** and **owner** fields in the JSON object are **ignored** if the
     - If user has no permissions to edit group, returns UNAUTHORIZED 401, otherwise OK 204
 
 
+.. _delete-sensor-group-label:
+
 Deleting a Sensor Group
 -----------------------
 Deleting a Sensor Group is fairly trivial, assuming you are the owner of the group.
@@ -153,7 +169,8 @@ A request body is unnecessary.
   * - **Returns**
     - If user has no permissions to edit group, returns UNAUTHORIZED 401, otherwise OK 204
 
-.. _api_sensor_groups_add_sensor:
+
+.. _sensor_groups_add_sensor-label:
 
 Adding a Sensor to Sensor Group
 -------------------------------
@@ -184,6 +201,9 @@ The response will contain one of the following response codes.
     - Sensor is already a member of sensor group
   * - 401
     - User is unauthorized to edit group.
+
+
+.. _sensor-groups-remove-sensor-label:
 
 Removing a Sensor from Sensor Group
 -----------------------------------

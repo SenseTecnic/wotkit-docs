@@ -1,7 +1,10 @@
 .. _api_news:
 
+
 .. index:: News
 	seealso: News; Statistics
+
+.. _news-label:
 
 News
 ======

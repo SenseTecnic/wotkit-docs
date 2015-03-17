@@ -3,6 +3,8 @@
 .. index:: Statistics
 	seealso: Statistics; News
 
+.. _statistics-label:
+
 Statistics
 ===========
 
