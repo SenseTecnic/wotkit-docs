@@ -41,7 +41,7 @@ All request body and response bodies use JSON. The following fields are present:
     - true
     - The name of the group's owner. This field is set by the system and cannot be modified.
   * - **description**
-    - String[,255]
+    - String[,400]
     - optional
     - A simple description of the group
   * - **imageUrl**
