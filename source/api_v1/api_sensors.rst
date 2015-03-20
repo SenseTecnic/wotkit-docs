@@ -97,7 +97,9 @@ The current query parameters are as follows:
 	* - location
 	  - geo coordinates for a bounding box to search within. 
 		| Format is **yy.yyy,xx.xxx:yy.yyy,xx.xxx**, and the order of the coordinates are North,West:South,East. 
-		| Example: **location=56.89,-114.55:17.43,-106.219**
+		| Example: **location=56.89,-114.55:17.43,-106.219**.
+		| Note also that bounding boxes that cross the international date line must be split into two since
+		| the western longitude must be less than the eastern longitude value.
 
 |
 
