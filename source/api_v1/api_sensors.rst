@@ -18,10 +18,11 @@ A sensor has the following attributes:
 	* - id
 	  - the numeric id of the sensor.  This may be used in the API in place of the sensor name.
 	* - name **
-	  - the name of the sensor.  
-		| Note that the global name is ``{username}.{sensorname}``.  
-		| When logged in as a the owner, you can refer to the sensor using only ``{sensorname}``. 
-		| To access a public sensor created by another user, you can refer to it by its numeric id or the global name, ``{username}.{sensorname}``.
+	  - the owner's name for the sensor.  
+		| Note that the global name is ``{ownername}.{sensorname}``.  
+		| If you are the owner, you can refer to the sensor using only ``{sensorname}``. 
+		| To access a public sensor owned by another user or organization, you can refer to it by its numeric id
+		| or the global name, ``{ownername}.{sensorname}``.
 
 	* - description **
 	  - a description of the sensor for text searches.
@@ -78,7 +79,7 @@ The current query parameters are as follows:
 	* - scope
 	  - | **all** - all sensors the current user has access to
 	    | **subscribed** - the sensors the user has subscribed to
-		| **contributed** - the sensors the user has contributed to the system.
+	    | **contributed** - the sensors the user has contributed to the system.
 	* - tags
 	  - list of comma separated tags
 	* - orgs
@@ -86,7 +87,7 @@ The current query parameters are as follows:
 	* - :strikethrough:`private`
 	  - **DEPRECATED**, use **visibility** instead. (*true* - private sensors only; *false* - public only`).
 	* - visibility
-	  - filter by the visibility of the sensors, either of **public**, **organization**, or **private**
+	  - filter by the visibility of the sensors, either of **public** or **private**
 	* - text
 	  - text to search for in the name, long name and description
 	* - active
