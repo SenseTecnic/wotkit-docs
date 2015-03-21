@@ -27,8 +27,8 @@ A sensor has the following attributes:
 	  - a description of the sensor for text searches.
 	* - longName **
 	  - longer display name of the sensor.
-	* - `url`
-	  - **DEPRECATED**
+	* - `imageUrl`
+	  - url of the sensor image
 	* - latitude
 	  - the latitude location of the sensor in degrees.
 		This is a static location used for locating sensors on a map and for location-based queries.
@@ -42,16 +42,17 @@ A sensor has the following attributes:
 		This is the last time sensor data was recorded, or an actuator script polled for control messages.
 	* - visibility
 	  - | **PUBLIC**: The sensor is publicly visible
-	    | **ORGANIZATION**: The sensor is visible to everyone in the same organization as the sensor
-	    | **PRIVATE**: The sensor is only visible to the owner. In any case posting *data* to the sensor is restricted to the sensor's owner.
+	    | **PRIVATE**: The sensor is only visible to the owner org or user.
 	* - owner
-	  - the owner of the sensor
+	  - the owner organization or user of the sensor
 	* - fields
 	  - the expected data fields, their type (number or string), units and if available, last update time and value.
 	* - tags
 	  - the list of tags for the sensor
-	* - data
-	  - sensor data (not shown yet)
+	* - subscriberNames
+	  - list of users that have subscribed to the sensor
+	* - publisher
+	  - user that created the sensor
 
 ** Required when creating a new sensor.
 
