@@ -47,7 +47,7 @@ pairs corresponding to the data fields to the
 	* - **Privacy**
 	  - Public or Private
 	* - **Format**
-	  - json
+	  - x-www-form-urlencoded
 	* - **Method**
 	  - POST
 	* - **Returns**

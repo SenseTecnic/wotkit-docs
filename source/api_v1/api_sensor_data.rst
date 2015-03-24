@@ -383,15 +383,16 @@ searching for sensors or sensor data. The query must be specified using one of t
     - Specifies the offset to return. This value is optional, with a default value of ``0``
 
 The following parameters may be added to any of the above patterns:
-* scope
-* tags
-* :strikethrough:`private` (deprecated, use visibility instead)
-* visibility
-* text
-* active
-* orderBy
-* **sensor**: which groups data by sensor_id
-* **time** (default): which orders data by timestamp, regardless of the sensor it comes from.
+
+- scope
+- tags
+- :strikethrough:`private` (deprecated, use visibility instead)
+- visibility
+- text
+- active
+- orderBy
+- **sensor**: which groups data by sensor_id
+- **time** (default): which orders data by timestamp, regardless of the sensor it comes from.
 
 To receive data from more that one sensor, use the following:
 
