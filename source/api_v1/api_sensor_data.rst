@@ -252,8 +252,7 @@ The query parameters supported are the following:
 Formatted Data Retrieval
 ---------------------------
 
-To retrieve data in a format suitable for Google Visualizations, we support an additional resource for retrieving data
-called the *dataTable*.
+To retrieve data in a format suitable for Google Visualizations, we support an additional resource for retrieving data called *dataTable*.
 
 .. list-table::
   :widths: 10, 50
@@ -267,7 +266,7 @@ called the *dataTable*.
   * - **Method**
     - GET
   * - **Returns**
-    - **200 OK** on success. A JSON object in the response body containing a list of timestamped data records.
+    - **200 OK** on success. A formatted JSON object in the response body containing a list of timestamped data records.
 
 |
 
@@ -288,8 +287,6 @@ In addition to the above query parameters, the following parameters are also sup
 
 .. note:: When using tq sql queries, they must be url encoded. When using tqx name/value pairs, the reqId parameter is necessary.
 
-|
-
 For instance, the following would take the "test-sensor", select all data where value was greater than 20, and display
 the output as an html table.
 
@@ -297,10 +294,84 @@ the output as an html table.
 
   .. parsed-literal::
 
-    curl --user {id}:{password} :wotkit-api-v1:`sensors/test-sensor/
-    dataTable?tq=select%20*%20where%20value%3E20&reqId=1&out=html`
+    curl --user {id}:{password} :wotkit-api-v1:`sensors/sensetecnic.mule1/
+    dataTable?tq=select%20*%20where%20value%3E20`
 
 |
+
+It is possible to also combine SQL filtering and formatting with a range. For example, to output the last 100 elements of the sensor where the value is greater than 55, formated using HTML you would use:
+
+.. admonition:: example
+
+  .. parsed-literal::
+
+    curl --user {id}:{password} :wotkit-api-v1:`sensors/sensetecnic.mule1/dataTable?tq=select%20*%20where%20value%3E55&tqx=out:html&beforeE=1000`
+
+|
+
+An example response, limited to the last 2 elements will look like this:
+
+.. code-block:: python
+
+	google.visualization.Query.setResponse (
+	  {
+	    "version": "0.6",
+	    "status": "ok",
+	    "sig": "582888298",
+	    "table": {
+	    "cols": [
+	      {
+	        "id": "sensor_id",
+	        "label": "Sensor Id",
+	        "type": "number",
+	        "pattern": ""
+	      },
+	      {
+	        "id": "sensor_name",
+	        "label": "Sensor Name",
+	        "type": "string",
+	        "pattern": ""
+	      },
+	      {
+	        "id": "timestamp",
+	        "label": "Timestamp",
+	        "type": "datetime",
+	        "pattern": ""
+	      },
+ 	      {
+	        "id": "lat",
+	        "label": "latitude",
+	        "type": "number",
+	        "pattern": ""
+	      },
+	      {
+	        "id": "lng",
+	        "label": "longitude",
+	        "type": "number",
+	        "pattern": ""
+	      },
+	      {
+	        "id": "value",
+	        "label": "Speed",
+	        "type": "number",
+	        "pattern": ""
+	      },
+	      {
+	        "id": "message",
+	        "label": "Message",
+	        "type": "string",
+	        "pattern": ""
+	      }
+	    ],
+	    "rows": [],
+	    "p": {
+	      "lastId": "2014-06-19T22:45:36.281Z"
+	    }
+	  }
+	}
+	)
+
+
 
 
 .. index:: Aggregated Sensor Data

@@ -106,6 +106,9 @@ Example subscription id returned:
 		"subscription":1234
 	}
 
+
+
+
 .. _get_actuator:
 
 .. index:: Actuator Polling, Controller Polling
@@ -135,6 +138,10 @@ The server will respond on timeout, or when a control messages is received.
 	  - **200 OK** on success. A JSON object in the response body containing control messages.
 	  
 |
+
+
+.. note:: Each subscription will be open for as long as the client that created it keeps sending long pull requests. A subscription that does not receive any requests after 5 minutes (3000 seconds) will be garbage-collected and will not be accessible after that. A client must catch this error and create a new subscription if this occurs.
+
 
 .. index:: Acuator Example
 
