@@ -309,7 +309,7 @@ It is possible to also combine SQL filtering and formatting with a range. For ex
 
 |
 
-An example response, limited to the last 2 elements will look like this:
+An example response, limited to the last 5 elements will return 3 elements, in the form:
 
 .. code-block:: python
 
@@ -363,7 +363,41 @@ An example response, limited to the last 2 elements will look like this:
 	        "pattern": ""
 	      }
 	    ],
-	    "rows": [],
+	    "rows": [
+
+
+	      {
+	        "c":[
+	          {"v":1.0},
+	          {"v":"sensetecnic.mule1"},
+	          {"v":new Date(2014,3,28,16,20,13)},
+	          {"v":49.22522},{"v":-123.166},
+	          {"v":66.0},{"v":null}
+	        ]
+	      },
+	      {
+	        "c":[
+	          {"v":1.0},
+	          {"v":"sensetecnic.mule1"},
+	          {"v":new Date(2014,3,28,16,20,16)},
+	          {"v":49.22422},
+	          {"v":-123.16398},
+	          {"v":58.0},
+	          {"v":null}
+	        ]
+	       },
+	      {
+	        "c":[
+	          {"v":1.0},
+	          {"v":"sensetecnic.mule1"},
+	          {"v":new Date(2014,3,28,16,20,20)},
+	          {"v":49.22307},
+	          {"v":-123.16276},
+	          {"v":58.0},
+	          {"v":null}
+	        ]
+	      }
+	    ],
 	    "p": {
 	      "lastId": "2014-06-19T22:45:36.281Z"
 	    }
