@@ -273,7 +273,7 @@ To add new members to an organization, post a JSON array of usernames:
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - **201 Created** on success.
+	  - **204 No Content** on success.
 	  
 |
 
@@ -320,7 +320,7 @@ To remove members from an organization, DELETE a JSON array of usernames:
 	* - **Method**
 	  - DELETE
 	* - **Returns**
-	  - **200 OK** on success. A JSON object in the response body containing a list of usernames.
+	  - **204 No Content** on success. A JSON object in the response body containing a list of usernames.
 	  
 |
 

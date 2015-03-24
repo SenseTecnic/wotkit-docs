@@ -8,8 +8,7 @@
 Sensor Data
 ==============
 
-In the WoTKit, *sensor data* consists of a timestamp followed by one or more named fields. There are a number of
-reserved fields supported by the WoTKit:
+In the WoTKit, *sensor data* consists of a timestamp followed by one or more named fields. There are a number of reserved fields supported by the WoTKit:
 
 .. list-table::
   :widths: 25, 15, 50
@@ -66,8 +65,9 @@ Sending New Data
 To send new data to a sensor, POST name value pairs corresponding to the data fields
 to the ``/sensors/{sensorname}/data`` URL.
 
-There is no need to provide a timestamp since it will be assigned by the server.
-Data posted to the system will be processed in real time.
+Any fields marked as *required* must be provided, or an error will be returned. There is no need to provide a timestamp since it will be assigned by the server. Data posted to the system will be processed in real time. 
+
+.. note:: When sending name value pairs that are not specified by the sensor's fields the server will save the data without a type. When adding a new field after sending this data WoTKit will make an attempt to cast the recorded data to the type specified by the new field.
 
 To send new data:
 
@@ -106,11 +106,13 @@ Sending Bulk Data
 ------------------
 
 To send a range of data, you PUT data (rather than POST) data into the system.
-Note that data PUT into the WoTKit will not be processed in real time, since it occurred in the past
 
-* The data sent must contain a list of JSON objects containing a timestamp and a value.
+* The data sent must contain a list of JSON objects, any fields marked as *required* in the sensor fields must be contained in each JSON object.
 * If providing a single piece of data, existing data with the provided timestamp will be deleted and replaced. Otherwise, the new data will be added.
 * If providing a range of data, any existing data within this timestamp range will be deleted and replaced by the new data.
+
+
+.. note:: The data sent does not require a timestamp. If the timestamp is omitted WoTKit will use the current server time. Again, any fields marked as *required* must be provided.
 
 To update data:
 

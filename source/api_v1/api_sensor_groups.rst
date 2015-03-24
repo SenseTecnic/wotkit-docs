@@ -7,7 +7,7 @@ Sensor Groups
 =============
 Sensor Groups are used to logically organize related sensors. Any sensor can be a member of many groups.
 
-Currently, all Sensor Groups have **public** visibility, but **only** the **owner** (creator) can add/remove sensors from the group.
+Currently, all Sensor Groups have **private** visibility, and **only** the **owner** (creator) can add/remove sensors from the group, or make a group **public**.
 
 Sensor Groups can be manipulated using a REST API in the following section
 
@@ -39,7 +39,7 @@ All request body and response bodies use JSON. The following fields are present:
     - **longName**
     - String[,255]
     - A readable name used for visual interfaces.
-  * - (*REQUIRED*)
+  * - (*READ-ONLY*)
     - **owner**
     - String[4,50]
     - The name of the group's owner. This field is set by the system and cannot be modified.
@@ -58,16 +58,31 @@ All request body and response bodies use JSON. The following fields are present:
 
 An example of a Sensor Group JSON would be as follows:
 
-  {
-    id: 49,
-    name: "water-sensor",
-    longName: "A water sensor",
-    owner: "robertl",
-    description: "This is a short description",
-    imageUrl: "http://someurl.com/water-sensor.jpg"
-    sensors: []
-  }
+.. code-block:: python
 
+	{
+	  "id": 602,
+	  "name": "test",
+	  "longName": "test",
+	  "description": "test",
+	  "tags": [
+	    "group",
+	    "test"
+	  ],
+	  "imageUrl": "",
+	  "latitude": 49.25,
+	  "longitude": -123.1,
+	  "visibility": "PUBLIC",
+	  "owner": "sensetecnic",
+	  "lastUpdate": "1970-01-01T00:00:00.000Z",
+	  "created": "2014-03-27T23:29:51.479Z",
+	  "metadata": {
+	    "meta": "data"
+	  },
+	  "childCount": 0,
+	  "things": [],
+	  "thingType": "GROUP"
+	}
 
 .. _list-groups-label:
 
@@ -95,8 +110,7 @@ Provides a list of groups on the system as an array using the JSON format specif
 
 Viewing a Single Sensor Group
 -----------------------------
-Similar to listing a group, but retrieving only a single sensor. Replace ``{group-name}``
-with ``group.id`` or ``group.name``. The API accepts both formats
+Similar to listing a group, but retrieving only a single sensor. Replace ``{group-name}`` with the group's ``{id}`` integer or ``{owner}.{name}`` string. The API accepts both formats
 
 .. list-table::
   :widths: 10, 80
@@ -111,7 +125,7 @@ with ``group.id`` or ``group.name``. The API accepts both formats
 .. admonition:: example
 
   .. parsed-literal::
-    curl --user {id}:{password} --request GET ':wotkit-api-v1:`groups`'
+    curl --user {id}:{password} --request GET ':wotkit-api-v1:`groups`/{group-name}'
 
 
 .. _create-sensor-group-label:

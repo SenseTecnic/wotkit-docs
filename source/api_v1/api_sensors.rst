@@ -134,81 +134,62 @@ Output:
 .. code-block:: python
 
 	[
-	  {
-		"tags":["data","vancouver","canada"],
-			"latitude":0.0,
-			"longitude":0.0,
-			"longName":"api-data-test-1",
-			"lastUpdate":"2013-01-26T01:55:36.514Z",
-			"name":"api-data-test-1",
-			"fields":	
-				[{"required":true, "longName":"latitude", 
-				  "lastUpdate":"2013-01-26T01:55:36.514Z", 
-				  "name":"lat", "value":39.0, "type":"NUMBER","index":0},
-				{"required":true,"longName":"longitude",
-				 "lastUpdate":"2013-01-26T01:55:36.514Z",
-				 "name":"lng","value":85.0,"type":"NUMBER","index":1},
-				{"required":true,"longName":"Data",
-				 "lastUpdate":"2013-01-26T01:55:36.514Z
-				 "name":"value","value":20.0,"type":"NUMBER","index":2},
-				{"required":false,"longName":"Message",
-				 "lastUpdate":"2013-01-26T01:55:36.514Z",
-				 "name":"message","value":"test message to be active 164",
-				 "type":"STRING","index":3}],
-		"id":69,
-		"visibility":"PUBLIC",
-		"owner":"roseyr",
-		"description":"api-data-test-1"
-	  },
-		
-	  {
-		"tags":["data","canada","edmonton"],
-		"latitude":0.0,
-		"longitude":0.0,
-		"longName":"api-data-test-2",
-		"lastUpdate":"2013-01-26T01:55:42.400Z",
-		"name":"api-data-test-2",
-		"fields":	
-			[{"required":true,"longName":"latitude",
-			  "lastUpdate":"2013-01-26T01:55:37.537Z", 
-			  "name":"lat","value":65.0,"type":"NUMBER","index":0},
-			{"required":true,"longName":"longitude",
-			 "lastUpdate":"2013-01-26T01:55:37.537Z",
-			 "name":"lng","value":74.0,"type":"NUMBER","index":1},
-			{"required":true,"longName":"Data",
-			 "lastUpdate":"2013-01-26T01:55:37.537Z",
-			 "name":"value","value":82.0,"type":"NUMBER","index":2},	
-			{"required":false,"longName":"Message",
-			 "lastUpdate":"2013-01-26T01:55:37.537Z",
-			 "name":"message","value":"test message to be active 110",
-			 "type":"STRING","index":3}],
-		"id":70,
-		"visibility":"PUBLIC",
-		"owner":"roseyr",
-		"description":"api-data-test-1"
-	  },
-		
-	  {
-		"tags":["data","canada","winnipeg"],
-		"latitude":0.0,
-		"longitude":0.0,
-		"longName":"api-data-test-3",
-		"lastUpdate":"2013-01-26T01:55:34.488Z",
-		"name":"api-data-test-3",
-		"fields":
-			[{"required":true,"longName":"latitude","name":"lat","value":0.0,
-			  "type":"NUMBER","index":0},	
-			{"required":true,"longName":"longitude","name":"lng","value":0.0,
-			 "type":"NUMBER","index":1},	
-			{"required":true,"longName":"Data","name":"value","value":0.0,
-			 "type":"NUMBER","index":2},	
-			{"required":false,"longName":"Message","name":"message",
-			 "type":"STRING","index":3}],
-		"id":71,
-		"visibility":"PUBLIC",
-		"owner":"roseyr",
-		"description":"api-data-test-3"
-	  }
+	 {
+	  "id": 71,
+	  "name": "api-data-test",
+	  "longName": "api-data-test",
+	  "description": "api-data-test",
+	  "tags": [
+	    "canada",
+	    "data",
+	    "winnipeg"
+	  ],
+	  "latitude": 0,
+	  "longitude": 0,
+	  "visibility": "PUBLIC",
+	  "owner": "sensetecnic",
+	  "lastUpdate": "2013-03-09T03:12:35.438Z",
+	  "created": "2013-07-01T23:17:37.000Z",
+	  "subscriberNames": [],
+	  "fields": [
+	    {
+	      "name": "lat",
+	      "longName": "latitude",
+	      "type": "NUMBER",
+	      "index": 0,
+	      "required": false,
+	      "value": 0
+ 	    },
+	    {
+	      "name": "lng",
+	      "longName": "longitude",
+	      "type": "NUMBER",
+	      "index": 1,
+	      "required": false,
+	      "value": 0
+	    },
+	    {
+	      "name": "value",
+	      "longName": "Data",
+	      "type": "NUMBER",
+	      "index": 2,
+	      "required": true,
+	      "value": 5,
+	      "lastUpdate": "2013-03-09T03:12:35.438Z"
+	    },
+	    {
+	      "name": "message",
+	      "longName": "Message",
+	      "type": "STRING",
+	      "index": 3,
+	      "required": false,
+	      "value": "hello",
+	      "lastUpdate": "2013-03-09T03:12:35.438Z"
+ 	    }
+	  ],
+	  "publisher": "sensetecnic",
+	  "thingType": "SENSOR"
+	 }
 	]
 
 
@@ -246,31 +227,76 @@ Output:
 .. code-block:: python
 
 	{
-		"name":"mule1",
-		"fields":[
-			{"name":"lat","value":49.20532,"type":"NUMBER","index":0,
-			 "required":true,"longName":"latitude",
-			 "lastUpdate":"2012-12-07T01:47:18.639Z"},
-			{"name":"lng","value":-123.1404,"type":"NUMBER","index":1,
-			 "required":true,"longName":"longitude",
-			 "lastUpdate":"2012-12-07T01:47:18.639Z"},
-			{"name":"value","value":58.0,"type":"NUMBER","index":2,
-			 "required":true,"longName":"Data",
-			 "lastUpdate":"2012-12-07T01:47:18.639Z"},
-			{"name":"message","type":"STRING","index":3,
-			 "required":false,"longName":"Message"}
-		],
-		"id":1,
-		"visibility":"PUBLIC",
-		"owner":"sensetecnic",
-		"description":"A big yellow taxi that travels 
-		               from Vincent's house to UBC and then back.",
-		"longName":"Big Yellow Taxi",
-		"latitude":51.060386316691,
-		"longitude":-114.087524414062,
-		"lastUpdate":"2012-12-07T01:47:18.639Z"}
+	  "id": 1,
+	  "name": "mule1",
+	  "longName": "Yellow Taxi 2",
+	  "description": "A big yellow taxi that travels from Vincent's house to UBC and then back.",
+	  "tags": [
+	    "gps",
+	    "taxi"
+	  ],
+	  "imageUrl": "",
+	  "latitude": 51.06038631669101,
+	  "longitude": -114.087524414062,
+	  "visibility": "PUBLIC",
+	  "owner": "sensetecnic",
+	  "lastUpdate": "2014-06-19T22:45:36.556Z",
+	  "created": "2013-07-01T23:17:37.000Z",
+	  "subscriberNames": [
+	    "mike",
+	    "fred",
+	    "nhong",
+	    "smith",
+	    "roseyr",
+	    "mitsuba",
+	    "rymndhng",
+	    "lchyuen",
+	    "test",
+	    "lesula"
+	  ],
+	  "metadata": {},
+	  "fields": [
+	    {
+	      "name": "lat",
+	      "longName": "latitude",
+	      "type": "NUMBER",
+	      "index": 0,
+	      "units": "degrees",
+	      "required": false,
+	      "value": 49.22288,
+	      "lastUpdate": "2014-04-28T16:20:23.891Z"
+	    },
+	    {
+	      "name": "lng",
+	      "longName": "longitude",
+	      "type": "NUMBER",
+	      "index": 1,
+	      "units": "degrees",
+	      "required": false,
+	      "value": -123.16246,
+	      "lastUpdate": "2014-04-28T16:20:23.891Z"
+	    },
+	    {
+	      "name": "value",
+	      "longName": "Speed",
+	      "type": "NUMBER",
+	      "index": 2,
+	      "units": "km/h",
+	      "required": true,
+	      "value": 10,
+	      "lastUpdate": "2014-06-19T22:45:36.281Z"
+	    },
+	    {
+	      "name": "message",
+	      "longName": "Message",
+	      "type": "STRING",
+	      "index": 3,
+	      "required": false
+	    }
+	  ],
+	  "publisher": "sensetecnic",
+	  "thingType": "SENSOR"
 	}
-
 
 .. index:: Sensor Registration
 
@@ -341,8 +367,7 @@ The JSON object has the following fields:
 		--data-binary @test-sensor.txt ':wotkit-api-v1:`sensors`'
 
 
-For this example, the file *test-sensor.txt* contains the following.  This is the minimal information needed to
-register a sensor resource.
+For this example, the file *test-sensor.txt* contains the following.
 
 .. code-block:: python
 

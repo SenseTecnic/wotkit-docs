@@ -161,7 +161,8 @@ switch based on the message received.
 	conn = httplib.HTTPConnection("wotkit.sensetecnic.com")
 	base64string = base64.encodestring('%s:%s' % ('{id}', '{password}'))[:-1]
 	authheader =  "Basic %s" % base64string
-        #in some clients (<Python 2.6) params must be used to force sending Content-Length header
+        # In some clients (<Python 2.6) params must be used to force sending Content-Length header
+        # so, we'll use dummy params.
         params = urllib.urlencode({'@type': 'subscription'})  
 	headers = {'Authorization': authheader}
 		   

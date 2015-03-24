@@ -20,13 +20,13 @@ Each sensor has the following default fields:
 	* - 
 	  - Field Name
 	  - Information	
-	* - (*REQUIRED*)
+	* - (*OPTIONAL*)
 	  - value 
 	  - The numerical data for the sensor.
-	* - (*REQUIRED*)
+	* - (*OPTIONAL*)
 	  - lat 
 	  - The latitude of the sensor.
-	* - (*REQUIRED*)
+	* - (*OPTIONAL*)
 	  - lng 
 	  - The longitude of the sensor.
 	* - (*OPTIONAL*)
