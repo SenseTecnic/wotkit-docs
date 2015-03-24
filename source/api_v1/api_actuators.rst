@@ -110,6 +110,7 @@ Example subscription id returned:
 
 .. index:: Actuator Polling, Controller Polling
 
+
 Query an Actuator
 ###################
 	
