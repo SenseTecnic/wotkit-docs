@@ -92,7 +92,7 @@ The current query parameters are as follows:
 	* - text
 	  - text to search for in the name, long name and description
 	* - active
-	  - when true, only returns sensors that have been updated in the last 15 minutes.
+	  - when true it returns sensors that have been updated in the last 15 minutes; when false it returns sensors that have *not* been updated in the last 15 minutes.
 	* - offset
 	  - offset into list of sensors for paging
 	* - limit
@@ -103,6 +103,8 @@ The current query parameters are as follows:
 		| Example: **location=56.89,-114.55:17.43,-106.219**
 
 |
+
+.. note:: If active is ommited the query will not evaluate if a sensor has, or has not, been updated in the last 15 minutes.
 
 To query for sensors, add query parameters after the sensors URL as follows:
 
