@@ -1,7 +1,9 @@
 .. _api_inbox:
 
+
 .. index:: Inbox
-	seealso: Alerts
+
+.. _inbox-label:
 
 Inbox
 =====
@@ -29,10 +31,11 @@ An inbox message has the following attributes:
 	  - the flag of whether the message is read 
 	* - sent
 	  - the flag of whether an email is sent
-	
-.. _get_inbox:
+
 
 .. index:: Inbox Message Query
+
+.. _get_inbox-label:
 
 Listing Inbox Messages of an User
 ---------------------------------
@@ -43,7 +46,7 @@ To view a list of "inbox messages" of an user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`v2/inbox`
+	  - :wotkit-api-v2:`inbox`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -51,7 +54,7 @@ To view a list of "inbox messages" of an user:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - Appropriate HTTP status code; OK 200 - if successful
+	  - **200 OK** if successful. A JSON object in the response body containing a list of messages.
 	  
 |
 
@@ -59,7 +62,7 @@ To view a list of "inbox messages" of an user:
 
 	.. parsed-literal::
 	
-		curl --user {id}:{password} ":wotkit-api:`v2/inbox`"
+		curl --user {id}:{password} ":wotkit-api-v2:`inbox`"
 
 
 

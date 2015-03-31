@@ -1,5 +1,7 @@
 .. _api_tags:
 
+.. _tags-label:
+
 Tags
 =====
 
@@ -52,7 +54,7 @@ To query for tags, add query parameters after the tags URL as follows:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`tags?{query}`
+	  - :wotkit-api-v1:`tags?{query}`
 	* - **Privacy**
 	  - Public or Private
 	* - **Format**
@@ -60,7 +62,7 @@ To query for tags, add query parameters after the tags URL as follows:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - On error, an appropriate HTTP status code; On success, OK 200 and a list of tag count objects matching the query.
+	  - **200 OK** on success. A JSON object in the response body containing a list of tag count objects matching the query.
 	  
 |
 
@@ -71,7 +73,7 @@ To query for all tags that contain the text *bicycles* use the URL:
 	.. parsed-literal::
 	
 		curl --user {id}:{password} 
-		":wotkit-api:`tags?text=bicycles`"
+		":wotkit-api-v1:`tags?text=bicycles`"
 
 
 Output:

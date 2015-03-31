@@ -182,7 +182,9 @@ rst_prolog = """
 """
 
 #Global Links
-extlinks = {'wotkit-api': ('http://wotkit.sensetecnic.com/api/%s', None),
+extlinks = {'wotkit-api-v1': ('http://wotkit.sensetecnic.com/api/v1/%s', None),
+            'wotkit-api-v2': ('http://wotkit.sensetecnic.com/api/v2/%s', None),
+            'wotkit-api': ('http://wotkit.sensetecnic.com/api/v1/%s', None),	    
             'wotkit': ('http://wotkit.sensetecnic.com/wotkit/%s', None)}
 
 

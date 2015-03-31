@@ -1,9 +1,5 @@
 .. _api_users:
 
-.. NOTE: This Section has been removed from the public Docs, as it's only relevant for admins.
-
-.. _users-label:
-
 Users
 =======
 
@@ -41,7 +37,7 @@ To query for users, add query parameters after the sensors URL as follows:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api-v1:`users?{query}`
+	  - :wotkit-api:`users?{query}`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -49,11 +45,11 @@ To query for users, add query parameters after the sensors URL as follows:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - **200 OK** on success. A JSON object in the response body containing a list of users matching the query.
+	  - On error, an appropriate HTTP status code; On success, OK 200 and a list of users matching the query.
 	  
 |
 
-.. _view_user-label:
+.. _get_user:
 
 Viewing a Single User
 ----------------------
@@ -64,7 +60,7 @@ To view a single user, query by username or id as follows:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api-v1:`users/{username}`
+	  - :wotkit-api:`users/{username}`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -72,7 +68,7 @@ To view a single user, query by username or id as follows:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - **200 OK** if successful. A JSON object in the response body describing a user.
+	  - Appropriate HTTP status code; OK 200 - if successful
 	  
 |
 
@@ -81,7 +77,7 @@ To view a single user, query by username or id as follows:
 	.. parsed-literal::
 		
 		curl --user {id}:{password} 
-		":wotkit-api-v1:`users/1`"
+		":wotkit-api:`users/1`"
 
 
 Output:
@@ -101,9 +97,9 @@ Output:
 	}
 
 
-.. index:: User Creation
+.. _create_user:
 
-.. _create_user-label:
+.. index:: User Creation
 
 Creating/Registering a User
 ----------------------------
@@ -133,9 +129,9 @@ is a JSON object with the following fields:
 	* - (*REQUIRED*)
 	  - password 
 	  - Password of the user. Can be updated.
-        * - (*REQUIRED*)
+        * - (*OPTIONAL*)
 	  - timeZone 
-	  - A timezone must be provided, for example ``UTC``. Can be updated.
+	  - A timezone can be provided, if not provided it will default to UTC. Can be updated.
 |
 
 To create a user:
@@ -144,7 +140,7 @@ To create a user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api-v1:`users`
+	  - :wotkit-api:`users`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -152,14 +148,13 @@ To create a user:
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - **201 Created** if successful; **400 Bad Request** if user is invalid; **409 Conflict** if user with the same username already exists.
+	  - HTTP status code; Created 201 if successful; Bad Request 400 if user is invalid; Conflict 409 if user with the same username already exists
 	  
 |
 
+.. _update_user:
 
 .. index:: User Updating
-
-.. _update_user-label:
 
 Updating a User
 -----------------
@@ -173,7 +168,7 @@ To update a user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api-v1:`users/{username}`
+	  - :wotkit-api:`users/{username}`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -181,14 +176,13 @@ To update a user:
 	* - **Method**
 	  - PUT
 	* - **Returns**
-	  - **204 No Content** if successful.
+	  - HTTP status code; No Content 204 if successful
 	  
 |
 
+.. _delete_user:
 
 .. index:: User Deletion
-
-.. _delete_user-label:
 
 Deleting a User
 ----------------
@@ -201,7 +195,7 @@ To delete a user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api-v1:`users/{username}`
+	  - :wotkit-api:`users/{username}`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -209,6 +203,6 @@ To delete a user:
 	* - **Method**
 	  - DELETE
 	* - **Returns**
-	  - **204 No Content** if successful.
+	  - HTTP status code; No Response 204 if successful
 	  
 |

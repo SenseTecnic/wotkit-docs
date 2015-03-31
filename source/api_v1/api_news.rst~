@@ -1,10 +1,7 @@
 .. _api_news:
 
-
 .. index:: News
 	seealso: News; Statistics
-
-.. _news-label:
 
 News
 ======
@@ -15,7 +12,7 @@ The "news" resource provides a list of interesting and recent activities in the 
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api-v1:`news`
+	  - :wotkit-api:`news`
 	* - **Privacy**
 	  - Public
 	* - **Format**
@@ -23,7 +20,7 @@ The "news" resource provides a list of interesting and recent activities in the 
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - **200 OK** if successful. A JSON object in the response body containing  a list of news items.
+	  - Appropriate HTTP status code; OK 200 - if successful
 	  
 |
 
@@ -31,7 +28,7 @@ The "news" resource provides a list of interesting and recent activities in the 
 
 	.. parsed-literal::
 	
-		curl ":wotkit-api-v1:`news`"
+		curl ":wotkit-api:`news`"
 
 
 Output:

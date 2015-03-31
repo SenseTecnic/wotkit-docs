@@ -3,6 +3,8 @@
 .. index:: Alerts
 	seealso: News; Statistics
 
+.. _alerts-label:
+
 Alerts
 ======
 
@@ -66,10 +68,11 @@ An alert condition is composed of a sensor field, an operator for evaluation, an
 
 	* - value
 	  - value that the operator compares with
-	
-.. _get_alerts:
+
 
 .. index:: Alerts Query
+
+.. _get_alerts-label:
 
 Listing Alerts of an User
 -------------------------
@@ -80,7 +83,7 @@ To view a list of "alerts" created by an user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`v2/alerts`
+	  - :wotkit-api-v2:`alerts`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -88,7 +91,7 @@ To view a list of "alerts" created by an user:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - Appropriate HTTP status code; OK 200 - if successful
+	  - **200 OK** if successful. A JSON object in the response body containing a list of alerts.
 	  
 |
 
@@ -96,7 +99,7 @@ To view a list of "alerts" created by an user:
 
 	.. parsed-literal::
 	
-		curl --user {id}:{password} ":wotkit-api:`v2/alerts`"
+		curl --user {id}:{password} ":wotkit-api-v2:`alerts`"
 
 
 
@@ -151,9 +154,10 @@ Sample Output:
         ]
     }]
 
-.. _get_alerts_by_id:
 
 .. index:: Alerts Query by ID
+
+.. _get_alerts_by_id-label:
 
 Viewing an Alert
 ----------------
@@ -163,7 +167,7 @@ To view an alert, query the alert by its id as followed:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`v2/alerts/{alert id}`
+	  - :wotkit-api-v2:`alerts/{alert id}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -171,7 +175,7 @@ To view an alert, query the alert by its id as followed:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - Appropriate HTTP status code; OK 200 - if successful
+	  - **200 OK** if successful. A JSON object in the response body describing an alert.
 	  
 |
 
@@ -180,7 +184,7 @@ To view an alert, query the alert by its id as followed:
 	.. parsed-literal::
 
 		curl --user {id}:{password}
-		":wotkit-api:`v2/alerts/5`"
+		":wotkit-api-v2:`alerts/5`"
 
 Output:
 
@@ -207,9 +211,10 @@ Output:
         ]
     }
 
-.. _create_alert:
 
 .. index:: Create Alert
+
+.. _create_alert-label:
 
 Creating Alerts
 ---------------
@@ -225,7 +230,7 @@ To create an alert:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`v2/alerts`
+	  - :wotkit-api-v2:`alerts`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -233,14 +238,14 @@ To create an alert:
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - HTTP status code; Created 201 if successful; Bad Request 400 if sensor is invalid; Conflict 409 if alert with the same name already exists
+	  - **201 Created** if successful; **400 Bad Request** if sensor is invalid; **409 Conflict** if alert with the same name already exists.
 
 .. admonition:: example1
 
 	.. parsed-literal::
 
 		curl --user {id}:{password} --request POST --header "Content-Type: application/json" 
-		--data-binary @test-alert.txt ':wotkit-api:`v2/alerts`'
+		--data-binary @test-alert.txt ':wotkit-api-v2:`alerts`'
 
 
 For this example, the file *test-alert.txt* contains the following.  This is the minimal information needed to create an alert.
@@ -283,9 +288,11 @@ For this example, the file *test-alert.txt* contains the following.  This is the
 		}
 		]
 	}
-.. _update_alert:
+
 
 .. index:: Update Alert
+
+.. _update_alert-label:
 
 Updating Alerts
 ---------------
@@ -302,7 +309,7 @@ To update an alert owned by the current user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`v2/alerts/{alert id}`
+	  - :wotkit-api-v2:`v2/alerts/{alert id}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -310,7 +317,7 @@ To update an alert owned by the current user:
 	* - **Method**
 	  - PUT
 	* - **Returns**
-	  - HTTP status code; No Content 204 if successful
+	  - **204 No Content** if successful.
 
 |
 
@@ -321,7 +328,7 @@ For instance, to update an alert:
 	.. parsed-literal::
 
 		curl --user {id}:{password} --request PUT --header "Content-Type: application/json" 
-		--data-binary @update-alert.txt ':wotkit-api:`v2/alerts/{alert id}`'
+		--data-binary @update-alert.txt ':wotkit-api-v2:`alerts/{alert id}`'
 
 
 The file *update-alert.txt* would contain the following:
@@ -334,9 +341,10 @@ The file *update-alert.txt* would contain the following:
 	}
 
 
-.. _delete_alert:
 
 .. index:: Delete Alert
+
+.. _delete_alert-label:
 
 Deleting Alerts
 ---------------
@@ -348,7 +356,7 @@ To delete an alert owned by the current user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`v2/alertss/{alert id}`
+	  - :wotkit-api-v2:`alerts/{alert id}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -356,7 +364,7 @@ To delete an alert owned by the current user:
 	* - **Method**
 	  - DELETE
 	* - **Returns**
-	  - HTTP status code; No Response 204 if successful
+	  - **204 No Response** if successful.
 
 |
 
@@ -365,5 +373,5 @@ To delete an alert owned by the current user:
 	.. parsed-literal::
 
 		curl --user {id}:{password} --request DELETE 
-		':wotkit-api:`v2/alerts/{alert id}`'
+		':wotkit-api-v2:`alerts/{alert id}`'
 

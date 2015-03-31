@@ -1,18 +1,14 @@
 .. _api_sensor_groups:
 
-
-.. _sensor-groups-label:
-
 Sensor Groups
 =============
 Sensor Groups are used to logically organize related sensors. Any sensor can be a member of many groups.
 
-Currently, all Sensor Groups have **private** visibility, and **only** the **owner** (creator) can add/remove sensors from the group, or make a group **public**.
+Currently, all Sensor Groups have **public** visibility, but **only** the **owner** (creator) can add/remove sensors from the group.
 
 Sensor Groups can be manipulated using a REST API in the following section
 
-
-.. _sensor-group-format-label:
+.. _api_sensor_group_format:
 
 Sensor Group Format
 -------------------
@@ -39,19 +35,13 @@ All request body and response bodies use JSON. The following fields are present:
     - **longName**
     - String[,255]
     - A readable name used for visual interfaces.
-  * - (*READ-ONLY*)
+  * - (*REQUIRED*)
     - **owner**
     - String[4,50]
     - The name of the group's owner. This field is set by the system and cannot be modified.
-<<<<<<< HEAD
-  * - **description**
-    - String[,400]
-    - optional
-=======
   * - (*OPTIONAL*)
     - **description**
     - String[,255]
->>>>>>> 1.9.0
     - A simple description of the group
   * - (*OPTIONAL*)
     - **imageUrl**
@@ -60,85 +50,63 @@ All request body and response bodies use JSON. The following fields are present:
   * - (*OPTIONAL*)
     - **sensors**
     - Array[Sensor]
-    - Contains a JSON list of sensors. This field is only useful for viewing sensors. To append/remove sensors from Sensor Groups, refer to :ref:`sensor-groups-add-sensor-label`.
+    - Contains a JSON list of sensors. This field is only useful for viewing sensors. To append/remove sensors from Sensor Groups, refer to :ref:`api_sensor_groups_add_sensor`.
 
-An example of a Sensor Group JSON would be as follows:
+An example of a Sensor Group JSON would be follows::
 
-.. code-block:: python
-
-	{
-	  "id": 602,
-	  "name": "test",
-	  "longName": "test",
-	  "description": "test",
-	  "tags": [
-	    "group",
-	    "test"
-	  ],
-	  "imageUrl": "",
-	  "latitude": 49.25,
-	  "longitude": -123.1,
-	  "visibility": "PUBLIC",
-	  "owner": "sensetecnic",
-	  "lastUpdate": "1970-01-01T00:00:00.000Z",
-	  "created": "2014-03-27T23:29:51.479Z",
-	  "metadata": {
-	    "meta": "data"
-	  },
-	  "childCount": 0,
-	  "things": [],
-	  "thingType": "GROUP"
-	}
-
-.. _list-groups-label:
+  {
+    id: 49,
+    name: "water-sensor",
+    longName: "A water sensor",
+    owner: "robertl",
+    description: "This is a short description",
+    imageUrl: "http://someurl.com/water-sensor.jpg"
+    sensors: []
+  }
 
 List Groups
 -----------
-Provides a list of groups on the system as an array using the JSON format specified in :ref:`sensor-group-format-label`
+Provides a list of groups on the system as an array using the JSON format specified in :ref:`api_sensor_group_format`
 
 .. list-table::
   :widths: 10, 80
 
   * - **URL**
-    - :wotkit-api-v1:`groups/`
+    - :wotkit-api:`groups/`
   * - **Method**
     - GET
   * - **Returns**
-    - **200 OK** if successul. A JSON object in the response body containing a list of groups.
+    - OK 200, along with list
 
 .. admonition:: example
 
   .. parsed-literal::
-    curl --user {id}:{password} --request GET ':wotkit-api-v1:`groups`'
+    curl --user {id}:{password} --request GET ':wotkit-api:`groups`'
 
-
-.. _view-sensor-group-label:
 
 Viewing a Single Sensor Group
 -----------------------------
-Similar to listing a group, but retrieving only a single sensor. Replace ``{group-name}`` with the group's ``{id}`` integer or ``{owner}.{name}`` string. The API accepts both formats
+Similar to listing a group, but retrieving only a single sensor. Replace ``{group-name}``
+with ``group.id`` or ``group.name``. The API accepts both formats
 
 .. list-table::
   :widths: 10, 80
 
   * - **URL**
-    - :wotkit-api-v1:`groups/{group-name}`
+    - :wotkit-api:`groups/{group-name}`
   * - **Method**
     - GET
   * - **Returns**
-    - **200 OK** if successful. A JSON object in the response body describing the sensor.
+    - OK 200
 
 .. admonition:: example
 
   .. parsed-literal::
-    curl --user {id}:{password} --request GET ':wotkit-api-v1:`groups`/{group-name}'
-
-
-.. _create-sensor-group-label:
+    curl --user {id}:{password} --request GET ':wotkit-api:`groups`'
 
 Creating a Sensor Group
 -----------------------
-To create a sensor group, append the Sensor Group contents following :ref:`sensor-group-format-label`.
+To create a sensor group, append the Sensor Group contents following :ref:`api_sensor_group_format`.
 
 On creation, the **id** and **owner** fields are **ignored** because they are system generated.
 
@@ -146,14 +114,12 @@ On creation, the **id** and **owner** fields are **ignored** because they are sy
   :widths: 10, 80
 
   * - **URL**
-    - :wotkit-api-v1:`groups`
+    - :wotkit-api:`groups`
   * - **Method**
     - POST
   * - **Returns**
-    - **204 No Content** if successful; **409 Conflict** if a sensor with the same name exists.
+    - If a sensor with the same name exists, ERROR 409. Otherwise, OK 204.
 
-
-.. _modify-sensor-group-fields-label:
 
 Modifying Sensor Group Fields
 -----------------------------
@@ -165,33 +131,29 @@ Again, the **id** and **owner** fields in the JSON object are **ignored** if the
   :widths: 10, 80
 
   * - **URL**
-    - :wotkit-api-v1:`groups/{group-name}`
+    - :wotkit-api:`groups/{group-name}`
   * - **Method**
     - PUT
   * - **Returns**
-    - **204 No Content** if successful; **401 Unauthorized** if user has no permissions to edit group.
+    - If user has no permissions to edit group, returns UNAUTHORIZED 401, otherwise OK 204
 
-
-.. _delete-sensor-group-label:
 
 Deleting a Sensor Group
 -----------------------
 Deleting a Sensor Group is fairly trivial, assuming you are the owner of the group.
-A response body is unnecessary.
+A request body is unnecessary.
 
 .. list-table::
   :widths: 10, 80
 
   * - **URL**
-    - :wotkit-api-v1:`groups/{group-name}`
+    - :wotkit-api:`groups/{group-name}`
   * - **Method**
     - DELETE
   * - **Returns**
-    - **204 No Content** if successful; **401 Unauthorized** if user has no permissions to edit group.
+    - If user has no permissions to edit group, returns UNAUTHORIZED 401, otherwise OK 204
 
-
-
-.. _sensor-groups-add-sensor-label:
+.. _api_sensor_groups_add_sensor:
 
 Adding a Sensor to Sensor Group
 -------------------------------
@@ -204,27 +166,48 @@ be ``sensor.id``.
   :widths: 10, 80
 
   * - **URL**
-    - :wotkit-api-v1:`groups/{group-name}/sensors/{sensor-id}`
+    - :wotkit-api:`groups/{group-name}/sensors/{sensor-id}`
   * - **Method**
     - POST
-  * - **Returns**
-    - **204 No Content** if successful; **400** if sensor is already a member of sensor group; **401 Unauthorized** if user is unauthorized to edit group.
 
+The response will contain one of the following response codes.
 
-.. _sensor-groups-remove-sensor-label:
+.. list-table::
+  :widths: 10, 50
+  :header-rows: 1
+
+  * - Return Code
+    - Description
+  * - OK 204
+    - No Content is given.
+  * - 400
+    - Sensor is already a member of sensor group
+  * - 401
+    - User is unauthorized to edit group.
 
 Removing a Sensor from Sensor Group
 -----------------------------------
 
-The format is the same as :ref:`sensor-groups-add-sensor-label` except replacing ``method`` with ``DELETE``
+The format is the same as :ref:`api_sensor_groups_add_sensor` except replacing ``method`` with ``DELETE``
 
 .. list-table::
   :widths: 10, 80
 
   * - **URL**
-    - :wotkit-api-v1:`groups/{group-name}/sensors/{sensor-id}`
+    - :wotkit-api:`groups/{group-name}/sensors/{sensor-id}`
   * - **Method**
     - DELETE
-  * - **Returns**
-    - **204 No Content** if successful; **401 Unauthorized** if user is unauthorized to edit group.
+
+The response will contain one of the following codes.
+
+.. list-table::
+  :widths: 10, 50
+  :header-rows: 1
+
+  * - Return Code
+    - Description
+  * - OK 204
+    - No Content is given. If a sensor does not exist in a group, this is also returned.
+  * - 401
+    - User is unauthorized to edit group
 

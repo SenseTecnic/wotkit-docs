@@ -5,7 +5,7 @@ V1 API Reference
 
 This section contains API References for V1 of WoTKit's API. In addition to the
 documentation posted here, our API can be explored using Swagger with the
-following URL :wotkit-api:`api-docs?path=v1`.
+following URL :wotkit-api-v1:`api-docs?path=v1`.
 
 .. toctree::
 
@@ -17,9 +17,8 @@ following URL :wotkit-api:`api-docs?path=v1`.
    api_sensor_data
    api_actuators
    api_tags
-   api_users
    api_orgs
    api_sensor_groups
    api_news
    api_stats
-   api_smartstreets
+

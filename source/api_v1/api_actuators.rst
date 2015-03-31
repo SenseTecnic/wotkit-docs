@@ -43,15 +43,15 @@ pairs corresponding to the data fields to the
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}/message`
+	  - :wotkit-api-v1:`sensors/{sensorname}/message`
 	* - **Privacy**
 	  - Public or Private
 	* - **Format**
-	  - json
+	  - x-www-form-urlencoded
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - On success, OK 200 (no content).
+	  - **OK 200 (no content)** on success.
 	  
 |
 
@@ -86,7 +86,7 @@ In return, we receive a json object containing a subscription id.
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`control/sub/{sensor-name}`
+	  - :wotkit-api-v1:`control/sub/{sensor-name}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -94,7 +94,7 @@ In return, we receive a json object containing a subscription id.
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - On success, OK 200 with JSON containing subscription id.
+	  - **200 OK** on success. A JSON object in the response body containing subscription id.
 	  
 |
 
@@ -106,9 +106,13 @@ Example subscription id returned:
 		"subscription":1234
 	}
 
+
+
+
 .. _get_actuator:
 
 .. index:: Actuator Polling, Controller Polling
+
 
 Query an Actuator
 ###################
@@ -123,7 +127,7 @@ The server will respond on timeout, or when a control messages is received.
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`control/sub/{subscription-id}?wait={wait-time}`
+	  - :wotkit-api-v1:`control/sub/{subscription-id}?wait={wait-time}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -131,9 +135,13 @@ The server will respond on timeout, or when a control messages is received.
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - On success, OK 200 with JSON containing control messages.
+	  - **200 OK** on success. A JSON object in the response body containing control messages.
 	  
 |
+
+
+.. note:: Each subscription will be open for as long as the client that created it keeps sending long pull requests. A subscription that does not receive any requests after 5 minutes (3000 seconds) will be garbage-collected and will not be accessible after that. A client must catch this error and create a new subscription if this occurs.
+
 
 .. index:: Acuator Example
 
@@ -161,10 +169,13 @@ switch based on the message received.
 	conn = httplib.HTTPConnection("wotkit.sensetecnic.com")
 	base64string = base64.encodestring('%s:%s' % ('{id}', '{password}'))[:-1]
 	authheader =  "Basic %s" % base64string
+        # In some clients (<Python 2.6) params must be used to force sending Content-Length header
+        # so, we'll use dummy params.
+        params = urllib.urlencode({'@type': 'subscription'})  
 	headers = {'Authorization': authheader}
 		   
 	#subscribe to the controller and get the subscriber ID
-	conn.request("POST", "/api/control/sub/" + actuator, headers=headers)
+        conn.request("POST", "/api/v1/control/sub/" + actuator, params, headers=headers)
 	response = conn.getresponse()
 	data = response.read()
 
@@ -174,7 +185,7 @@ switch based on the message received.
 	#loop to long poll for actuator messages
 	while 1:
 		print "request started for subId: " + str(subId)
-		conn.request("GET", "/api/control/sub/" + str(subId) + "?wait=10", headers=headers)
+		conn.request("GET", "/api/v1/control/sub/" + str(subId) + "?wait=10", headers=headers)
 		response = conn.getresponse()
 		data = response.read()
 

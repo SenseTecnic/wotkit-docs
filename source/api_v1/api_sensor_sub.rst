@@ -1,5 +1,8 @@
 .. _api_sensor_subs:
 
+
+.. _sensor-subscriptions-label:
+
 Sensor Subscriptions
 =====================
 
@@ -18,7 +21,7 @@ To view sensors that the current user is subscribed to:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`subscribe`
+	  - :wotkit-api-v1:`subscribe`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -26,13 +29,14 @@ To view sensors that the current user is subscribed to:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - Appropriate HTTP status code; OK 200 - if successful. A JSON object containing sensors subscribed by the user will be returned in the body of the response.
+	  - **200 OK** if successful. A JSON object in the response body containing sensors subscribed by the user.
 
 |
 
-.. _sub-label:
 
 .. index:: Subscribe to a Sensor
+
+.. _sensor-subscribe-label:
 
 Subscribe
 ---------
@@ -42,7 +46,7 @@ To subscribe to a non-private sensor or private sensor owned by the current user
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`subscribe/{sensorname}`
+	  - :wotkit-api-v1:`subscribe/{sensorname}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -50,14 +54,15 @@ To subscribe to a non-private sensor or private sensor owned by the current user
 	* - **Method**
 	  - PUT
 	* - **Returns**
-	  - HTTP status code; No Content 204 if successful.
+	  - **204 No Content** if successful.
 
 |
 
-.. _unsub-label:
 
 .. index:: Unsubscribe from a Sensor
 	pair: Subscribe to a Sensor; Unsubscribe from a Sensor
+
+.. _sensor-unsubscribe-label:
 
 Unsubscribe
 -----------
@@ -67,7 +72,7 @@ To unsubscribe from a sensor:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`subscribe/{sensorname}`
+	  - :wotkit-api-v1:`subscribe/{sensorname}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -75,6 +80,6 @@ To unsubscribe from a sensor:
 	* - **Method**
 	  - DELETE
 	* - **Returns**
-	  - HTTP status code; No Content 204 if successful
+	  - **204 No Content** if successful.
 
 |

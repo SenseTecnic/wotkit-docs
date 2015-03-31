@@ -1,5 +1,8 @@
 .. _api_error_reporting:
 
+
+.. _error-reporting-label:
+
 Error Reporting
 =================
 

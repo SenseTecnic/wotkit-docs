@@ -1,6 +1,9 @@
-l.. _api_sensors:
+.. _api_sensors:
+
 
 .. index:: Sensor Fields
+
+.. _sensors-label:
 
 Sensors
 ===========
@@ -18,18 +21,17 @@ A sensor has the following attributes:
 	* - id
 	  - the numeric id of the sensor.  This may be used in the API in place of the sensor name.
 	* - name **
-	  - the owner's name for the sensor.  
-		| Note that the global name is ``{ownername}.{sensorname}``.  
-		| If you are the owner, you can refer to the sensor using only ``{sensorname}``. 
-		| To access a public sensor owned by another user or organization, you can refer to it by its numeric id
-		| or the global name, ``{ownername}.{sensorname}``.
+	  - the name of the sensor.  
+		| Note that the global name is ``{username}.{sensorname}``.  
+		| When logged in as a the owner, you can refer to the sensor using only ``{sensorname}``. 
+		| To access a public sensor created by another user, you can refer to it by its numeric id or the global name, ``{username}.{sensorname}``.
 
 	* - description **
 	  - a description of the sensor for text searches.
 	* - longName **
 	  - longer display name of the sensor.
-	* - `imageUrl`
-	  - url of the sensor image
+	* - `url`
+	  - **DEPRECATED**
 	* - latitude
 	  - the latitude location of the sensor in degrees.
 		This is a static location used for locating sensors on a map and for location-based queries.
@@ -43,17 +45,16 @@ A sensor has the following attributes:
 		This is the last time sensor data was recorded, or an actuator script polled for control messages.
 	* - visibility
 	  - | **PUBLIC**: The sensor is publicly visible
-	    | **PRIVATE**: The sensor is only visible to the owner org or user.
+	    | **ORGANIZATION**: The sensor is visible to everyone in the same organization as the sensor
+	    | **PRIVATE**: The sensor is only visible to the owner. In any case posting *data* to the sensor is restricted to the sensor's owner.
 	* - owner
-	  - the owner organization or user of the sensor
+	  - the owner of the sensor
 	* - fields
-	  - the expected data fields, their type (number or string), units and if available, last update time and value.
-	* - tags
-	  - the list of tags for the sensor
-	* - subscriberNames
-	  - list of users that have subscribed to the sensor
-	* - publisher
-	  - user that created the sensor
+	  - the expected data fields, their type (number or string), units and if available, last update time and value. (For more info: :ref:`sensor-fields-label` )
+	* - tags 
+	  - the list of tags for the sensor (For more info: :ref:`tags-label`)
+	* - data
+	  - sensor data (not shown yet)
 
 ** Required when creating a new sensor.
 
@@ -79,7 +80,7 @@ The current query parameters are as follows:
 	* - scope
 	  - | **all** - all sensors the current user has access to
 	    | **subscribed** - the sensors the user has subscribed to
-	    | **contributed** - the sensors the user has contributed to the system.
+		| **contributed** - the sensors the user has contributed to the system.
 	* - tags
 	  - list of comma separated tags
 	* - orgs
@@ -87,11 +88,11 @@ The current query parameters are as follows:
 	* - :strikethrough:`private`
 	  - **DEPRECATED**, use **visibility** instead. (*true* - private sensors only; *false* - public only`).
 	* - visibility
-	  - filter by the visibility of the sensors, either of **public** or **private**
+	  - filter by the visibility of the sensors, either of **public**, **organization**, or **private**
 	* - text
 	  - text to search for in the name, long name and description
 	* - active
-	  - when true, only returns sensors that have been updated in the last 15 minutes.
+	  - when true it returns sensors that have been updated in the last 15 minutes; when false it returns sensors that have *not* been updated in the last 15 minutes.
 	* - offset
 	  - offset into list of sensors for paging
 	* - limit
@@ -99,11 +100,11 @@ The current query parameters are as follows:
 	* - location
 	  - geo coordinates for a bounding box to search within. 
 		| Format is **yy.yyy,xx.xxx:yy.yyy,xx.xxx**, and the order of the coordinates are North,West:South,East. 
-		| Example: **location=56.89,-114.55:17.43,-106.219**.
-		| Note also that bounding boxes that cross the international date line must be split into two since
-		| the western longitude must be less than the eastern longitude value.
+		| Example: **location=56.89,-114.55:17.43,-106.219**
 
 |
+
+.. note:: If active is ommited the query will not evaluate if a sensor has, or has not, been updated in the last 15 minutes.
 
 To query for sensors, add query parameters after the sensors URL as follows:
 
@@ -111,7 +112,7 @@ To query for sensors, add query parameters after the sensors URL as follows:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors?{query}`
+	  - :wotkit-api-v1:`sensors?{query}`
 	* - **Privacy**
 	  - Public or Private
 	* - **Format**
@@ -119,7 +120,7 @@ To query for sensors, add query parameters after the sensors URL as follows:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - On error, an appropriate HTTP status code; On success, OK 204 and a list of sensor descriptions matching the query.
+	  - **200 OK** if successful. A JSON object in the response body containing a list of sensor descriptions matching the query.
 
 |
 
@@ -128,89 +129,71 @@ To query for sensors, add query parameters after the sensors URL as follows:
 	.. parsed-literal::
 
 		curl --user {id}:{password} 
-		":wotkit-api:`sensors?tags=canada`"
+		":wotkit-api-v1:`sensors?tags=canada`"
 
 Output:
 
 .. code-block:: python
 
 	[
-	  {
-		"tags":["data","vancouver","canada"],
-			"latitude":0.0,
-			"longitude":0.0,
-			"longName":"api-data-test-1",
-			"lastUpdate":"2013-01-26T01:55:36.514Z",
-			"name":"api-data-test-1",
-			"fields":	
-				[{"required":true, "longName":"latitude", 
-				  "lastUpdate":"2013-01-26T01:55:36.514Z", 
-				  "name":"lat", "value":39.0, "type":"NUMBER","index":0},
-				{"required":true,"longName":"longitude",
-				 "lastUpdate":"2013-01-26T01:55:36.514Z",
-				 "name":"lng","value":85.0,"type":"NUMBER","index":1},
-				{"required":true,"longName":"Data",
-				 "lastUpdate":"2013-01-26T01:55:36.514Z
-				 "name":"value","value":20.0,"type":"NUMBER","index":2},
-				{"required":false,"longName":"Message",
-				 "lastUpdate":"2013-01-26T01:55:36.514Z",
-				 "name":"message","value":"test message to be active 164",
-				 "type":"STRING","index":3}],
-		"id":69,
-		"visibility":"PUBLIC",
-		"owner":"roseyr",
-		"description":"api-data-test-1"
-	  },
-		
-	  {
-		"tags":["data","canada","edmonton"],
-		"latitude":0.0,
-		"longitude":0.0,
-		"longName":"api-data-test-2",
-		"lastUpdate":"2013-01-26T01:55:42.400Z",
-		"name":"api-data-test-2",
-		"fields":	
-			[{"required":true,"longName":"latitude",
-			  "lastUpdate":"2013-01-26T01:55:37.537Z", 
-			  "name":"lat","value":65.0,"type":"NUMBER","index":0},
-			{"required":true,"longName":"longitude",
-			 "lastUpdate":"2013-01-26T01:55:37.537Z",
-			 "name":"lng","value":74.0,"type":"NUMBER","index":1},
-			{"required":true,"longName":"Data",
-			 "lastUpdate":"2013-01-26T01:55:37.537Z",
-			 "name":"value","value":82.0,"type":"NUMBER","index":2},	
-			{"required":false,"longName":"Message",
-			 "lastUpdate":"2013-01-26T01:55:37.537Z",
-			 "name":"message","value":"test message to be active 110",
-			 "type":"STRING","index":3}],
-		"id":70,
-		"visibility":"PUBLIC",
-		"owner":"roseyr",
-		"description":"api-data-test-1"
-	  },
-		
-	  {
-		"tags":["data","canada","winnipeg"],
-		"latitude":0.0,
-		"longitude":0.0,
-		"longName":"api-data-test-3",
-		"lastUpdate":"2013-01-26T01:55:34.488Z",
-		"name":"api-data-test-3",
-		"fields":
-			[{"required":true,"longName":"latitude","name":"lat","value":0.0,
-			  "type":"NUMBER","index":0},	
-			{"required":true,"longName":"longitude","name":"lng","value":0.0,
-			 "type":"NUMBER","index":1},	
-			{"required":true,"longName":"Data","name":"value","value":0.0,
-			 "type":"NUMBER","index":2},	
-			{"required":false,"longName":"Message","name":"message",
-			 "type":"STRING","index":3}],
-		"id":71,
-		"visibility":"PUBLIC",
-		"owner":"roseyr",
-		"description":"api-data-test-3"
-	  }
+	 {
+	  "id": 71,
+	  "name": "api-data-test",
+	  "longName": "api-data-test",
+	  "description": "api-data-test",
+	  "tags": [
+	    "canada",
+	    "data",
+	    "winnipeg"
+	  ],
+	  "latitude": 0,
+	  "longitude": 0,
+	  "visibility": "PUBLIC",
+	  "owner": "sensetecnic",
+	  "lastUpdate": "2013-03-09T03:12:35.438Z",
+	  "created": "2013-07-01T23:17:37.000Z",
+	  "subscriberNames": [],
+	  "fields": [
+	    {
+	      "name": "lat",
+	      "longName": "latitude",
+	      "type": "NUMBER",
+	      "index": 0,
+	      "required": false,
+	      "value": 0
+ 	    },
+	    {
+	      "name": "lng",
+	      "longName": "longitude",
+	      "type": "NUMBER",
+	      "index": 1,
+	      "required": false,
+	      "value": 0
+	    },
+	    {
+	      "name": "value",
+	      "longName": "Data",
+	      "type": "NUMBER",
+	      "index": 2,
+	      "required": true,
+	      "value": 5,
+	      "lastUpdate": "2013-03-09T03:12:35.438Z"
+	    },
+	    {
+	      "name": "message",
+	      "longName": "Message",
+	      "type": "STRING",
+	      "index": 3,
+	      "required": false,
+	      "value": "hello",
+	      "lastUpdate": "2013-03-09T03:12:35.438Z"
+ 	    }
+	  ],
+	  "publisher": "sensetecnic",
+	  "thingType": "SENSOR"
+	 }
 	]
+
 
 .. _view-sensor-label:
 	
@@ -222,7 +205,7 @@ To view a single sensor, query the sensor by sensor name or id as follows:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}`
+	  - :wotkit-api-v1:`sensors/{sensorname}`
 	* - **Privacy**
 	  - Public or Private
 	* - **Format**
@@ -230,7 +213,7 @@ To view a single sensor, query the sensor by sensor name or id as follows:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - Appropriate HTTP status code; OK 200 - if successful
+	  - **200 OK** if successful. A JSON object in the response body describing a sensor.
 	  
 |
 
@@ -239,38 +222,83 @@ To view a single sensor, query the sensor by sensor name or id as follows:
 	.. parsed-literal::
 
 		curl --user {id}:{password}
-		":wotkit-api:`sensors/sensetecnic.mule1`"
+		":wotkit-api-v1:`sensors/sensetecnic.mule1`"
 
 Output:
 
 .. code-block:: python
 
 	{
-		"name":"mule1",
-		"fields":[
-			{"name":"lat","value":49.20532,"type":"NUMBER","index":0,
-			 "required":true,"longName":"latitude",
-			 "lastUpdate":"2012-12-07T01:47:18.639Z"},
-			{"name":"lng","value":-123.1404,"type":"NUMBER","index":1,
-			 "required":true,"longName":"longitude",
-			 "lastUpdate":"2012-12-07T01:47:18.639Z"},
-			{"name":"value","value":58.0,"type":"NUMBER","index":2,
-			 "required":true,"longName":"Data",
-			 "lastUpdate":"2012-12-07T01:47:18.639Z"},
-			{"name":"message","type":"STRING","index":3,
-			 "required":false,"longName":"Message"}
-		],
-		"id":1,
-		"visibility":"PUBLIC",
-		"owner":"sensetecnic",
-		"description":"A big yellow taxi that travels 
-		               from Vincent's house to UBC and then back.",
-		"longName":"Big Yellow Taxi",
-		"latitude":51.060386316691,
-		"longitude":-114.087524414062,
-		"lastUpdate":"2012-12-07T01:47:18.639Z"}
+	  "id": 1,
+	  "name": "mule1",
+	  "longName": "Yellow Taxi 2",
+	  "description": "A big yellow taxi that travels from Vincent's house to UBC and then back.",
+	  "tags": [
+	    "gps",
+	    "taxi"
+	  ],
+	  "imageUrl": "",
+	  "latitude": 51.06038631669101,
+	  "longitude": -114.087524414062,
+	  "visibility": "PUBLIC",
+	  "owner": "sensetecnic",
+	  "lastUpdate": "2014-06-19T22:45:36.556Z",
+	  "created": "2013-07-01T23:17:37.000Z",
+	  "subscriberNames": [
+	    "mike",
+	    "fred",
+	    "nhong",
+	    "smith",
+	    "roseyr",
+	    "mitsuba",
+	    "rymndhng",
+	    "lchyuen",
+	    "test",
+	    "lesula"
+	  ],
+	  "metadata": {},
+	  "fields": [
+	    {
+	      "name": "lat",
+	      "longName": "latitude",
+	      "type": "NUMBER",
+	      "index": 0,
+	      "units": "degrees",
+	      "required": false,
+	      "value": 49.22288,
+	      "lastUpdate": "2014-04-28T16:20:23.891Z"
+	    },
+	    {
+	      "name": "lng",
+	      "longName": "longitude",
+	      "type": "NUMBER",
+	      "index": 1,
+	      "units": "degrees",
+	      "required": false,
+	      "value": -123.16246,
+	      "lastUpdate": "2014-04-28T16:20:23.891Z"
+	    },
+	    {
+	      "name": "value",
+	      "longName": "Speed",
+	      "type": "NUMBER",
+	      "index": 2,
+	      "units": "km/h",
+	      "required": true,
+	      "value": 10,
+	      "lastUpdate": "2014-06-19T22:45:36.281Z"
+	    },
+	    {
+	      "name": "message",
+	      "longName": "Message",
+	      "type": "STRING",
+	      "index": 3,
+	      "required": false
+	    }
+	  ],
+	  "publisher": "sensetecnic",
+	  "thingType": "SENSOR"
 	}
-
 
 .. index:: Sensor Registration
 
@@ -287,7 +315,7 @@ To create a sensor the API end-point is:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors`
+	  - :wotkit-api-v1:`sensors`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -295,7 +323,7 @@ To create a sensor the API end-point is:
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - HTTP status code; Created 201 if successful; Bad Request 400 if sensor is invalid; Conflict 409 if sensor with the same name already exists
+	  -  **201 Created** if successful; **400 Bad Request** if sensor is invalid; **409 Conflict** if sensor with the same name already exists.
 
 The JSON object has the following fields: 
 
@@ -323,13 +351,14 @@ The JSON object has the following fields:
 	  - It will default to "PUBLIC" if not provided. If visibility is set to ORGANIZATION, a valid "organization" must be provided.
 	* - (*OPTIONAL*)
 	  - tags 
-	  -
+	  - A list of tags for the sensor (For more info: :ref:`tags-label`)
 	* - (*SEMI-OPTIONAL*)
 	  - organization 
 	  - If a visibility key is set an organization is required
 	* - (*OPTIONAL*)
 	  - fields 
-	  - 
+	  - A fields object in the format ``{"name":"test-field","type":"STRING"}`` (For more info: :ref:`sensor-fields-label`)	
+
 | 
 
 .. admonition:: example
@@ -337,11 +366,10 @@ The JSON object has the following fields:
 	.. parsed-literal::
 
 		curl --user {id}:{password} --request POST --header "Content-Type: application/json" 
-		--data-binary @test-sensor.txt ':wotkit-api:`sensors`'
+		--data-binary @test-sensor.txt ':wotkit-api-v1:`sensors`'
 
 
-For this example, the file *test-sensor.txt* contains the following.  This is the minimal information needed to
-register a sensor resource.
+For this example, the file *test-sensor.txt* contains the following.
 
 .. code-block:: python
 
@@ -355,10 +383,12 @@ register a sensor resource.
 		"longitude":-114.087524414062
 	}
 
-.. _create-multiple-sensors-label:
+
 
 .. index:: Multiple Sensor Registration
 	pair: Sensor Registration; Multiple Sensor Registration
+
+.. _create-multiple-sensors-label:
 	
 Creating/Registering multiple Sensors
 --------------------------------------
@@ -371,7 +401,7 @@ To register multiple sensors, you PUT a list of sensor resources to the url ``/s
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors`
+	  - :wotkit-api-v1:`sensors`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -379,7 +409,8 @@ To register multiple sensors, you PUT a list of sensor resources to the url ``/s
 	* - **Method**
 	  - PUT
 	* - **Returns**
-	  - HTTP status code; Created 201 if successful; Bad Request 400 if sensor is invalid; Conflict 409 if sensor with the same name already exists ; On Created 201 or some errors (not all) you will receive a JSON dictionary where the keys are the sensor names and the values are true/false depending on whether creating the sensor succeeded. For Created 201 all values will be true.
+	  - **201 Created** if successful; **400 Bad Request** if sensor is invalid; **409 Conflict** if sensor with the same name already exists ; **201 Created** and a JSON object in the response body describing a dictionary where the keys are the sensor names and the values are true/false depending on whether creating the sensor succeeded.
+
 
 .. index:: Update Sensors
 
@@ -403,7 +434,7 @@ To update a sensor owned by the current user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}`
+	  - :wotkit-api-v1:`sensors/{sensorname}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -411,7 +442,7 @@ To update a sensor owned by the current user:
 	* - **Method**
 	  - PUT
 	* - **Returns**
-	  - HTTP status code; No Content 204 if successful
+	  - **204 No Content** if successful.
 
 |
 
@@ -421,27 +452,29 @@ For instance, to update a sensor description and add tags:
 
 	.. parsed-literal::
 
-		curl --user {id}:{password} --request PUT --header "Content-Type: application/json" 
-		--data-binary @update-sensor.txt ':wotkit-api:`sensors/taxi-cab`'
-
+		curl --user {id}:{password} --request PUT 
+		--header "Content-Type: application/json"
+		--data-binary @update-sensor.txt
+		':wotkit-api-v1:`sensors/taxi-cab`'
 
 The file *update-sensor.txt* would contain the following:
 
 .. code-block:: python
 
 	{
-		"visibility":"PUBLIC",
-		"name":"taxi-cab",
-		"description":"A big yellow taxi. Updated description",
-		"longName":"Big Yellow Taxi",
-		"latitude":51.060386316691,
-		"longitude":-114.087524414062,
-		"tags": ["big", "yellow", "taxi"]
+	   "visibility":"PUBLIC",
+	   "name":"taxi-cab",
+	   "description":"A big yellow taxi. Updated description",
+	   "longName":"Big Yellow Taxi",
+	   "latitude":51.060386316691,
+	   "longitude":-114.087524414062,
+	   "tags": ["big", "yellow", "taxi"]
 	}
 
-.. _delete-sensor-label:
 
 .. index:: Delete Sensor
+
+.. _delete-sensor-label:
 
 Deleting a Sensor
 ------------------
@@ -453,7 +486,7 @@ To delete a sensor owned by the current user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api:`sensors/{sensorname}`
+	  - :wotkit-api-v1:`sensors/{sensorname}`
 	* - **Privacy**
 	  - Private
 	* - **Format**
@@ -461,7 +494,7 @@ To delete a sensor owned by the current user:
 	* - **Method**
 	  - DELETE
 	* - **Returns**
-	  - HTTP status code; No Response 204 if successful
+	  - **204 No Content** if successful.
 
 |
 
@@ -470,4 +503,4 @@ To delete a sensor owned by the current user:
 	.. parsed-literal::
 
 		curl --user {id}:{password} --request DELETE 
-		':wotkit-api:`sensors/test-sensor`'
+		':wotkit-api-v1:`sensors/test-sensor`'

@@ -3,18 +3,16 @@
 .. index:: Statistics
 	seealso: Statistics; News
 
-.. _statistics-label:
-
 Statistics
 ===========
 
-The "stats" resource provides statistics, like number of public sensors, active sensors, or new sensors. It can be accessed via:
+The "stats" resource provides statistics, like number of public sensors, active sensors, or new sensors.
 
 .. list-table::
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api-v1:`stats`
+	  - :wotkit-api:`stats`
 	* - **Privacy**
 	  - Public
 	* - **Format**
@@ -22,7 +20,7 @@ The "stats" resource provides statistics, like number of public sensors, active 
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - **200 OK** if successful. A JSON object in the response body containing describing statistics.
+	  - Appropriate HTTP status code; OK 200 - if successful
 	  
 |
 
@@ -30,7 +28,7 @@ The "stats" resource provides statistics, like number of public sensors, active 
 
 	.. parsed-literal::
 	
-		curl ":wotkit-api-v1:`stats`"
+		curl ":wotkit-api:`stats`"
 
 
 Output:

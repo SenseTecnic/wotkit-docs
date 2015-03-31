@@ -1,4 +1,10 @@
-===========
+.. _api_sensor_data:
+
+
+.. index:: Sensor Data
+
+.. _sensor-data-v2-label:
+
 Sensor Data
 ===========
 
@@ -38,7 +44,7 @@ When a new sensor is created, a number of default fields are created by the wotk
     - a text message, for example a twitter message (text).  Needed for text/newsfeed visualizations.
 
 In addition to these default fields, additional fields can be added by updating
-the *sensor fields* in the WoTKit UI or :ref:`api_sensor_fields` in the API.
+the *sensor fields* in the WoTKit UI or :ref:`sensor-fields-label` in the API.
 
 .. note::
   Python's ``time.time()`` function generates the system time in *seconds*, not
@@ -49,9 +55,10 @@ the *sensor fields* in the WoTKit UI or :ref:`api_sensor_fields` in the API.
 
   In Java: ``System.currentTime()``.
 
-.. _send-data-label:
 
 .. index:: Sensor Data Creation
+
+.. _send-data-v2-label:
 
 Sending New Data
 ----------------
@@ -69,7 +76,7 @@ To send new data:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`v2/sensors/{sensorname}/data`
+    - :wotkit-api-v2:`sensors/{sensorname}/data`
   * - **Privacy**
     - Private
   * - **Format**
@@ -77,7 +84,7 @@ To send new data:
   * - **Method**
     - POST
   * - **Returns**
-    - HTTP status code; No Response 201 (Created) if successful
+    - **201 Created** if successful.
 
 
 .. admonition:: Example
@@ -85,16 +92,16 @@ To send new data:
   .. parsed-literal::
 
       curl --user {id}:{password} --request POST -d value=5 -d lng=6 -d lat=7
-      ':wotkit-api:`sensors/test-sensor/data`'
+      ':wotkit-api-v2:`sensors/test-sensor/data`'
 
-
-.. _send-bulk-data-label:
 
 .. index:: Bulk Sensor Data
   pair: Sensor Data Creation; Bulk Sensor Data
 
+.. _send-bulk-data-v2-label:
+
 Updating a Range of Historical Data
-----------------------------------
+-----------------------------------
 
 To insert or update a range of historical data, you PUT data (rather than POST) data into the system.
 Note that data PUT into the WoTKit will not be processed in real time, since it
@@ -110,7 +117,7 @@ To update data:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`v2/sensors/{sensorname}/data`
+    - :wotkit-api-v2:`sensors/{sensorname}/data`
   * - **Privacy**
     - Private
   * - **Format**
@@ -118,7 +125,7 @@ To update data:
   * - **Method**
     - PUT
   * - **Returns**
-    - HTTP status code; No Response 204 if successful
+    - **204 No Content** if successful.
 
 |
 
@@ -143,15 +150,16 @@ Example of valid data:
   .. parsed-literal::
 
     curl --user {id}:{password} --request PUT --data-binary @data.txt
-    ':wotkit-api:`sensors/test-sensor/data`'
+    ':wotkit-api-v2:`sensors/test-sensor/data`'
 
 where *data.txt* contains JSON data similar to the above JSON array.
 
-.. _delete-data-label:
+
+.. _api-v2-get-single-data:
 
 .. index:: Sensor Data Deletion
 
-.. _api-v2-get-single-data:
+.. _delete-data-v2-label:
 
 Retrieving a Single Data Item
 -----------------------------
@@ -162,7 +170,7 @@ the following query.
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`v2/sensors/{sensor-name}/data/{data_id}`
+    - :wotkit-api-v2:`sensors/{sensor-name}/data/{data_id}`
   * - **Privacy**
     - Public or Private, depending on sensor privacy
   * - **Format**
@@ -170,7 +178,7 @@ the following query.
   * - **Method**
     - GET
   * - **Returns**
-    - On success, OK 200 with a list of timestamped data records.
+    - **200 OK** on success. A JSON object in the response body containing a list of timestamped data records.
 
 
 .. _api-v2-data-query:
@@ -186,7 +194,7 @@ interactive guide on how to use this endpoint is available at:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`v2/sensors/{sensor-name}/data`
+    - :wotkit-api-v2:`sensors/{sensor-name}/data`
   * - **Privacy**
     - Public or Private, depending on sensor privacy
   * - **Format**
@@ -194,7 +202,7 @@ interactive guide on how to use this endpoint is available at:
   * - **Method**
     - GET
   * - **Returns**
-    - On success, OK 200 with a list of timestamped data records.
+    - **200 OK** on success. A JSON object in the response body containing a list of timestamped data records.
 
 The query parameters supported are the following. They can only be used
 together if they appear in the same *Group* below.
@@ -245,7 +253,7 @@ Same as :ref:`api-v2-get-single-data` instead using HTTP Delete.
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`v2/sensors/{sensorname}/data/{data_id}`
+    - :wotkit-api-v2:`sensors/{sensorname}/data/{data_id}`
   * - **Privacy**
     - Private
   * - **Format**
@@ -253,7 +261,7 @@ Same as :ref:`api-v2-get-single-data` instead using HTTP Delete.
   * - **Method**
     - DELETE
   * - **Returns**
-    - HTTP status code; No Response 204 if successful
+    - **204 No Content** if successful.
 
 Delete Data using Data Query
 ----------------------------
@@ -264,7 +272,7 @@ restriction on only using **group 3** parameters.
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`v2/sensors/{sensorname}/data`
+    - :wotkit-api-v2:`sensors/{sensorname}/data`
   * - **Privacy**
     - Private
   * - **Format**
@@ -272,6 +280,6 @@ restriction on only using **group 3** parameters.
   * - **Method**
     - DELETE
   * - **Returns**
-    - HTTP status code; No Response 204 if successful
+    - **204 No Content** if successful.
 
 

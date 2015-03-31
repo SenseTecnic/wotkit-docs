@@ -1,12 +1,14 @@
 .. _api_sensor_data:
 
+
 .. index:: Sensor Data
+
+.. _sensor-data-label:
 
 Sensor Data
 ==============
 
-In the WoTKit, *sensor data* consists of a timestamp followed by one or more named fields. There are a number of
-reserved fields supported by the WoTKit:
+In the WoTKit, *sensor data* consists of a timestamp followed by one or more named fields. There are a number of reserved fields supported by the WoTKit:
 
 .. list-table::
   :widths: 25, 15, 50
@@ -31,9 +33,11 @@ reserved fields supported by the WoTKit:
 
 When a new sensor is created, a number of default fields are created by the wotkit for a sensor as follows.  Note that these can be changed by editing the sensor fields.
 
+
 .. list-table::
   :widths: 15, 50
   :header-rows: 1
+
   * - Default field name
     - Description
   * - lat
@@ -46,9 +50,9 @@ When a new sensor is created, a number of default fields are created by the wotk
     - a text message, for example a twitter message (text).  Needed for text/newsfeed visualizations.
 
 In addition to these reserved fields, additional required or optional fields can be added by updating the *sensor fields* in the WoTKit UI
-or :ref:`sensor_fields` in the API.
+or :ref:`sensor-fields-label` in the API.
 
-.. note:: Remember that \* Python's ``time.time()`` function generates the system time in *seconds*, not milliseconds. To convert this to an integer in milliseconds use ``int(time.time()*1000)``.  Using Java you can obtain the timestam in m illiseconds via ``System.currentTime()``.
+.. note:: Remember that \* Python's ``time.time()`` function generates the system time in *seconds*, not milliseconds. To convert this to an integer in milliseconds use ``int(time.time()*1000)``.  Using Java you can obtain the timestam in milliseconds via ``System.currentTime()``.
 
 
 .. index:: Sensor Data Creation
@@ -61,8 +65,9 @@ Sending New Data
 To send new data to a sensor, POST name value pairs corresponding to the data fields
 to the ``/sensors/{sensorname}/data`` URL.
 
-There is no need to provide a timestamp since it will be assigned by the server.
-Data posted to the system will be processed in real time.
+Any fields marked as *required* must be provided, or an error will be returned. There is no need to provide a timestamp since it will be assigned by the server. Data posted to the system will be processed in real time. 
+
+.. note:: When sending name value pairs that are not specified by the sensor's fields the server will save the data without a type. When adding a new field after sending this data WoTKit will make an attempt to cast the recorded data to the type specified by the new field.
 
 To send new data:
 
@@ -70,7 +75,7 @@ To send new data:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`sensors/{sensorname}/data`
+    - :wotkit-api-v1:`sensors/{sensorname}/data`
   * - **Privacy**
     - Private
   * - **Format**
@@ -78,7 +83,7 @@ To send new data:
   * - **Method**
     - POST
   * - **Returns**
-    - HTTP status code; No Response 201 (Created) if successful
+    - **201 Created** if successful HTTP status code; No Response 201 (Created) if successful
 
 |
 
@@ -87,24 +92,27 @@ To send new data:
   .. parsed-literal::
 
     curl --user {id}:{password} --request POST
-    -d value=5 -d lng=6 -d lat=7 ':wotkit-api:`sensors/test-sensor/data`'
+    -d value=5 -d lng=6 -d lat=7 ':wotkit-api-v1:`sensors/test-sensor/data`'
 
 |
 
-.. _send-bulk-data-label:
 
 .. index:: Bulk Sensor Data
   pair: Sensor Data Creation; Bulk Sensor Data
+
+.. _send-bulk-data-label:
 
 Sending Bulk Data
 ------------------
 
 To send a range of data, you PUT data (rather than POST) data into the system.
-Note that data PUT into the WoTKit will not be processed in real time, since it occurred in the past
 
-* The data sent must contain a list of JSON objects containing a timestamp and a value.
+* The data sent must contain a list of JSON objects, any fields marked as *required* in the sensor fields must be contained in each JSON object.
 * If providing a single piece of data, existing data with the provided timestamp will be deleted and replaced. Otherwise, the new data will be added.
 * If providing a range of data, any existing data within this timestamp range will be deleted and replaced by the new data.
+
+
+.. note:: The data sent does not require a timestamp. If the timestamp is omitted WoTKit will use the current server time. Again, any fields marked as *required* must be provided.
 
 To update data:
 
@@ -112,7 +120,7 @@ To update data:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`sensors/{sensorname}/data`
+    - :wotkit-api-v1:`sensors/{sensorname}/data`
   * - **Privacy**
     - Private
   * - **Format**
@@ -120,9 +128,10 @@ To update data:
   * - **Method**
     - PUT
   * - **Returns**
-    - HTTP status code; No Response 204 if successful
+    - ****HTTP status code; No Response 204 if successful
 
 |
+
 
 Example of valid data:
 
@@ -145,13 +154,15 @@ Example of valid data:
   .. parsed-literal::
 
     curl --user {id}:{password} --request PUT --data-binary @data.txt
-    ':wotkit-api:`sensors/test-sensor/data`'
+    ':wotkit-api-v1:`sensors/test-sensor/data`'
 
 where *data.txt* contains JSON data similar to the above JSON array.
 
-.. _delete-data-label:
+
 
 .. index:: Sensor Data Deletion
+
+.. _delete-data-label:
 
 Deleting Data
 --------------
@@ -165,7 +176,7 @@ To delete data:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`sensors/{sensorname}/data/{timestamp}`
+    - :wotkit-api-v1:`sensors/{sensorname}/data/{timestamp}`
   * - **Privacy**
     - Private
   * - **Format**
@@ -173,15 +184,16 @@ To delete data:
   * - **Method**
     - DELETE
   * - **Returns**
-    - HTTP status code; No Response 204 if successful
+    - **204 No Content** if successful.
 
 |
 
 
-.. _raw-data-label:
 
 .. index:: Raw Sensor Data, Sensor Data Retrieval
   seealso: Sensor Data Retrieval; Formatted Sensor Data
+
+.. _raw-data-label:
 
 Raw Data Retrieval
 ----------------------
@@ -191,7 +203,7 @@ To retrieve raw data use the following:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`sensors/{sensor-name}/data?{query-params}`
+    - :wotkit-api-v1:`sensors/{sensor-name}/data?{query-params}`
   * - **Privacy**
     - Public or Private
   * - **Format**
@@ -199,7 +211,7 @@ To retrieve raw data use the following:
   * - **Method**
     - GET
   * - **Returns**
-    - On success, OK 200 with a list of timestamped data records.
+    - **200 OK** on success. A JSON object in the response body containing a list of timestamped data records.
 
 |
 
@@ -231,22 +243,22 @@ The query parameters supported are the following:
 .. note:: These queries looks for timestamps > "start" and timestamps <= "end"
 
 
-.. _formatted-data-label:
 
 .. index:: Formatted Sensor Data
   seealso: Formatted Sensor Data; Sensor Data Retrieval
 
+.. _formatted-data-label:
+
 Formatted Data Retrieval
 ---------------------------
 
-To retrieve data in a format suitable for Google Visualizations, we support an additional resource for retrieving data
-called the *dataTable*.
+To retrieve data in a format suitable for Google Visualizations, we support an additional resource for retrieving data called *dataTable*.
 
 .. list-table::
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`sensors/{sensor-name}/dataTable?{query-params}`
+    - :wotkit-api-v1:`sensors/{sensor-name}/dataTable?{query-params}`
   * - **Privacy**
     - Public or Private
   * - **Format**
@@ -254,7 +266,7 @@ called the *dataTable*.
   * - **Method**
     - GET
   * - **Returns**
-    - On success, OK 200 with a list of timestamped data records.
+    - **200 OK** on success. A formatted JSON object in the response body containing a list of timestamped data records.
 
 |
 
@@ -275,8 +287,6 @@ In addition to the above query parameters, the following parameters are also sup
 
 .. note:: When using tq sql queries, they must be url encoded. When using tqx name/value pairs, the reqId parameter is necessary.
 
-|
-
 For instance, the following would take the "test-sensor", select all data where value was greater than 20, and display
 the output as an html table.
 
@@ -284,15 +294,124 @@ the output as an html table.
 
   .. parsed-literal::
 
-    curl --user {id}:{password} :wotkit-api:`sensors/test-sensor/
-    dataTable?tq=select%20*%20where%20value%3E20&reqId=1&out=html`
+    curl --user {id}:{password} :wotkit-api-v1:`sensors/sensetecnic.mule1/
+    dataTable?tq=select%20*%20where%20value%3E20`
 
 |
 
-.. _aggregated-data-label:
+It is possible to also combine SQL filtering and formatting with a range. For example, to output the last 100 elements of the sensor where the value is greater than 55, formated using HTML you would use:
+
+.. admonition:: example
+
+  .. parsed-literal::
+
+    curl --user {id}:{password} :wotkit-api-v1:`sensors/sensetecnic.mule1/dataTable?tq=select%20*%20where%20value%3E55&tqx=out:html&beforeE=1000`
+
+|
+
+An example response, limited to the last 5 elements will return 3 elements, in the form:
+
+.. code-block:: python
+
+	google.visualization.Query.setResponse (
+	  {
+	    "version": "0.6",
+	    "status": "ok",
+	    "sig": "582888298",
+	    "table": {
+	    "cols": [
+	      {
+	        "id": "sensor_id",
+	        "label": "Sensor Id",
+	        "type": "number",
+	        "pattern": ""
+	      },
+	      {
+	        "id": "sensor_name",
+	        "label": "Sensor Name",
+	        "type": "string",
+	        "pattern": ""
+	      },
+	      {
+	        "id": "timestamp",
+	        "label": "Timestamp",
+	        "type": "datetime",
+	        "pattern": ""
+	      },
+ 	      {
+	        "id": "lat",
+	        "label": "latitude",
+	        "type": "number",
+	        "pattern": ""
+	      },
+	      {
+	        "id": "lng",
+	        "label": "longitude",
+	        "type": "number",
+	        "pattern": ""
+	      },
+	      {
+	        "id": "value",
+	        "label": "Speed",
+	        "type": "number",
+	        "pattern": ""
+	      },
+	      {
+	        "id": "message",
+	        "label": "Message",
+	        "type": "string",
+	        "pattern": ""
+	      }
+	    ],
+	    "rows": [
+
+
+	      {
+	        "c":[
+	          {"v":1.0},
+	          {"v":"sensetecnic.mule1"},
+	          {"v":new Date(2014,3,28,16,20,13)},
+	          {"v":49.22522},{"v":-123.166},
+	          {"v":66.0},{"v":null}
+	        ]
+	      },
+	      {
+	        "c":[
+	          {"v":1.0},
+	          {"v":"sensetecnic.mule1"},
+	          {"v":new Date(2014,3,28,16,20,16)},
+	          {"v":49.22422},
+	          {"v":-123.16398},
+	          {"v":58.0},
+	          {"v":null}
+	        ]
+	       },
+	      {
+	        "c":[
+	          {"v":1.0},
+	          {"v":"sensetecnic.mule1"},
+	          {"v":new Date(2014,3,28,16,20,20)},
+	          {"v":49.22307},
+	          {"v":-123.16276},
+	          {"v":58.0},
+	          {"v":null}
+	        ]
+	      }
+	    ],
+	    "p": {
+	      "lastId": "2014-06-19T22:45:36.281Z"
+	    }
+	  }
+	}
+	)
+
+
+
 
 .. index:: Aggregated Sensor Data
   seealso: Aggregated Sensor Data; Sensor Data
+
+.. _aggregated-data-label:
 
 Aggregated Data Retrieval
 --------------------------
@@ -369,15 +488,16 @@ searching for sensors or sensor data. The query must be specified using one of t
     - Specifies the offset to return. This value is optional, with a default value of ``0``
 
 The following parameters may be added to any of the above patterns:
-* scope
-* tags
-* :strikethrough:`private` (deprecated, use visibility instead)
-* visibility
-* text
-* active
-* orderBy
-* **sensor**: which groups data by sensor_id
-* **time** (default): which orders data by timestamp, regardless of the sensor it comes from.
+
+- scope
+- tags
+- :strikethrough:`private` (deprecated, use visibility instead)
+- visibility
+- text
+- active
+- orderBy
+- **sensor**: which groups data by sensor_id
+- **time** (default): which orders data by timestamp, regardless of the sensor it comes from.
 
 To receive data from more that one sensor, use the following:
 
@@ -385,7 +505,7 @@ To receive data from more that one sensor, use the following:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api:`data?{query-param}={query-value}&{param}={value}...`
+    - :wotkit-api-v1:`data?{query-param}={query-value}&{param}={value}...`
   * - **Privacy**
     - Public or Private
   * - **Format**
@@ -393,12 +513,11 @@ To receive data from more that one sensor, use the following:
   * - **Method**
     - GET
   * - **Returns**
-    - On success, OK 200 with a list of timestamped data records.
+    - **200 OK** on success. A JSON object in the response body containing a list of timestamped data records.
 
 
 .. admonition:: example
 
   .. parsed-literal::
 
-    curl --user {id}:{password}
-    ":wotkit-api:`data?subscribed=all&beforeE=20&orderBy=sensor`"
+    curl --user {username}:{password} ":wotkit-api-v1:`data?scope=subscribed&beforeE=20

@@ -1,8 +1,5 @@
 .. _api_orgs:
 
-
-.. _organizations-label:
-
 Organizations
 ===============
 
@@ -12,8 +9,6 @@ only admins can manipulate them.
 .. _get_orgs:
 
 .. index:: Organization Query
-
-.. _list-query-organizations-label:
 
 List/Query Organizations
 ------------------------
@@ -41,7 +36,7 @@ To query for organizations, add query parameters after the sensors URL as follow
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api-v1:`orgs?{query}`
+	  - :wotkit-api:`orgs?{query}`
 	* - **Privacy**
 	  - Public
 	* - **Format**
@@ -49,14 +44,11 @@ To query for organizations, add query parameters after the sensors URL as follow
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - **200 OK** on success. A JSON object in the response body containing a list of organizations matching the query from newest to oldest.
+	  - On error, an appropriate HTTP status code; On success, OK 200 and a list of organizations matching the query from newest to oldest.
 	  
 |
 
-
 .. _get_org:
-
-.. _viewing-organization-label:
 
 Viewing a Single Organization
 -----------------------------
@@ -67,7 +59,7 @@ To view a single organization, query by name:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api-v1:`orgs/{org-name}`
+	  - :wotkit-api:`orgs/{org-name}`
 	* - **Privacy**
 	  - Public
 	* - **Format**
@@ -75,7 +67,7 @@ To view a single organization, query by name:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - **200 OK** if successful and a JSON on body describing the organization.
+	  - Appropriate HTTP status code; OK 200 - if successful
 	  
 |
 
@@ -83,7 +75,7 @@ To view a single organization, query by name:
 
 	.. parsed-literal::
 
-		curl ":wotkit-api-v1:`orgs/electric-inc`"
+		curl ":wotkit-api:`orgs/electric-inc`"
 
 
 Output:
@@ -102,8 +94,6 @@ Output:
 .. _create_org:
 
 .. index:: Organization Creation
-
-.. _creating-organization-label:
 	
 Creating/Registering an Organization
 ------------------------------------
@@ -128,13 +118,13 @@ resources is a JSON object with the following fields:
 	  - The name of the organization. Must be at least 4 characters long.
 	* - (*REQUIRED*)
 	  - longName 
-	  - A descriptive name of the organization. Must be at least 4 characters long. Can be updated.
+	  - A descriptive name of the organization. Must be at least 4 characters long.
 	* - (*OPTIONAL*)
 	  - description 
-	  - Description of the organization. Can be updated.
+	  - Description of the organization.
 	* - (*OPTIONAL*)
 	  - imageUrl
-	  - An image that often used in thumbnails to identify the organization. Can be updated.
+	  - An image that often used in thumbnails to identify the organization.
 |
 
 
@@ -144,7 +134,7 @@ To create an organization:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api-v1:`orgs`
+	  - :wotkit-api:`orgs`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -152,16 +142,13 @@ To create an organization:
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - **201 Created** if successful; **Bad Request 400** if organization is invalid; **Conflict 409** if an organization with the same name already exists.
+	  - HTTP status code; Created 201 if successful; Bad Request 400 if organization is invalid; Conflict 409 if an organization with the same name already exists
 
 |
-
 
 .. _update_org:
 
 .. index:: Organization Updating
-
-.. _updating-organization-label:
 
 Updating an Organization
 ------------------------
@@ -175,7 +162,7 @@ To update an organization:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api-v1:`orgs/{org-name}`
+	  - :wotkit-api:`orgs/{org-name}`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -183,15 +170,13 @@ To update an organization:
 	* - **Method**
 	  - PUT
 	* - **Returns**
-	  - **200 OK** if successful. No content on body.
+	  - HTTP status code; No Content 204 if successful
 
 |
 
-.. _delete_org:
+.. delete_org:
 
 .. index:: Organization Deletion
-
-.. _delete-organization-label:
 
 Deleting an Organization
 ------------------------
@@ -204,7 +189,7 @@ To delete a user:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api-v1:`orgs/{org-name}`
+	  - :wotkit-api:`orgs/{org-name}`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -212,7 +197,7 @@ To delete a user:
 	* - **Method**
 	  - DELETE
 	* - **Returns**
-	  - **200 OK** if successful. No content on body.
+	  - HTTP status code; No Content 204 if successful
 
 |
 
@@ -221,15 +206,12 @@ To delete a user:
 Organization Membership
 ---------------------
 
-
 .. _get_org_members:
 
 .. index:: Organization Members
 
-.. _organization-membership-label:
-
 List all members of an Organization
-###################################
+####################################
 
 To query for organization members:
 
@@ -237,7 +219,7 @@ To query for organization members:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api-v1:`orgs/{org-name}/members`
+	  - :wotkit-api:`orgs/{org-name}/members`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -245,16 +227,13 @@ To query for organization members:
 	* - **Method**
 	  - GET
 	* - **Returns**
-	  - **200 OK** on success. A JSON object in the response body containing a list of organization members.
+	  - On error, an appropriate HTTP status code; On success, OK 200 and a list of organization members.
 	  
 |
-
 
 .. _create_org_members:
 
 .. index:: Organization Member Creation
-
-.. _create-organization-member-label:
 
 Add new members to an Organization
 ###################################
@@ -265,7 +244,7 @@ To add new members to an organization, post a JSON array of usernames:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api-v1:`orgs/{org-name}/members`
+	  - :wotkit-api:`orgs/{org-name}/members`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -273,7 +252,7 @@ To add new members to an organization, post a JSON array of usernames:
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - **204 No Content** on success.
+	  - On error, an appropriate HTTP status code; On success, OK 204.
 	  
 |
 
@@ -287,7 +266,7 @@ For instance, to add the users "abe", "beth", "cecilia" and "dylan" to the organ
 	
 		curl --user {id}:{password} --request POST 
 		--header "Content-Type: application/json" --data-binary @users-list.txt 
-		':wotkit-api-v1:`orgs/electric-inc/members`'
+		':wotkit-api:`orgs/electric-inc/members`'
 
 
 The file *users-list.txt* would contain the following.
@@ -296,12 +275,9 @@ The file *users-list.txt* would contain the following.
 	
 	["abe", "beth", "cecilia", "dylan"]
 
-
 .. _remove_org_member: 
 
 .. index:: Organization Member Removal
-
-.. _remove-organization-member-label:
 
 Remove members from an Organization
 ###################################
@@ -312,7 +288,7 @@ To remove members from an organization, DELETE a JSON array of usernames:
 	:widths: 10, 50
 
 	* - **URL**
-	  - :wotkit-api-v1:`orgs/{org-name}/members`
+	  - :wotkit-api:`orgs/{org-name}/members`
 	* - **Privacy**
 	  - Admin
 	* - **Format**
@@ -320,7 +296,7 @@ To remove members from an organization, DELETE a JSON array of usernames:
 	* - **Method**
 	  - DELETE
 	* - **Returns**
-	  - **204 No Content** on success. A JSON object in the response body containing a list of usernames.
+	  - On error, an appropriate HTTP status code; On success, OK 204.
 	  
 |
 
