@@ -24,7 +24,7 @@ An alert has the following attributes:
 	  - the name of the alert.  
 	* - longName
 	  - longer display name of the alert.
-	* - description **
+	* - description 
 	  - a description of the alert.
 	* - owner
 	  - the user that creates the alert. The value of this field is automatically assigned as a user creates an alert. 
@@ -34,9 +34,9 @@ An alert has the following attributes:
 	* - inProgress
 	  - whether conditions are still true after an alert has fired. 
 		| - inProgress is 'true' if all alert conditions remain true after an alert has fired. It becomes 'false' when any condition turns false. An alert gets fired when its inProgress state changes from false to true. 
-	* - template **
+	* - template 
 	  - The message template that is sent to the inbox when alert is fired. 
-	* - sendEmail **
+	* - sendEmail 
 	  - A boolean to enable/disable send email functionaity. 
 	* - conditions
 	  - the list of alert conditions 
@@ -218,11 +218,8 @@ Output:
 
 Creating Alerts
 ---------------
-To create an alert, you POST an alert resource to the url ``/v2/alerts``.
 
-* The alert resource is a JSON object.
-* The "name", "description", "template", and "sendEmail" fields are required when creating an alert.
-* The alert name must be at least 4 characters long, contain only lowercase letters, numbers, dashes and underscores, and can start with a lowercase letter or an underscore only.
+The alert resource is a JSON object. To create an alert you POST a sensor resource to the url ``/v2/alerts``.
 
 To create an alert:
 
@@ -239,6 +236,39 @@ To create an alert:
 	  - POST
 	* - **Returns**
 	  - **201 Created** if successful; **400 Bad Request** if sensor is invalid; **409 Conflict** if alert with the same name already exists.
+
+THE JSON object has the following fields:
+
+.. list-table::
+	:widths: 25, 15, 50
+	:header-rows: 1
+	
+	* - 
+	  - Field Name
+	  - Information	
+	* - (*REQUIRED*)
+	  - name
+	  - The unique name for the alert. It must be at least 4 characters long, contain only lowercase letters, numbers, dashes and underscores, and can start with a lowercase letter or an underscore only.
+	* - (*OPTIONAL*)
+	  - longName
+	  - longer display name of the alert.
+	* - (*OPTIONAL*)
+	  - description 
+	  - a description of the alert.
+	* - (*OPTIONAL*)
+	  - disabled
+	  - the on/off state of the alert. 
+	  	| - If 'disabled' is 'true', the alert is switched off; it switches on if otherwise. 
+	* - (*OPTIONAL*)
+	  - template 
+	  - The message template that is sent to the inbox when alert is fired. 
+	* - (*OPTIONAL*)
+	  - sendEmail 
+	  - A boolean to enable/disable send email functionaity. 
+	* - (*OPTIONAL*)
+	  - conditions
+	  - The list of alert conditions 
+| 
 
 .. admonition:: example1
 
