@@ -153,8 +153,7 @@ Example of valid data:
 
   .. parsed-literal::
 
-    curl --user {id}:{password} --request PUT --data-binary @data.txt
-    ':wotkit-api-v1:`sensors/test-sensor/data`'
+    curl --user {id}:{password} --request PUT -H "Content-Type: application/json" --data-binary @data.txt ':wotkit-api-v1:`sensors/test-sensor/data`'
 
 where *data.txt* contains JSON data similar to the above JSON array.
 
