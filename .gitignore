@@ -2,3 +2,4 @@ target/
 .DS_Store
 wotkit-docs.sublime-projecct
 wotkit-docs.sublime-workspace
+builddir
