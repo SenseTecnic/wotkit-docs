@@ -20,7 +20,7 @@ All request body and response bodies use JSON. The following fields are present:
 
 
 .. list-table::
-  :widths: 5, 5, 5, 30
+  :widths: 7, 5, 5, 30
   :header-rows: 1
 
   * - 
@@ -43,15 +43,9 @@ All request body and response bodies use JSON. The following fields are present:
     - **owner**
     - String[4,50]
     - The name of the group's owner. This field is set by the system and cannot be modified.
-<<<<<<< HEAD
-  * - **description**
-    - String[,400]
-    - optional
-=======
   * - (*OPTIONAL*)
     - **description**
     - String[,255]
->>>>>>> 1.9.0
     - A simple description of the group
   * - (*OPTIONAL*)
     - **imageUrl**
@@ -94,7 +88,7 @@ An example of a Sensor Group JSON would be as follows:
 
 List Groups
 -----------
-Provides a list of groups on the system as an array using the JSON format specified in :ref:`sensor-group-format-label`
+Provides a list of all PUBLIC groups on the system as an array using the JSON format specified in :ref:`sensor-group-format-label`
 
 .. list-table::
   :widths: 10, 80
@@ -116,7 +110,8 @@ Provides a list of groups on the system as an array using the JSON format specif
 
 Viewing a Single Sensor Group
 -----------------------------
-Similar to listing a group, but retrieving only a single sensor. Replace ``{group-name}`` with the group's ``{id}`` integer or ``{owner}.{name}`` string. The API accepts both formats
+
+Similar to :ref:`list-groups-label`, but will retrieve only a single sensor group. Replace ``{group-name}`` with the group's ``{id}`` integer or ``{owner}.{name}`` string. The API accepts both formats
 
 .. list-table::
   :widths: 10, 80
@@ -126,7 +121,7 @@ Similar to listing a group, but retrieving only a single sensor. Replace ``{grou
   * - **Method**
     - GET
   * - **Returns**
-    - **200 OK** if successful. A JSON object in the response body describing the sensor.
+    - **200 OK** if successful. A JSON object in the response body describing the sensor group.
 
 .. admonition:: example
 
