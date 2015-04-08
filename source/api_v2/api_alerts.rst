@@ -317,7 +317,7 @@ To update an alert owned by the current user:
 	* - **Method**
 	  - PUT
 	* - **Returns**
-	  - **204 No Content** if successful.
+	  - **200 OK** if successful.
 
 |
 
