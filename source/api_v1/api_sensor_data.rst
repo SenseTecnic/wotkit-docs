@@ -251,7 +251,7 @@ The query parameters supported are the following:
 Formatted Data Retrieval
 ---------------------------
 
-To retrieve data in a format suitable for Google Visualizations, we support an additional resource for retrieving data called *dataTable*.
+To retrieve data in a format suitable for Google Visualizations, we support an additional resource for retrieving data called *dataTable*. 
 
 .. list-table::
   :widths: 10, 50
@@ -269,18 +269,34 @@ To retrieve data in a format suitable for Google Visualizations, we support an a
 
 |
 
-In addition to the above query parameters, the following parameters are also supported:
+This resource is similar to :ref:`raw-data-label`, but adds two parameters: ``tqx`` and ``tq``. You can read more about these parameters at the specification document: `Chart Tools Datasource Protocol <https://developers.google.com/chart/interactive/docs/dev/implementing_data_source#requestformat>`_.
+
+The complete list of available parameters is:
 
 .. list-table::
-  :widths: 5, 50
+  :widths: 15, 50
   :header-rows: 1
 
-  * -
-    -
+  * - Name
+    - Value Description
+  * - start
+    - the absolute start time of the range of data selected in milliseconds. (Defaults to current time.) May only be used in combination with another parameter.
+  * - end
+    - the absolute end time of the range of data in milliseconds
+  * - after
+    - the relative time after the start time, e.g. after=300000 would be 5 minutes after the start time (Start time MUST also be provided.)
+  * - afterE
+    - the number of elements after the start element or time. (Start time MUST also be provided.)
+  * - before
+    - the relative time before the start time.  E.g. data from the last hour would be before=3600000 (If not provided, start time default to current time.)
+  * - beforeE
+    - the number of elements before the start time.  E.g. to get the last 1000, use beforeE=1000 (If not provided, start time default to current time.)
+  * - reverse
+    - **true**: order the data from newest to oldest; **false** (default):order from oldest to newest
   * - tqx
-    - A set of colon-delimited key/value pairs for standard parameters, `defined here <http://code.google.com/apis/visualization/documentation/dev/implementing_data_source.html>`_.
+    - A set of colon-delimited key/value pairs for standard parameters, `defined here <https://developers.google.com/chart/interactive/docs/dev/implementing_data_source#requestformat>`_.
   * - tq
-    - A SQL clause to select and process data fields to return, `explained here <http://code.google.com/apis/visualization/documentation/querylanguage.html>`_.
+    - A SQL clause to select and process data fields to return, `explained here <https://developers.google.com/chart/interactive/docs/querylanguage>`_.
 
 |
 
@@ -298,7 +314,7 @@ the output as an html table.
 
 |
 
-It is possible to also combine SQL filtering and formatting with a range. For example, to output the last 100 elements of the sensor where the value is greater than 55, formated using HTML you would use:
+The following combines SQL filtering and formatting with a range to output the last 100 elements of the sensor where the value is greater than 55, formated using HTML:
 
 .. admonition:: example
 
