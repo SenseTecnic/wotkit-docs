@@ -35,7 +35,9 @@ An alert has the following attributes:
 	  - whether conditions are still true after an alert has fired. 
 		| - inProgress is 'true' if all alert conditions remain true after an alert has fired. It becomes 'false' when any condition turns false. An alert gets fired when its inProgress state changes from false to true. 
 	* - template 
-	  - The message template that is sent to the inbox when alert is fired. 
+	  - The message template that is sent to the inbox when alert is fired.
+	* - email
+	  - The email the alert is sent to.
 	* - sendEmail 
 	  - A boolean to enable/disable send email functionaity. 
 	* - conditions
@@ -231,11 +233,11 @@ To create an alert:
 	* - **Privacy**
 	  - Private
 	* - **Format**
-	  - json
+	  - JSON
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - **201 Created** if successful; **400 Bad Request** if sensor is invalid; **409 Conflict** if alert with the same name already exists.
+	  - **200 OK** if successful; **400 Bad Request** if sensor is invalid; **409 Conflict** if alert with the same name already exists.
 
 THE JSON object has the following fields:
 
@@ -262,6 +264,9 @@ THE JSON object has the following fields:
 	* - (*OPTIONAL*)
 	  - template 
 	  - The message template that is sent to the inbox when alert is fired. 
+	* - (*OPTIONAL*)
+          - email
+	  - The email the alert is sent to. It defaults to the owner's email.
 	* - (*OPTIONAL*)
 	  - sendEmail 
 	  - A boolean to enable/disable send email functionaity. 
@@ -343,7 +348,7 @@ To update an alert owned by the current user:
 	* - **Privacy**
 	  - Private
 	* - **Format**
-	  - json
+	  - JSON
 	* - **Method**
 	  - PUT
 	* - **Returns**
