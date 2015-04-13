@@ -63,9 +63,11 @@ Sending New Data
 -----------------
 
 To send new data to a sensor, POST name value pairs corresponding to the data fields
-to the ``/sensors/{sensorname}/data`` URL.
+to the ``/sensors/{sensorname}/data`` URL. 
 
-Any fields marked as *required* must be provided, or an error will be returned. There is no need to provide a timestamp since it will be assigned by the server. Data posted to the system will be processed in real time. 
+Any fields marked as *required* must be provided, or an error will be returned. 
+There is no need to provide a timestamp since it will be assigned by the server. 
+Data posted to the system will be processed in real time. 
 
 .. note:: When sending name value pairs that are not specified by the sensor's fields the server will save the data without a type. When adding a new field after sending this data WoTKit will make an attempt to cast the recorded data to the type specified by the new field.
 
@@ -79,13 +81,17 @@ To send new data:
   * - **Privacy**
     - Private
   * - **Format**
-    - not applicable
+    - JSON or X-WWW-FORM-URLENCODED
   * - **Method**
     - POST
   * - **Returns**
-    - **201 Created** if successful HTTP status code; No Response 201 (Created) if successful
+    - **201 Created** if successful. 
 
 |
+
+You can POST data as either *application/json* or *appliction/x-www-form-urlencoded*. 
+
+An example of POSTing using www-form-urlencoded data would be:
 
 .. admonition:: example
 
@@ -96,6 +102,16 @@ To send new data:
 
 |
 
+The same example using JSON would be:
+
+.. admonition:: example
+
+  .. parsed-literal::
+
+    curl --user {id}:{password} --request POST -H 'Content-Type: application/json'
+    -d '{"value":5, "lng":6, "lat":7}' ':wotkit-api-v1:`sensors/test-sensor/data`'
+
+|
 
 .. index:: Bulk Sensor Data
   pair: Sensor Data Creation; Bulk Sensor Data
