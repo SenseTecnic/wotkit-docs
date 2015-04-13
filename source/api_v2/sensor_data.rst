@@ -104,12 +104,15 @@ Updating a Range of Historical Data
 -----------------------------------
 
 To insert or update a range of historical data, you PUT data (rather than POST) data into the system.
-Note that data PUT into the WoTKit will not be processed in real time, since it
-occurred in the past.
+Note that data PUT into the WoTKit will not be processed in real time, since it occurred in the past. Thus, a timestamp field is required.
 
-* The request body must be a list of JSON objects containing a timestamp value.
-* Any existing data within this timestamp range will be
-  deleted and replaced by the data supplied.
+* The request body must be a list of JSON objects, as specified in :ref:`sensor-data-v2-label`. In the case of updating existent data is that each objet MUST contain a timestamp value which will be updated. 
+
+.. note::
+
+	Any existing data matching the provided timestamp be deleted and replaced by the data supplied.
+
+|
 
 To update data:
 
@@ -125,7 +128,7 @@ To update data:
   * - **Method**
     - PUT
   * - **Returns**
-    - **204 No Content** if successful.
+    - **204 No Content** if successful. **400 Bad Request** if unsuccessful.
 
 |
 
