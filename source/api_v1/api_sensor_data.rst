@@ -551,4 +551,6 @@ To receive data from more that one sensor, use the following:
 
   .. parsed-literal::
 
-    curl --user {username}:{password} ":wotkit-api-v1:`data?scope=subscribed&beforeE=20
+    curl --user {username}:{password} :wotkit-api-v1:`data?tags=vancouver&beforeE=20`
+
+
