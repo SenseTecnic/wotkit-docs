@@ -81,7 +81,7 @@ To send new data:
   * - **Privacy**
     - Private
   * - **Format**
-    - JSON or X-WWW-FORM-URLENCODED
+    - json or x-www-form-urlencoded
   * - **Method**
     - POST
   * - **Returns**
@@ -140,7 +140,7 @@ To update data:
   * - **Privacy**
     - Private
   * - **Format**
-    - JSON
+    - json
   * - **Method**
     - PUT
   * - **Returns**
@@ -195,7 +195,7 @@ To delete data:
   * - **Privacy**
     - Private
   * - **Format**
-    - not applicable
+    - n/a
   * - **Method**
     - DELETE
   * - **Returns**

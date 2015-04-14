@@ -19,7 +19,7 @@ The "news" resource provides a list of interesting and recent activities in the 
 	* - **Privacy**
 	  - Public
 	* - **Format**
-	  - not applicable
+	  - n/a
 	* - **Method**
 	  - GET
 	* - **Returns**

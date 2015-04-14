@@ -51,7 +51,7 @@ pairs corresponding to the data fields to the
 	* - **Method**
 	  - POST
 	* - **Returns**
-	  - **OK 200 (no content)** on success.
+	  - **OK 200** (no content) on success.
 	  
 |
 

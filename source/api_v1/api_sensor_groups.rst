@@ -95,6 +95,10 @@ Provides a list of all PUBLIC groups on the system as an array using the JSON fo
 
   * - **URL**
     - :wotkit-api-v1:`groups/`
+  * - **Privacy**
+    - Public or Private
+  * - **Format**
+    - json
   * - **Method**
     - GET
   * - **Returns**
@@ -118,6 +122,10 @@ Similar to :ref:`list-groups-label`, but will retrieve only a single sensor grou
 
   * - **URL**
     - :wotkit-api-v1:`groups/{group-name}`
+  * - **Privacy**
+    - Public or Private
+  * - **Format**
+    - json
   * - **Method**
     - GET
   * - **Returns**
@@ -126,7 +134,7 @@ Similar to :ref:`list-groups-label`, but will retrieve only a single sensor grou
 .. admonition:: example
 
   .. parsed-literal::
-    curl --user {id}:{password} --request GET ':wotkit-api-v1:`groups`/{group-name}'
+    curl --user {id}:{password} --request GET ':wotkit-api-v1:`groups/sensetecnic.test`'
 
 
 .. _create-sensor-group-label:
@@ -142,10 +150,12 @@ On creation, the **id** is **ignored** because it is system generated. You shoul
 
   * - **URL**
     - :wotkit-api-v1:`groups`
+  * - **Privacy**
+    - Private
+  * - **Format**
+    - json
   * - **Method**
     - POST
-  * - **Format**
-    - JSON
   * - **Returns**
     - **201 Created** if successful; **409 Conflict** if a sensor with the same name exists.
 
@@ -156,13 +166,17 @@ Modifying Sensor Group Fields
 -----------------------------
 Modifying is similar to creation, the content is placed in the response body
 
-Again, the **id** and **owner** fields in the JSON object are **ignored** if they are modified. The Sensor Group is specified by substituting ``{group-name}`` in the URL with either ``group.id`` or ``group.name``. The API accepts both formats.
+Again, the **id** and **owner** fields in the JSON object are **ignored** if they are modified. The Sensor Group is specified by substituting ``{group-name}`` group's ``{id}`` integer or ``{owner}.{name}`` string. The API accepts both formats.
 
 .. list-table::
   :widths: 10, 80
 
   * - **URL**
     - :wotkit-api-v1:`groups/{group-name}`
+  * - **Privacy**
+    - Private
+  * - **Format**
+    - json
   * - **Method**
     - PUT
   * - **Returns**
@@ -181,6 +195,10 @@ A response body is unnecessary.
 
   * - **URL**
     - :wotkit-api-v1:`groups/{group-name}`
+  * - **Privacy**
+    - Private
+  * - **Format**
+    - json
   * - **Method**
     - DELETE
   * - **Returns**
@@ -193,8 +211,8 @@ A response body is unnecessary.
 Adding a Sensor to Sensor Group
 -------------------------------
 This is done by invoking the URL by replacing the specified parameters where
-``{group-name}`` can be ``group.id`` or ``group.name``. ``{sensor-id}`` should
-be ``sensor.id``.
+``{group-name}`` can be the group's ``{id}`` integer or ``{owner}.{name}`` string. ``{sensor-id}`` should
+be the sensor's ``id`` integer.
 
 
 .. list-table::
@@ -202,6 +220,10 @@ be ``sensor.id``.
 
   * - **URL**
     - :wotkit-api-v1:`groups/{group-name}/sensors/{sensor-id}`
+  * - **Privacy**
+    - Private
+  * - **Format**
+    - json
   * - **Method**
     - POST
   * - **Returns**
@@ -213,13 +235,17 @@ be ``sensor.id``.
 Removing a Sensor from Sensor Group
 -----------------------------------
 
-The format is the same as :ref:`sensor-groups-add-sensor-label` except replacing ``method`` with ``DELETE``
+The format is the same as :ref:`sensor-groups-add-sensor-label` except replacing ``method`` with ``DELETE``. Replace ``{sensor-id}`` with the sensor's ``{id}`` integer.
 
 .. list-table::
   :widths: 10, 80
 
   * - **URL**
     - :wotkit-api-v1:`groups/{group-name}/sensors/{sensor-id}`
+  * - **Privacy**
+    - Private
+  * - **Format**
+    - n/a
   * - **Method**
     - DELETE
   * - **Returns**
