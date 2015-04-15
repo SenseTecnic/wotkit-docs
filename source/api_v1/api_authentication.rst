@@ -141,8 +141,7 @@ follow the oauth2 specification (http://oauth.net/2/).
 
 	1) An attempt to access the WoTKit is made by providing an 'application client id' and requesting a code. This can be obtained  
 
-		``http://wotkit.sensetecnic.com/api/oauth/authorize?client_id={application client id}
-	&response_type=code&redirect_uri={redirect_uri}``
+		``http://wotkit.sensetecnic.com/api/oauth/authorize?client_id={application client id}&response_type=code&redirect_uri={redirect_uri}``
 	
 	2) If no user is currently logged in to the WoTKit, a login page will be presented. A WoTKit user must log in to continue. 
 	3) A prompt asks the user to authorize the 'application client id' to act on their behalf. Once authorized, a code is provided. 
