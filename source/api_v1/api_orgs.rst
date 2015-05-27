@@ -208,7 +208,7 @@ To delete a user:
 	* - **Privacy**
 	  - Admin
 	* - **Format**
-	  - not applicable
+	  - n/a
 	* - **Method**
 	  - DELETE
 	* - **Returns**
@@ -241,7 +241,7 @@ To query for organization members:
 	* - **Privacy**
 	  - Admin
 	* - **Format**
-	  - not applicable
+	  - n/a
 	* - **Method**
 	  - GET
 	* - **Returns**

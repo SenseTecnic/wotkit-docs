@@ -63,9 +63,11 @@ Sending New Data
 -----------------
 
 To send new data to a sensor, POST name value pairs corresponding to the data fields
-to the ``/sensors/{sensorname}/data`` URL.
+to the ``/sensors/{sensorname}/data`` URL. 
 
-Any fields marked as *required* must be provided, or an error will be returned. There is no need to provide a timestamp since it will be assigned by the server. Data posted to the system will be processed in real time. 
+Any fields marked as *required* must be provided, or an error will be returned. 
+There is no need to provide a timestamp since it will be assigned by the server. 
+Data posted to the system will be processed in real time. 
 
 .. note:: When sending name value pairs that are not specified by the sensor's fields the server will save the data without a type. When adding a new field after sending this data WoTKit will make an attempt to cast the recorded data to the type specified by the new field.
 
@@ -79,13 +81,17 @@ To send new data:
   * - **Privacy**
     - Private
   * - **Format**
-    - not applicable
+    - json or x-www-form-urlencoded
   * - **Method**
     - POST
   * - **Returns**
-    - **201 Created** if successful HTTP status code; No Response 201 (Created) if successful
+    - **201 Created** if successful. 
 
 |
+
+You can POST data as either *application/json* or *appliction/x-www-form-urlencoded*. 
+
+An example of POSTing using www-form-urlencoded data would be:
 
 .. admonition:: example
 
@@ -96,6 +102,16 @@ To send new data:
 
 |
 
+The same example using JSON would be:
+
+.. admonition:: example
+
+  .. parsed-literal::
+
+    curl --user {id}:{password} --request POST -H 'Content-Type: application/json'
+    -d '{"value":5, "lng":6, "lat":7}' ':wotkit-api-v1:`sensors/test-sensor/data`'
+
+|
 
 .. index:: Bulk Sensor Data
   pair: Sensor Data Creation; Bulk Sensor Data
@@ -124,7 +140,7 @@ To update data:
   * - **Privacy**
     - Private
   * - **Format**
-    - JSON
+    - json
   * - **Method**
     - PUT
   * - **Returns**
@@ -153,8 +169,7 @@ Example of valid data:
 
   .. parsed-literal::
 
-    curl --user {id}:{password} --request PUT --data-binary @data.txt
-    ':wotkit-api-v1:`sensors/test-sensor/data`'
+    curl --user {id}:{password} --request PUT -H "Content-Type: application/json" --data-binary @data.txt ':wotkit-api-v1:`sensors/test-sensor/data`'
 
 where *data.txt* contains JSON data similar to the above JSON array.
 
@@ -180,7 +195,7 @@ To delete data:
   * - **Privacy**
     - Private
   * - **Format**
-    - not applicable
+    - n/a
   * - **Method**
     - DELETE
   * - **Returns**
@@ -252,7 +267,7 @@ The query parameters supported are the following:
 Formatted Data Retrieval
 ---------------------------
 
-To retrieve data in a format suitable for Google Visualizations, we support an additional resource for retrieving data called *dataTable*.
+To retrieve data in a format suitable for Google Visualizations, we support an additional resource for retrieving data called *dataTable*. 
 
 .. list-table::
   :widths: 10, 50
@@ -270,18 +285,34 @@ To retrieve data in a format suitable for Google Visualizations, we support an a
 
 |
 
-In addition to the above query parameters, the following parameters are also supported:
+This resource is similar to :ref:`raw-data-label`, but adds two parameters: ``tqx`` and ``tq``. You can read more about these parameters at the specification document: `Chart Tools Datasource Protocol <https://developers.google.com/chart/interactive/docs/dev/implementing_data_source#requestformat>`_.
+
+The complete list of available parameters is:
 
 .. list-table::
-  :widths: 5, 50
+  :widths: 15, 50
   :header-rows: 1
 
-  * -
-    -
+  * - Name
+    - Value Description
+  * - start
+    - the absolute start time of the range of data selected in milliseconds. (Defaults to current time.) May only be used in combination with another parameter.
+  * - end
+    - the absolute end time of the range of data in milliseconds
+  * - after
+    - the relative time after the start time, e.g. after=300000 would be 5 minutes after the start time (Start time MUST also be provided.)
+  * - afterE
+    - the number of elements after the start element or time. (Start time MUST also be provided.)
+  * - before
+    - the relative time before the start time.  E.g. data from the last hour would be before=3600000 (If not provided, start time default to current time.)
+  * - beforeE
+    - the number of elements before the start time.  E.g. to get the last 1000, use beforeE=1000 (If not provided, start time default to current time.)
+  * - reverse
+    - **true**: order the data from newest to oldest; **false** (default):order from oldest to newest
   * - tqx
-    - A set of colon-delimited key/value pairs for standard parameters, `defined here <http://code.google.com/apis/visualization/documentation/dev/implementing_data_source.html>`_.
+    - A set of colon-delimited key/value pairs for standard parameters, `defined here <https://developers.google.com/chart/interactive/docs/dev/implementing_data_source#requestformat>`_.
   * - tq
-    - A SQL clause to select and process data fields to return, `explained here <http://code.google.com/apis/visualization/documentation/querylanguage.html>`_.
+    - A SQL clause to select and process data fields to return, `explained here <https://developers.google.com/chart/interactive/docs/querylanguage>`_.
 
 |
 
@@ -299,7 +330,7 @@ the output as an html table.
 
 |
 
-It is possible to also combine SQL filtering and formatting with a range. For example, to output the last 100 elements of the sensor where the value is greater than 55, formated using HTML you would use:
+The following combines SQL filtering and formatting with a range to output the last 100 elements of the sensor where the value is greater than 55, formated using HTML:
 
 .. admonition:: example
 
@@ -520,4 +551,6 @@ To receive data from more that one sensor, use the following:
 
   .. parsed-literal::
 
-    curl --user {username}:{password} ":wotkit-api-v1:`data?scope=subscribed&beforeE=20
+    curl --user {username}:{password} :wotkit-api-v1:`data?tags=vancouver&beforeE=20`
+
+

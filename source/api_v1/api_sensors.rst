@@ -45,7 +45,6 @@ A sensor has the following attributes:
 		This is the last time sensor data was recorded, or an actuator script polled for control messages.
 	* - visibility
 	  - | **PUBLIC**: The sensor is publicly visible
-	    | **ORGANIZATION**: The sensor is visible to everyone in the same organization as the sensor
 	    | **PRIVATE**: The sensor is only visible to the owner. In any case posting *data* to the sensor is restricted to the sensor's owner.
 	* - owner
 	  - the owner of the sensor
@@ -88,7 +87,7 @@ The current query parameters are as follows:
 	* - :strikethrough:`private`
 	  - **DEPRECATED**, use **visibility** instead. (*true* - private sensors only; *false* - public only`).
 	* - visibility
-	  - filter by the visibility of the sensors, either of **public**, **organization**, or **private**
+	  - filter by the visibility of the sensors, either of **public**, or **private**
 	* - text
 	  - text to search for in the name, long name and description
 	* - active
@@ -348,13 +347,10 @@ The JSON object has the following fields:
 	  - The GPS longitude position of the sensor, it will default to 0 if not provided.
 	* - (*OPTIONAL*)
 	  - visibility 
-	  - It will default to "PUBLIC" if not provided. If visibility is set to ORGANIZATION, a valid "organization" must be provided.
+	  - It will default to "PRIVATE" if not provided (even when updating a sensor).
 	* - (*OPTIONAL*)
 	  - tags 
 	  - A list of tags for the sensor (For more info: :ref:`tags-label`)
-	* - (*SEMI-OPTIONAL*)
-	  - organization 
-	  - If a visibility key is set an organization is required
 	* - (*OPTIONAL*)
 	  - fields 
 	  - A fields object in the format ``{"name":"test-field","type":"STRING"}`` (For more info: :ref:`sensor-fields-label`)	
@@ -420,11 +416,10 @@ Updating a Sensor
 -----------------
 Updating a sensor is the same as registering a new sensor other than PUT is used and the sensor name or id is included in the URL.
 
-Note that all top level fields supplied will be updated.
+Note that all top level fields supplied will be updated. 
 
 * You may update any fields except "id", "name" and "owner".
 * Only fields that are present in the JSON object will be updated.
-* If "visibility" is set to ORGANIZATION, a valid "organization" must be supplied.
 * If "tags" list or "fields" list are included, they will replace the existing lists.
 * If "visibility" is hardened (that is, the access to the sensor becomes more restrictive) then all currently subscribed users are automatically unsubscribed, regardless of whether they can access the sensor after the change.
 
