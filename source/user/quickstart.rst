@@ -20,7 +20,7 @@ To find interesting public sensors, you need not create an account.  Simply hit 
 Viewing a Sensor
 ================
 
-To sensor details and data click on the sensor in the list link in the map view in the sensor search page.  This will bring up a monitor page where you get information about the sensors such as its name, contributor, location, a table containing the data stream.  See the :wotkit:`Yellow Taxi <sensors/1/monitor>` for example.
+To view sensor details and data click on the sensor in the list link in the map view in the sensor search page.  This will bring up a monitor page where you get information about the sensors such as its name, contributor, location, a table containing the data stream.  See the :wotkit:`Yellow Taxi <sensors/706>` for example.
 
 To do more with the WoTKit, you'll need to create an account!
 
@@ -38,7 +38,7 @@ Now that we're logged in, lets create a widget that displays sensor data on a da
 
     2. Type in 'light' in the search area.  Click on the sensor called 'Light Sensor' published by Sense Tecnic.
 
-    3. In the :wotkit:`sensor monitor view </sensors/5/monitor>`, click on the *Visualizations and Widgets* tab on the lower half of the screen to view available visualizations for the sensor.  Lets select the visualization we want.  Feel free to try out available visualizations.
+    3. In the :wotkit:`sensor monitor view </sensors/5>`, click on the *Visualizations and Widgets* tab on the lower half of the screen to view available visualizations for the sensor.  Lets select the visualization we want.  Feel free to try out available visualizations.
 
     4. Lets go with the *Line Graph* in the pop up.  Click on the *Create this Widget* button to create a widget.
 
@@ -58,7 +58,7 @@ for your sensor script to send data using the WoTKit API, then run your script t
 
     2. Fill in the new sensor form.  Lets call it 'Test Sensor' with the name 'test-sensor'.  Click on the map to set a location for your sensor.
 
-    3. Once you've filled in the form, you can view the :wotkit:`monitor page <sensors/test-sensor/monitor>` for that sensor.
+    3. Once you've filled in the form, you can view the monitor page for that sensor.
 
 At this point you've created a resource on the wotkit for your sensor.  Now it is time to create a key to use in your
 sensor scripts to send data to the WoTKit using the API.
@@ -135,4 +135,3 @@ Where to go from here
 Consult the :doc:`../index` for more information on using the WoTKit portal.
 
 To create your own WoTKit applications, register sensors dynamically and take advantage of the WoTKit platform with your own applications, consult the :doc:`../api_v1/index`.
-
