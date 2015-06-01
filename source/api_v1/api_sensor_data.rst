@@ -14,12 +14,12 @@ In the WoTKit, *sensor data* consists of a timestamp followed by one or more nam
   :widths: 25, 15, 50
   :header-rows: 1
 
-  * - 
+  * -
     - Reserved field name
     - Description
   * - (*OPTIONAL*)
     - timestamp
-    - the time that the sensor data was collected.  This is a long integer representing the number of milliseconds from Jan 1, 1970 UTC. Optional; if not supplied, a server-supplied timestamp will be used.
+    - the time that the sensor data was collected.  This is an ISO 8601 timestamp (for example Jan 1, 1970 UTC  in ISO 8601: 1970-01-01T00:00:00Z) Optional; if not supplied, a server-supplied timestamp will be used.
   * - (*READ-ONLY*)
     - id
     - a unique identifier for the data reading.  This is to distinguish one reading from another when they share the same timestamp. This field is read only and should not be sent by the client when sending new data.
@@ -29,7 +29,7 @@ In the WoTKit, *sensor data* consists of a timestamp followed by one or more nam
   * - (*READ-ONLY*)
     - sensor_name
     - the globally unique sensor name, in the form ``{username}.{sensorname}``. This is a read only field and should not be sent by the client when sending new data.
-| 
+|
 
 When a new sensor is created, a number of default fields are created by the wotkit for a sensor as follows.  Note that these can be changed by editing the sensor fields.
 
@@ -63,11 +63,11 @@ Sending New Data
 -----------------
 
 To send new data to a sensor, POST name value pairs corresponding to the data fields
-to the ``/sensors/{sensorname}/data`` URL. 
+to the ``/sensors/{sensorname}/data`` URL.
 
-Any fields marked as *required* must be provided, or an error will be returned. 
-There is no need to provide a timestamp since it will be assigned by the server. 
-Data posted to the system will be processed in real time. 
+Any fields marked as *required* must be provided, or an error will be returned.
+There is no need to provide a timestamp since it will be assigned by the server.
+Data posted to the system will be processed in real time.
 
 .. note:: When sending name value pairs that are not specified by the sensor's fields the server will save the data without a type. When adding a new field after sending this data WoTKit will make an attempt to cast the recorded data to the type specified by the new field.
 
@@ -85,11 +85,11 @@ To send new data:
   * - **Method**
     - POST
   * - **Returns**
-    - **201 Created** if successful. 
+    - **201 Created** if successful.
 
 |
 
-You can POST data as either *application/json* or *appliction/x-www-form-urlencoded*. 
+You can POST data as either *application/json* or *appliction/x-www-form-urlencoded*.
 
 An example of POSTing using www-form-urlencoded data would be:
 
@@ -97,8 +97,8 @@ An example of POSTing using www-form-urlencoded data would be:
 
   .. parsed-literal::
 
-    curl --user {id}:{password} --request POST
-    -d value=5 -d lng=6 -d lat=7 ':wotkit-api-v1:`sensors/test-sensor/data`'
+    curl --user {username}:{password} --request POST
+    -d value=5 -d lng=6 -d lat=7 ':wotkit-api-v1:`sensors/{username}.{sensorname}/data`'
 
 |
 
@@ -108,8 +108,8 @@ The same example using JSON would be:
 
   .. parsed-literal::
 
-    curl --user {id}:{password} --request POST -H 'Content-Type: application/json'
-    -d '{"value":5, "lng":6, "lat":7}' ':wotkit-api-v1:`sensors/test-sensor/data`'
+    curl --user {username}:{password} --request POST -H 'Content-Type: application/json'
+    -d '{"value":5, "lng":6, "lat":7}' ':wotkit-api-v1:`sensors/{username}.{sensorname}/data`'
 
 |
 
@@ -136,7 +136,7 @@ To update data:
   :widths: 10, 50
 
   * - **URL**
-    - :wotkit-api-v1:`sensors/{sensorname}/data`
+    - :wotkit-api-v1:`sensors/{username}.{sensorname}/data`
   * - **Privacy**
     - Private
   * - **Format**
@@ -169,7 +169,7 @@ Example of valid data:
 
   .. parsed-literal::
 
-    curl --user {id}:{password} --request PUT -H "Content-Type: application/json" --data-binary @data.txt ':wotkit-api-v1:`sensors/test-sensor/data`'
+    curl --user {username}:{password} --request PUT -H "Content-Type: application/json" --data-binary @data.txt ':wotkit-api-v1:`sensors/{username}.{sensorname}/data`'
 
 where *data.txt* contains JSON data similar to the above JSON array.
 
@@ -267,7 +267,7 @@ The query parameters supported are the following:
 Formatted Data Retrieval
 ---------------------------
 
-To retrieve data in a format suitable for Google Visualizations, we support an additional resource for retrieving data called *dataTable*. 
+To retrieve data in a format suitable for Google Visualizations, we support an additional resource for retrieving data called *dataTable*.
 
 .. list-table::
   :widths: 10, 50
@@ -318,14 +318,14 @@ The complete list of available parameters is:
 
 .. note:: When using tq sql queries, they must be url encoded. When using tqx name/value pairs, the reqId parameter is necessary.
 
-For instance, the following would take the "test-sensor", select all data where value was greater than 20, and display
+For instance, the following would take the "sensetecnic.mule1", select all data where value was greater than 20, and display
 the output as an html table.
 
 .. admonition:: example
 
   .. parsed-literal::
 
-    curl --user {id}:{password} :wotkit-api-v1:`sensors/sensetecnic.mule1/
+    curl --user {username}:{password} :wotkit-api-v1:`sensors/sensetecnic.mule1/
     dataTable?tq=select%20*%20where%20value%3E20`
 
 |
@@ -336,7 +336,7 @@ The following combines SQL filtering and formatting with a range to output the l
 
   .. parsed-literal::
 
-    curl --user {id}:{password} :wotkit-api-v1:`sensors/sensetecnic.mule1/dataTable?tq=select%20*%20where%20value%3E55&tqx=out:html&beforeE=1000`
+    curl --user {username}:{password} :wotkit-api-v1:`sensors/sensetecnic.mule1/dataTable?tq=select%20*%20where%20value%3E55&tqx=out:html&beforeE=1000`
 
 |
 
@@ -552,5 +552,3 @@ To receive data from more that one sensor, use the following:
   .. parsed-literal::
 
     curl --user {username}:{password} :wotkit-api-v1:`data?tags=vancouver&beforeE=20`
-
-
