@@ -526,9 +526,9 @@ The following parameters may be added to any of the above patterns:
 - visibility
 - text
 - active
-- orderBy
-- **sensor**: which groups data by sensor_id
-- **time** (default): which orders data by timestamp, regardless of the sensor it comes from.
+- location (in the form: "location=-31.257,-12.55:-21.54,9.65")
+- metadata
+- groups
 
 To receive data from more that one sensor, use the following:
 
