@@ -81,7 +81,7 @@ The current query parameters are as follows:
 	    | **subscribed** - the sensors the user has subscribed to
 		| **contributed** - the sensors the user has contributed to the system.
 	* - metadata
-	  - a *key:value* metadata pair
+	  - a key:value metadata pair
 		| Example: **metadata=appliance:toaster**
 	* - tags
 	  - list of comma separated tags
