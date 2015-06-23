@@ -8,7 +8,7 @@
 Sensors
 ===========
 
-A sensor represents a physical or virtual sensor or actuator.  It contains a data stream made up of *fields*. 
+A sensor represents a physical or virtual sensor or actuator.  It contains a data stream made up of *fields*.
 
 A sensor has the following attributes:
 
@@ -21,9 +21,9 @@ A sensor has the following attributes:
 	* - id
 	  - the numeric id of the sensor.  This may be used in the API in place of the sensor name.
 	* - name **
-	  - the name of the sensor.  
-		| Note that the global name is ``{username}.{sensorname}``.  
-		| When logged in as a the owner, you can refer to the sensor using only ``{sensorname}``. 
+	  - the name of the sensor.
+		| Note that the global name is ``{username}.{sensorname}``.
+		| When logged in as a the owner, you can refer to the sensor using only ``{sensorname}``.
 		| To access a public sensor created by another user, you can refer to it by its numeric id or the global name, ``{username}.{sensorname}``.
 
 	* - description **
@@ -50,7 +50,7 @@ A sensor has the following attributes:
 	  - the owner of the sensor
 	* - fields
 	  - the expected data fields, their type (number or string), units and if available, last update time and value. (For more info: :ref:`sensor-fields-label` )
-	* - tags 
+	* - tags
 	  - the list of tags for the sensor (For more info: :ref:`tags-label`)
 	* - data
 	  - sensor data (not shown yet)
@@ -66,7 +66,7 @@ A sensor has the following attributes:
 
 Querying Sensors
 ----------------
-A list of matching sensors may also be queried by the system.  
+A list of matching sensors may also be queried by the system.
 
 The current query parameters are as follows:
 
@@ -80,6 +80,9 @@ The current query parameters are as follows:
 	  - | **all** - all sensors the current user has access to
 	    | **subscribed** - the sensors the user has subscribed to
 		| **contributed** - the sensors the user has contributed to the system.
+	* - metadata
+	  - a *key:value* metadata pair
+		| Example: **metadata=appliance:toaster**
 	* - tags
 	  - list of comma separated tags
 	* - orgs
@@ -97,8 +100,8 @@ The current query parameters are as follows:
 	* - limit
 	  - limit to show for paging.  The maximum number of sensors to display is 1000.
 	* - location
-	  - geo coordinates for a bounding box to search within. 
-		| Format is **yy.yyy,xx.xxx:yy.yyy,xx.xxx**, and the order of the coordinates are North,West:South,East. 
+	  - geo coordinates for a bounding box to search within.
+		| Format is **yy.yyy,xx.xxx:yy.yyy,xx.xxx**, and the order of the coordinates are North,West:South,East.
 		| Example: **location=56.89,-114.55:17.43,-106.219**
 
 |
@@ -127,7 +130,7 @@ To query for sensors, add query parameters after the sensors URL as follows:
 
 	.. parsed-literal::
 
-		curl --user {id}:{password} 
+		curl --user {id}:{password}
 		":wotkit-api-v1:`sensors?tags=canada`"
 
 Output:
@@ -195,7 +198,7 @@ Output:
 
 
 .. _view-sensor-label:
-	
+
 Viewing a Single Sensor
 -----------------------
 To view a single sensor, query the sensor by sensor name or id as follows:
@@ -213,7 +216,7 @@ To view a single sensor, query the sensor by sensor name or id as follows:
 	  - GET
 	* - **Returns**
 	  - **200 OK** if successful. A JSON object in the response body describing a sensor.
-	  
+
 |
 
 .. admonition:: example
@@ -324,44 +327,44 @@ To create a sensor the API end-point is:
 	* - **Returns**
 	  -  **201 Created** if successful; **400 Bad Request** if sensor is invalid; **409 Conflict** if sensor with the same name already exists.
 
-The JSON object has the following fields: 
+The JSON object has the following fields:
 
 .. list-table::
 	:widths: 25, 15, 50
 	:header-rows: 1
-	
-	* - 
+
+	* -
 	  - Field Name
-	  - Information	
+	  - Information
 	* - (*REQUIRED*)
-	  - name 
+	  - name
 	  - The unique name for the sensor field. It is required when creating/updating/deleting a field and cannot be changed. The sensor name must be at least 4 characters long, contain only lowercase letters, numbers, dashes and underscores, and can start with a lowercase letter or an underscore only.
 	* - (*REQUIRED*)
-	  - longName 
+	  - longName
 	  - The display name for the field. It is required when creating/updating/deleting a field and can be changed.
 	* - (*OPTIONAL*)
-	  - latitude 
+	  - latitude
 	  - The GPS latitude position of the sensor, it will default to 0 if not provided.
 	* - (*OPTIONAL*)
-	  - longitude 
+	  - longitude
 	  - The GPS longitude position of the sensor, it will default to 0 if not provided.
 	* - (*OPTIONAL*)
-	  - visibility 
+	  - visibility
 	  - It will default to "PRIVATE" if not provided (even when updating a sensor).
 	* - (*OPTIONAL*)
-	  - tags 
+	  - tags
 	  - A list of tags for the sensor (For more info: :ref:`tags-label`)
 	* - (*OPTIONAL*)
-	  - fields 
-	  - A fields object in the format ``{"name":"test-field","type":"STRING"}`` (For more info: :ref:`sensor-fields-label`)	
+	  - fields
+	  - A fields object in the format ``{"name":"test-field","type":"STRING"}`` (For more info: :ref:`sensor-fields-label`)
 
-| 
+|
 
 .. admonition:: example
 
 	.. parsed-literal::
 
-		curl --user {id}:{password} --request POST --header "Content-Type: application/json" 
+		curl --user {id}:{password} --request POST --header "Content-Type: application/json"
 		--data-binary @test-sensor.txt ':wotkit-api-v1:`sensors`'
 
 
@@ -385,7 +388,7 @@ For this example, the file *test-sensor.txt* contains the following.
 	pair: Sensor Registration; Multiple Sensor Registration
 
 .. _create-multiple-sensors-label:
-	
+
 Creating/Registering multiple Sensors
 --------------------------------------
 To register multiple sensors, you PUT a list of sensor resources to the url ``/sensors``.
@@ -416,7 +419,7 @@ Updating a Sensor
 -----------------
 Updating a sensor is the same as registering a new sensor other than PUT is used and the sensor name or id is included in the URL.
 
-Note that all top level fields supplied will be updated. 
+Note that all top level fields supplied will be updated.
 
 * You may update any fields except "id", "name" and "owner".
 * Only fields that are present in the JSON object will be updated.
@@ -447,7 +450,7 @@ For instance, to update a sensor description and add tags:
 
 	.. parsed-literal::
 
-		curl --user {id}:{password} --request PUT 
+		curl --user {id}:{password} --request PUT
 		--header "Content-Type: application/json"
 		--data-binary @update-sensor.txt
 		':wotkit-api-v1:`sensors/taxi-cab`'
@@ -497,5 +500,5 @@ To delete a sensor owned by the current user:
 
 	.. parsed-literal::
 
-		curl --user {id}:{password} --request DELETE 
+		curl --user {id}:{password} --request DELETE
 		':wotkit-api-v1:`sensors/test-sensor`'
