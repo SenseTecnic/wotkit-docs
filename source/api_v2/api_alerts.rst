@@ -8,7 +8,7 @@
 Alerts
 ======
 
-An alert is set up by an user for notification purpose. Multiple conditions can be attached to an alert. Each condition is associated with a sensor field. An alert fires and sends a message to the owner's inbox and email (if email functionality is enabled) when all of its attached conditions are satisfied. Currently, each user is limited to have a maximum of 20 alerts. 
+An alert is set up by an user for notification purpose. Multiple conditions can be attached to an alert. Each condition is associated with a sensor field. An alert fires and sends a message to the owner's inbox and email (if email functionality is enabled) when all of its attached conditions are satisfied. Currently, each user is limited to have a maximum of 20 alerts.
 
 An alert has the following attributes:
 
@@ -19,29 +19,29 @@ An alert has the following attributes:
 	* - Name
 	  - Value Description
 	* - id
-	  - the numeric id of the alert. It is automatically assigned when alert is created. 
+	  - the numeric id of the alert. It is automatically assigned when alert is created.
 	* - name **
-	  - the name of the alert.  
+	  - the name of the alert.
 	* - longName
 	  - longer display name of the alert.
-	* - description 
+	* - description
 	  - a description of the alert.
 	* - owner
-	  - the user that creates the alert. The value of this field is automatically assigned as a user creates an alert. 
+	  - the user that creates the alert. The value of this field is automatically assigned as a user creates an alert.
 	* - disabled
-	  - the on/off state of the alert. 
-	  	| - If 'disabled' is 'true', the alert is switched off; it switches on if otherwise. 
+	  - the on/off state of the alert.
+	  	| - If 'disabled' is 'true', the alert is switched off; it switches on if otherwise.
 	* - inProgress
-	  - whether conditions are still true after an alert has fired. 
-		| - inProgress is 'true' if all alert conditions remain true after an alert has fired. It becomes 'false' when any condition turns false. An alert gets fired when its inProgress state changes from false to true. 
-	* - template 
-	  - The message template that is sent to the inbox when alert is fired.
+	  - whether conditions are still true after an alert has fired.
+		| - inProgress is 'true' if all alert conditions remain true after an alert has fired. It becomes 'false' when any condition turns false. An alert gets fired when its inProgress state changes from false to true.
+	* - template
+	  - The message template that is sent to the inbox when alert is fired. You can use ${alertName}, ${id}, ${description} and ${user} to compose a message.
 	* - email
 	  - The email the alert is sent to.
-	* - sendEmail 
-	  - A boolean to enable/disable send email functionaity. 
+	* - sendEmail
+	  - A boolean to enable/disable send email functionaity.
 	* - conditions
-	  - the list of alert conditions 
+	  - the list of alert conditions
 
 ** Required when creating a new alert.
 
@@ -63,8 +63,8 @@ An alert condition is composed of a sensor field, an operator for evaluation, an
 	  	| 'LE': Less Than Or Equal To
 	  	| 'GT': Greater Than
 	  	| 'GE': Greater Than Or Equal To
-	  	| 'EQ': Equal	
-	  	| 'NEQ': Not Equal 
+	  	| 'EQ': Equal
+	  	| 'NEQ': Not Equal
 	  	| 'NULL': Is Null
 	  	| 'NOTNULL': Is Not Null
 
@@ -94,13 +94,13 @@ To view a list of "alerts" created by an user:
 	  - GET
 	* - **Returns**
 	  - **200 OK** if successful. A JSON object in the response body containing a list of alerts.
-	  
+
 |
 
 .. admonition:: example
 
 	.. parsed-literal::
-	
+
 		curl --user {id}:{password} ":wotkit-api-v2:`alerts`"
 
 
@@ -178,7 +178,7 @@ To view an alert, query the alert by its id as followed:
 	  - GET
 	* - **Returns**
 	  - **200 OK** if successful. A JSON object in the response body describing an alert.
-	  
+
 |
 
 .. admonition:: example
@@ -244,10 +244,10 @@ THE JSON object has the following fields:
 .. list-table::
 	:widths: 25, 15, 50
 	:header-rows: 1
-	
-	* - 
+
+	* -
 	  - Field Name
-	  - Information	
+	  - Information
 	* - (*REQUIRED*)
 	  - name
 	  - The unique name for the alert. It must be at least 4 characters long, contain only lowercase letters, numbers, dashes and underscores, and can start with a lowercase letter or an underscore only.
@@ -255,31 +255,31 @@ THE JSON object has the following fields:
 	  - longName
 	  - longer display name of the alert.
 	* - (*OPTIONAL*)
-	  - description 
+	  - description
 	  - a description of the alert.
 	* - (*OPTIONAL*)
 	  - disabled
-	  - the on/off state of the alert. 
-	  	| - If 'disabled' is 'true', the alert is switched off; it switches on if otherwise. 
+	  - the on/off state of the alert.
+	  	| - If 'disabled' is 'true', the alert is switched off; it switches on if otherwise.
 	* - (*OPTIONAL*)
-	  - template 
-	  - The message template that is sent to the inbox when alert is fired. 
+	  - template
+	  - The message template that is sent to the inbox when alert is fired. You can use ${alertName}, ${id}, ${description} or ${user} to compose a message, e.g. "Alert by ${user} fired"
 	* - (*OPTIONAL*)
           - email
 	  - The email the alert is sent to. It defaults to the owner's email.
 	* - (*OPTIONAL*)
-	  - sendEmail 
-	  - A boolean to enable/disable send email functionaity. 
+	  - sendEmail
+	  - A boolean to enable/disable send email functionaity.
 	* - (*OPTIONAL*)
 	  - conditions
-	  - The list of alert conditions 
-| 
+	  - The list of alert conditions
+|
 
 .. admonition:: example1
 
 	.. parsed-literal::
 
-		curl --user {id}:{password} --request POST --header "Content-Type: application/json" 
+		curl --user {id}:{password} --request POST --header "Content-Type: application/json"
 		--data-binary @test-alert.txt ':wotkit-api-v2:`alerts`'
 
 
@@ -290,13 +290,13 @@ For this example, the file *test-alert.txt* contains the following.  This is the
 	{
 		"name":"test alert",
 		"description":"A test alert.",
-		"template":"Template for test alert",
+		"template":"Template for test alert using any of ${alertName}, ${id}, ${description} or ${user}",
 		"sendEmail":false
 	}
 
 .. admonition:: example2
 
-	
+
 		Now, let's create an alert with additional information and conditions. The file *test-alert.txt* contains the following.
 
 .. code-block:: python
@@ -306,7 +306,7 @@ For this example, the file *test-alert.txt* contains the following.  This is the
 		"longName": "Test Alert 2",
 		"description": "This is test 2. ",
 		"disabled": false,
-		"template": "The alert test 2 has fired!! ",
+		"template": "The alert ${alertName} has fired!! ",
 		"sendEmail": true,
 		"email": "someone@email.com",
 		"conditions": [
@@ -362,7 +362,7 @@ For instance, to update an alert:
 
 	.. parsed-literal::
 
-		curl --user {id}:{password} --request PUT --header "Content-Type: application/json" 
+		curl --user {id}:{password} --request PUT --header "Content-Type: application/json"
 		--data-binary @update-alert.txt ':wotkit-api-v2:`alerts/{alert id}`'
 
 
@@ -407,6 +407,5 @@ To delete an alert owned by the current user:
 
 	.. parsed-literal::
 
-		curl --user {id}:{password} --request DELETE 
+		curl --user {id}:{password} --request DELETE
 		':wotkit-api-v2:`alerts/{alert id}`'
-
