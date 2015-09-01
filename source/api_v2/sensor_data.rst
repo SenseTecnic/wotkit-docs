@@ -289,7 +289,7 @@ restriction on only using **group 3** parameters.
 
 Sending Aggregated Data
 -----------------------
-One can send aggregated data from multiple sensors from an organization/owner.
+One can send aggregated data from multiple sensors from an organization/owner. Each data point MUST have at least the following fields: "sensor_name" (without owner), "timestamp", and other fields marked as "required" by each individual sensor.
 
 To publish data from more that one sensor, use the following:
 
@@ -312,9 +312,9 @@ Example of valid data:
 
 .. code-block:: python
 
-  [{"sensor_name": "sensor1", "value":12.0,"lng":-123.1404,"lat":49.20532},
-  {"sensor_name": "sensor2", "value":67.0,"lng":-123.1404,"lat":49.20532},
-  {"sensor_name": "sensor3", "value":1.0,"lng":-123.1404,"lat":49.20532}]
+  [{"sensor_name": "{sensorname}", "value":12.0,"lng":-123.1404,"lat":49.20532,"timestamp":1441068278},
+  {"sensor_name": "{sensorname}", "value":67.0,"lng":-123.1404,"lat":49.20532,"timestamp":1441068278},
+  {"sensor_name": "{sensorname}", "value":1.0,"lng":-123.1404,"lat":49.20532,"timestamp":1441068278}]
 |
 
 .. admonition:: example
